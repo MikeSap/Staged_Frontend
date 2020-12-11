@@ -1,25 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import { autoLogin } from './actions/Auth'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import { Switch, Route,  Redirect } from "react-router-dom"
 
-function App() {
+
+const App = (props) => {
+  
+  const { autoLogin } = props
+
+  useEffect(() => {
+    autoLogin()
+  },[autoLogin])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Switch>
+        
+        <Route exact path="/" render={() => {
+          return (
+            props.user ?
+            <Redirect to='/dashboard' /> :
+            <Redirect to='/login' />
+          )
+        }}/>
+        
+        <Route exact path="/login" render={() => {
+          return (
+            <div>
+              {/* <NavBar /> */}
+              <Login />
+            </div>          
+          )}}/>
+
+        <Route exact path="/dashboard" render={() => {
+          return (
+            <div>
+              {/* <NavBar /> */}
+              <Dashboard />
+            </div>          
+          )}}/>
+
+          </Switch>
     </div>
   );
 }
 
-export default App;
+const readAccess = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(readAccess, ({ autoLogin }))(App); 
