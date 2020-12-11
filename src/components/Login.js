@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { login, signup } from '../actions/Auth'
+import { login, signup, clearLoginErrors } from '../actions/Auth'
 import { useHistory } from "react-router";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 const Login = (props) => {
 
-    const [formData, setFormData] = useState({email:"", password: "", password_confirmation: ""})
+    const [formData, setFormData] = useState({email:"", password: ""})
     const history = useHistory()
     const location = history.location.pathname
+    const { errors, clearLoginErrors } = props
+
+    useEffect(() => {
+        if(errors){
+        setTimeout( () => clearLoginErrors(), 3000)
+        }
+    }, [errors, clearLoginErrors])
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,8 +28,7 @@ const Login = (props) => {
         :props.login(formData)
         setFormData({
           email: '',
-          password: '',
-          password_confirmation: ''
+          password: ''
         })
       }
     
@@ -28,50 +39,55 @@ const Login = (props) => {
         });
       }
 
+    const buildSignupForm = () => { 
+        if (location.includes('signup')){
+            return <>
+        <Form.Control placeholder='password confirmation' type="password" name="password_confirmation" onChange={handleChange} value={formData.password_confirmation}/>
+        <Form.Control placeholder='username' type="text" name="username" onChange={handleChange} value={formData.username} />
+        <Form.Control placeholder='city' type="text" name="city" onChange={handleChange} value={formData.city} />
+            </>
+        }
+    }
+
         return(
          
+            <Container fluid>                    
+               <Form onSubmit={handleSubmit}>
+               <Form.Row>
+                    <Form.Group className="justify-content-center">
+                        
+                            {location.includes('signup') ?
+                                <Form.Label  as={Row}>Sign-up to FlatNote</Form.Label>
+                                :
+                                <Form.Label>Log-in to FlatNote</Form.Label>
+                            }     
+                        
+                    {props.errors ? <h3>{props.errors}</h3> : null}
 
-            // {props.loading ? <Loader active /> : null}
+                        <Form.Control placeholder='email' type="email" name="email" onChange={handleChange} value={formData.email}/>
 
-            //   {location.includes('signup') ?
-            //   <Header as='h2' color='black' textAlign='center'>
-            //   Sign-up to FlatNote
-            //   </Header>
-            //   :
-            //   <Header as='h2' color='black' textAlign='center'>
-            //   Log-in to FlatNote
-            //   </Header>
-            //   }
-
-                <form onSubmit={handleSubmit}>
-
-                  {/* HOW DO I MAKE THIS MESSAGE TIMEOUT */}
-                  {/* {props.loginInfo.errors ? alert(props.loginInfo.user) : null} */}
-
-                    <input placeholder='email' type="text" name="email" onChange={handleChange} value={formData.email}/>
-
-                    <input placeholder='password' type="password" name="password" onChange={handleChange} value={formData.password} />                
-
-                    {location.includes('signup') ? 
-     
-                    <input placeholder='password confirmation' type="password" name="password_confirmation" onChange={handleChange} value={formData.password_confirmation} />                
-   
-                    : null }
-                    <button type="submit">Submit</button>
-
-                </form>
+                        <Form.Control placeholder='password' type="password" name="password" onChange={handleChange} value={formData.password} />                
+                        
+                        { buildSignupForm() }
                 
-                // {location.includes('signup') ? null : 
-                // <div>
-                // New to Staged? <a href='/signup'>Sign Up</a>
-                // </div>
-                // }
+                        <Button type="submit">Submit</Button>
+
+                    </Form.Group>
+                </Form.Row>
+                </Form>
+                
+                {location.includes('signup') ? null : 
+                    <a href='/signup'>Sign Up</a>
+                }
+            </Container>
         )
 }
  
 const readAccess = (state) => {
   return {
+      loading: state.loading,
+      errors: state.errors.user
   }
 }
 
-export default connect(readAccess, { login, signup })(Login);
+export default connect(readAccess, { login, signup, clearLoginErrors })(Login);

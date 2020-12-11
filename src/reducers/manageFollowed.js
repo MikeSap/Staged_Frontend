@@ -8,13 +8,13 @@ export default function manageFollowed(state = [], action) {
             return action.user.user.followed
 
         case 'AUTO_LOG_IN':
-            return action.user.user.followed
+            return action.user.followed
 
         case 'AUTO_LOGIN_ERROR':
-        return []
+            return []
         
         case 'LOGOUT':
-        return []
+            return []
 
         case 'LOGIN_ERROR':
             return []

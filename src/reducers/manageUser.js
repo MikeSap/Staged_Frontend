@@ -10,7 +10,7 @@ export default function managUser(state = {
             return { email: action.user.user.email, id: action.user.user.id, username: action.user.user.username, city: action.user.user.city, bands: action.user.user.bands }
 
         case 'AUTO_LOG_IN':
-            return { email: action.user.user.email, id: action.user.user.id, username: action.user.user.username, city: action.user.user.city, bands: action.user.user.bands }
+            return { email: action.user.email, id: action.user.id, username: action.user.username, city: action.user.city, bands: action.user.bands }
 
         case 'AUTO_LOGIN_ERROR':
         return { email: "", id: "", username: "", city: "", bands: [] }

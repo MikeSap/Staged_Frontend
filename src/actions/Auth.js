@@ -1,7 +1,6 @@
 import history from '../history'
 
 export const autoLogin = (user) => {
-
     return dispatch => {
         dispatch({type:"LOGIN"})
 
@@ -39,10 +38,9 @@ export const login = (user) => {
          .then(resp => resp.json())
          .then(user => {
             if (user.errors) {
-            dispatch({type: "LOGIN_ERROR", errors: user.errors})
+            dispatch({type: "LOGIN_ERROR", user})
             history.push('/login')
             } else {
-                debugger
             dispatch({ type: "LOGGED_IN", user })
             localStorage.setItem("token", user.jwt)           
             history.push('/dashboard')
@@ -76,19 +74,20 @@ export const signup = (user) => {
     }
 }
 
-
-
 export const logout = () => {
     window.localStorage.removeItem("token")
     return dispatch => {
-        dispatch({
-        type: 'LOGOUT',
-        username: "",
-        id: ""
-        })
+        dispatch({ type: 'LOGOUT'  })
     history.push('/login')
     }
 }
+
+export const clearLoginErrors = () => {
+    return dispatch => {
+        dispatch({ type: 'CLEAR_LOGIN_ERRORS'  })
+    }
+}
+
 
 
 
