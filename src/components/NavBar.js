@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { logout } from '../actions/Auth'
 import { connect } from 'react-redux'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
@@ -9,7 +12,7 @@ import Nav from 'react-bootstrap/Nav'
 
 const NavBar = (props) => {
 
-    const history = useHistory()
+    // const history = useHistory()
 
     const { user } = props
 
@@ -20,27 +23,41 @@ const NavBar = (props) => {
     useEffect(() => {
     }, [user])
 
-    return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        
-        <Navbar.Brand href="/">Staged</Navbar.Brand>         
-            
-            <Nav>
-                {!user.id ? null :
-                <Nav.Link
-                name="New Note"
-                onClick={() => history.push('/notes/new')}
-                />}
-            
-                {!user.id ? null :
-                <Nav.Link >
-                <Button onClick={() => signOut()} primary>
+    const loggedInNav = () => {
+        return <>        
+        <Col><Nav.Link href="/bands">Bands</Nav.Link></Col>
+        <Col><Nav.Link href="/calendar">Calendar</Nav.Link></Col>
+        <Col><Nav.Link href="/merch">Merch</Nav.Link></Col>
+        <Col><Nav.Link href="/music">Music</Nav.Link></Col>
+        <Col><Nav.Link href="/shows">Shows</Nav.Link></Col>
+        <Col>
+            <Nav.Link >
+                <Button className="justify-content-end" onClick={() => signOut()} primary>
                 Sign Out</Button>           
-                </Nav.Link>}
+            </Nav.Link>
+        </Col>
+        </>
+    }
 
-            </Nav>
+    return (
+        <Container>
+           
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                 <Row lg>
+                    <Col>
+                        <Navbar.Brand href="/">Staged</Navbar.Brand> 
+                    </Col>     
+                    
+                    <Nav className="justify-content-center">
+                        
+                        {!user.id ? null :
+                        loggedInNav()}
 
-        </Navbar>
+                    </Nav>
+                </Row>
+                </Navbar>
+            
+        </Container>
     )
 }
 

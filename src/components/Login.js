@@ -51,15 +51,15 @@ const Login = (props) => {
 
         return(
          
-            <Container fluid>                    
+            <Container fluid>                  
                <Form onSubmit={handleSubmit}>
                <Form.Row>
-                    <Form.Group className="justify-content-center">
+                    <Form.Group>
                         
                             {location.includes('signup') ?
-                                <Form.Label  as={Row}>Sign-up to FlatNote</Form.Label>
+                                <Form.Label  as={Row}>Sign-up for Staged</Form.Label>
                                 :
-                                <Form.Label>Log-in to FlatNote</Form.Label>
+                                <Form.Label>Log-in to Staged</Form.Label>
                             }     
                         
                     {props.errors ? <h3>{props.errors}</h3> : null}
