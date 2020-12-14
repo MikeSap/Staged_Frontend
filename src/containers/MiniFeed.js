@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 
 import EventPost from '../components/EventPost'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// import Col from 'react-bootstrap/Col'
 
 
 const MiniFeed = (props) => {
@@ -17,9 +17,9 @@ const MiniFeed = (props) => {
         <Row>
             <Container>
 
-                {/* followedEventsToShow.map( event => {
-                    return <Row><EventPost {...event} key={event.id} /></Row>
-                } */}
+                { props.events.map( event => <Row>
+                    <EventPost {...event} key={event.id} />
+                    </Row> ) }
 
             </Container>
         </Row>

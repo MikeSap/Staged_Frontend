@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { followedBandsEvents, suggestedBandsEvents, dateEvents } from '../actions/Posts'
 
@@ -16,7 +16,10 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    const {user, followedEvents, followedBandsEvents, suggestedEvents, suggestedBandsEvents, dateEvents, followedBands} = props
+    const {user, followedEvents, followedBandsEvents, suggestedBands, suggestedEvents, suggestedBandsEvents, followedBands} = props
+    
+
+    // const suggestedEvents = suggestedBands.map(band => band.events.sample())
 
 
     useEffect(() => {
@@ -32,11 +35,15 @@ const Dashboard = (props) =>  {
         })
     }
 
-    const fetchSuggestedEvents = () => {
+    const fetchSuggestedEvents = () => {        
+        if(user){
         let bandIds = followedBands.map(band => band.id)
-        suggestedBandsEvents(bandIds)
+        let userBands = props.user.bands.map(band => band.id)
+        suggestedBandsEvents(bandIds, userBands)
+        }
     }
 
+    // let suggestedEvents = suggestedBands.map(band => band.events.sample())
     return (
         <Container>
         <Row>
@@ -49,9 +56,9 @@ const Dashboard = (props) =>  {
             </Col>
 
             <Col>
-            <Row>Suggested Bands To Follow</Row>
-                <Row>
-                    <MiniFeed />
+                <Row>Suggested Bands To Follow</Row>
+                <Row>                    
+                    <MiniFeed events={suggestedEvents}/>
                 </Row>
             </Col>
         </Row>
@@ -64,7 +71,8 @@ const readAccess = state => {
         user: state.user,
         followedBands: state.followedBands,
         followedEvents: state.followedEvents,
-        suggestedBands : state.suggestedBands,
+        suggestedBands: state.suggestedBands,
+        suggestedEvents: state.suggestedEvents, 
         dateEvents: state.dateEvents
     }
 }

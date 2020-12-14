@@ -9,39 +9,50 @@ export const followedBandsEvents = (band) => {
             fetch(`http://localhost:3000/api/v1/bands/${band.id}`)
             .then(resp => resp.json())
             .then(band => {
+                // add all followed bands events to store
                 let { events } = band
-                events = events.map( e => Object.assign(e, {band}))
+                // get events serializer to add band and remove the next line
+                // events = events.map( e => Object.assign(e, {band}))
                 dispatch({ type: "ADD_FOLLOWED_EVENTS", events})
             })
         }
     }
 }
 
-export const suggestedBandsEvents = (bandIds) => {
+export const suggestedBandsEvents = (bandIds, userBands) => {
+
     return (dispatch) => {
         dispatch({type:"FETCHING_POSTS"})
-        if (bandIds){
+        
+        if (bandIds !== []){
             fetch(`http://localhost:3000/api/v1/bands`)
             .then(resp => resp.json())
-            .then(allBands => {
-                // This is not filtering out bands that are followed
-                allBands.filter(band => !bandIds.includes(band.id))
-                dispatch({ type: "SUGGESTED_BANDS", suggestedBands: allBands})
+            .then( allBands => {
+                // add not followed band, and one random event from each band that is not followed or a band user is in
+                let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
+                let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
+                dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
             })
         } 
-        // Pull all bands index down from api
-        // Pick random number index based on api.length
-        // if band is in bands array, pick a new band
-        // if band is not in band array, fetch events
-        // add events to suggestedEvents store
+    
     }
 }
 
 export const dateEvents = (date) => {
-
+    
     return dispatch => {
-        // dispatch({type:"FETCHING_POSTS"})
+        dispatch({type:"FETCHING_POSTS"})
 
+        if(date){
+
+            fetch(`http://localhost:3000/api/v1/events`)
+            .then(resp => resp.json())
+            .then( allEvents => {
+                
+                let dateEvents = allEvents.filter( e => new Date(e.date).toDateString() === date.toDateString())
+                dispatch ({ type: "DATE_EVENTS", dateEvents})
+            })
+        }
         // Pull down posts index
         // filter posts that match date
         // add to dateEvents store

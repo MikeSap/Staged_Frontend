@@ -1,11 +1,14 @@
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
-import React, { useState, 
+import React, { useState,
     // useEffect 
 } from 'react'
+import { dateEvents } from '../actions/Posts'
+import EventPost from '../components/EventPost'
 
-// import { dateEvents } from '../actions/Posts'
-// import { connect } from 'react-redux'
+
+
+import { connect } from 'react-redux'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -14,27 +17,25 @@ const CalendarFeed = (props) => {
 
     const [date, setDate] = useState(new Date())
 
-    const grabEvents = (date) => {
-        debugger
+    const fetchDateEvents = (date) => {
+        props.dateEvents(date)
         // fetch and grab events on that date
     }
 
-    // useEffect(() => {
-    //     // when suggestedEvents gets saved to store
-    //     // run suggestedEventsToShow
-    //     return () => {
-    //     }
-    // }, [dateEvents])
-
     return (<>
-        <Row><Calendar onChange={setDate} value={date} onClickDay={grabEvents}/> </Row>
-            <Container><Row> This is where the feed will populate 
-                 {/*  dateEventsToShow.map( event => {
-                            return <Row><EventPost {...event} key={event.id} ></Row>}*/}
+        <Row><Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/> </Row>
+            <Container><Row>
+                  {props.events.map( event => <Row>
+                      <EventPost {...event} key={event.id} /></Row>)}
             </Row></Container>
         </>
     )
-
 }
 
-export default CalendarFeed
+const readAccess = state => {
+    return {
+        events: state.dateEvents
+    }
+}
+
+export default connect(readAccess, { dateEvents })(CalendarFeed)

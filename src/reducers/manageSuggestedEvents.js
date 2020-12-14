@@ -1,8 +1,8 @@
-export default function manageSuggestedBands(state = [], action) {
+export default function manageSuggestedEvents(state = [], action) {
     switch (action.type) {
 
         case 'SUGGESTED_BANDS':
-            return [...action.suggestedBands]
+            return [...action.suggestedEvents]
 
         case "LOGOUT":
             return []
