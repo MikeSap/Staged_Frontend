@@ -7,6 +7,8 @@ import manageFollowedEvents from "./manageFollowedEvents";
 import manageSuggestedBands from "./manageSuggestedBands";
 import manageSuggestedEvents from "./manageSuggestedEvents";
 import manageDateEvents from "./manageDateEvents";
+import manageEvents from "./manageEvents";
+import manageBands from "./manageBands";
 
 
 const rootReducer = combineReducers({
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
     followedEvents: manageFollowedEvents,
     suggestedBands: manageSuggestedBands,
     suggestedEvents: manageSuggestedEvents,
-    dateEvents: manageDateEvents
+    dateEvents: manageDateEvents,
+    events: manageEvents,
+    bands: manageBands
 
 })
 

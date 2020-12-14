@@ -34,7 +34,22 @@ export default function manageLoading(state = false, action) {
        
         case 'DATE_EVENTS':
             return false
+    
+        case "ADD_MUSIC":
+            return false
         
+        case "ADD_MERCH":
+            return false
+        
+        case "ADD_SHOWS":
+            return false
+
+        case "FETCH_ERROR":
+            return false
+
+        case "ADD_BANDS":
+            return false
+
         default:
              return state;
       }

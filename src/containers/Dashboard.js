@@ -17,15 +17,11 @@ import MiniFeed from '../containers/MiniFeed'
 const Dashboard = (props) =>  {
 
     const {user, followedEvents, followedBandsEvents, suggestedBands, suggestedEvents, suggestedBandsEvents, followedBands} = props
-    
-
-    // const suggestedEvents = suggestedBands.map(band => band.events.sample())
-
 
     useEffect(() => {
+        if (user.id){
         fetchFollowedEvents()
         fetchSuggestedEvents()
-        return () => {
         }
     }, [user])
 
@@ -43,12 +39,13 @@ const Dashboard = (props) =>  {
         }
     }
 
-    // let suggestedEvents = suggestedBands.map(band => band.events.sample())
     return (
         <Container>
         <Row>
             <Col> 
-                <CalendarFeed />
+                <CalendarFeed 
+                // todaysDate={new Date}
+                />
             </Col>
 
             <Col>

@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react'
 import { dateEvents } from '../actions/Posts'
 import EventPost from '../components/EventPost'
 
-
-
 import { connect } from 'react-redux'
 
 import Container from 'react-bootstrap/Container'
@@ -13,7 +11,9 @@ import Row from 'react-bootstrap/Row'
 
 const CalendarFeed = (props) => {
 
-    const { events } = props
+    const { events, 
+        // todaysDate 
+    } = props
 
     const [eventsToShow, setEventsToShow] = useState([]) 
 
@@ -22,6 +22,10 @@ const CalendarFeed = (props) => {
         return () => {            
         }
     }, [events])
+
+    // useEffect(() => {
+    //     fetchDateEvents(todaysDate)
+    // }, [todaysDate])
 
     const [date, setDate] = useState(new Date())
 

@@ -1,9 +1,9 @@
-const EventPost = (props) => {
+const BandCard = (props) => {
     return (        
         <>
         {/* build bootstrap card */}
         {props ? <div>
-            <h3>{props.band.name}</h3> <p>{props.name}</p> <p>{props.event_type}</p>
+            <h3>{props.name}</h3> <p>{props.bio}</p>
             </div>
         : null}
         </>
@@ -11,4 +11,4 @@ const EventPost = (props) => {
     )
 }
 
-export default EventPost
+export default BandCard

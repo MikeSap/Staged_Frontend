@@ -41,7 +41,7 @@ export const suggestedBandsEvents = (bandIds, userBands) => {
 
 export const dateEvents = (date) => {
     
-    return dispatch => {
+    return (dispatch) => {
         dispatch({type:"FETCHING_POSTS"})
 
         if(date){
