@@ -1,10 +1,13 @@
 const EventPost = (props) => {
-    return (
+    return (        
         <>
         {/* build bootstrap card */}
-        <h3>{props.band.name}</h3>
-        <p>{props.name}</p>
+        {props ? <div>
+            <h3>{props.band.name}</h3> <p>{props.name}</p>
+            </div>
+        : null}
         </>
+      
     )
 }
 

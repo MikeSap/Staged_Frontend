@@ -31,6 +31,7 @@ export const suggestedBandsEvents = (bandIds, userBands) => {
                 // add not followed band, and one random event from each band that is not followed or a band user is in
                 let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
                 let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
+                suggestedEvents = suggestedEvents.filter(e => e !== undefined)
                 dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
             })
         } 
@@ -44,17 +45,16 @@ export const dateEvents = (date) => {
         dispatch({type:"FETCHING_POSTS"})
 
         if(date){
-
+        // Pull down posts index
             fetch(`http://localhost:3000/api/v1/events`)
             .then(resp => resp.json())
             .then( allEvents => {
-                
+            // filter posts that match date
+            // add to dateEvents store
                 let dateEvents = allEvents.filter( e => new Date(e.date).toDateString() === date.toDateString())
                 dispatch ({ type: "DATE_EVENTS", dateEvents})
             })
         }
-        // Pull down posts index
-        // filter posts that match date
-        // add to dateEvents store
+
     }
 }

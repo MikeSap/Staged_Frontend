@@ -31,6 +31,9 @@ export default function manageLoading(state = false, action) {
 
         case 'SUGGESTED_BANDS':
             return false
+       
+        case 'DATE_EVENTS':
+            return false
         
         default:
              return state;

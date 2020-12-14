@@ -1,8 +1,6 @@
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
-import React, { useState,
-    // useEffect 
-} from 'react'
+import React, { useState, useEffect } from 'react'
 import { dateEvents } from '../actions/Posts'
 import EventPost from '../components/EventPost'
 
@@ -15,6 +13,16 @@ import Row from 'react-bootstrap/Row'
 
 const CalendarFeed = (props) => {
 
+    const { events } = props
+
+    const [eventsToShow, setEventsToShow] = useState([]) 
+
+    useEffect(() => {
+        setEventsToShow([...events])
+        return () => {            
+        }
+    }, [events])
+
     const [date, setDate] = useState(new Date())
 
     const fetchDateEvents = (date) => {
@@ -24,10 +32,11 @@ const CalendarFeed = (props) => {
 
     return (<>
         <Row><Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/> </Row>
-            <Container><Row>
-                  {props.events.map( event => <Row>
-                      <EventPost {...event} key={event.id} /></Row>)}
-            </Row></Container>
+            <Container>
+                  {eventsToShow ? eventsToShow.map( event => <Row>
+                      <EventPost {...event} key={event.id} /></Row>)
+                    : null}
+            </Container>
         </>
     )
 }
