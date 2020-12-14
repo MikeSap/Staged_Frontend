@@ -23,8 +23,8 @@ const Feed = (props) => {
     }
 
     useEffect(() => {
+        if(events){
         setEventsToShow([...events])
-        return () => {            
         }
     }, [events])
     

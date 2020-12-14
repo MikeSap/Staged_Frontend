@@ -5,7 +5,9 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Login from './components/Login'
 import NavBar from './components/NavBar'
+import BandForm from './components/BandForm'
 import Dashboard from './containers/Dashboard'
+import ManageBand from './containers/ManageBand'
 import Feed from './containers/Feed'
 import Bands from './containers/Bands'
 import CalendarFeed from './containers/CalendarFeed'
@@ -113,6 +115,30 @@ const App = (props) => {
             <div>
               <NavBar />
               <Feed events={events.shows}/>
+            </div>          
+          )}}/>
+        
+        <Route exact path="/band_registration" render={() => {
+          return (
+            <div>
+              <NavBar />
+              <BandForm />
+            </div>          
+          )}}/>
+
+        <Route exact path="/edit_band/:id" render={() => {
+          return (
+            <div>
+              <NavBar />
+              <BandForm />
+            </div>          
+          )}}/>
+        
+        <Route exact path="/manage_band/:id" render={() => {
+          return (
+            <div>
+              <NavBar />
+              <ManageBand />
             </div>          
           )}}/>
 

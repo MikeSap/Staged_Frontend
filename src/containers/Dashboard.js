@@ -16,7 +16,7 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    const {user, followedEvents, followedBandsEvents, suggestedBands, suggestedEvents, suggestedBandsEvents, followedBands} = props
+    const {user, followedEvents, followedBandsEvents, dateEvents, suggestedEvents, suggestedBandsEvents, followedBands} = props
 
     useEffect(() => {
         if (user.id){

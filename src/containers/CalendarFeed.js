@@ -11,9 +11,7 @@ import Row from 'react-bootstrap/Row'
 
 const CalendarFeed = (props) => {
 
-    const { events, 
-        // todaysDate 
-    } = props
+    const { user, events, dateEvents } = props
 
     const [eventsToShow, setEventsToShow] = useState([]) 
 
@@ -23,9 +21,11 @@ const CalendarFeed = (props) => {
         }
     }, [events])
 
-    // useEffect(() => {
-    //     fetchDateEvents(todaysDate)
-    // }, [todaysDate])
+    useEffect(() => {
+        if (user.id){
+        dateEvents(new Date())
+        }
+    }, [user])
 
     const [date, setDate] = useState(new Date())
 
@@ -47,7 +47,8 @@ const CalendarFeed = (props) => {
 
 const readAccess = state => {
     return {
-        events: state.dateEvents
+        events: state.dateEvents,
+        user: state.user
     }
 }
 
