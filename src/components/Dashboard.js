@@ -1,42 +1,72 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css';
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { followedBandsEvents, suggestedBandsEvents, dateEvents } from '../actions/Posts'
+
+
+import CalendarFeed from '../containers/CalendarFeed'
+import Feed from '../containers/Feed'
+import MiniFeed from '../containers/MiniFeed'
+
+
 
 
 const Dashboard = (props) =>  {
 
-    const [date, setDate] = useState(new Date())
+    const {user, followedEvents, followedBandsEvents, suggestedEvents, suggestedBandsEvents, dateEvents, followedBands} = props
 
-    const grabEvents = (date) => {
-        debugger
-        // fetch and grab events on that date
+
+    useEffect(() => {
+        fetchFollowedEvents()
+        fetchSuggestedEvents()
+        return () => {
+        }
+    }, [user])
+
+    const fetchFollowedEvents = () => {
+        followedBands.forEach(band => {
+            return followedBandsEvents(band)
+        })
+    }
+
+    const fetchSuggestedEvents = () => {
+        let bandIds = followedBands.map(band => band.id)
+        suggestedBandsEvents(bandIds)
     }
 
     return (
         <Container>
         <Row>
             <Col> 
-            <Row><Calendar onChange={setDate} value={date} onClickDay={grabEvents}/> </Row>
-            <Container><Row> This is where the feed will populate </Row></Container>
+                <CalendarFeed />
             </Col>
 
-            <Col><Container>
-            <Row>Search Bar</Row>
-            <Row>Feed</Row>
-            </Container>
+            <Col>
+                <Feed events={followedEvents}/>
             </Col>
 
             <Col>
             <Row>Suggested Bands To Follow</Row>
-            <Row><Container>Bands To Follow Feed</Container></Row>
+                <Row>
+                    <MiniFeed />
+                </Row>
             </Col>
         </Row>
         </Container>
     )
 }
 
-export default Dashboard
+const readAccess = state => {
+    return {
+        user: state.user,
+        followedBands: state.followedBands,
+        followedEvents: state.followedEvents,
+        suggestedBands : state.suggestedBands,
+        dateEvents: state.dateEvents
+    }
+}
+
+export default connect(readAccess , { followedBandsEvents, suggestedBandsEvents, dateEvents })(Dashboard)

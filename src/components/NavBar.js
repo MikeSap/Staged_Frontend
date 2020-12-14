@@ -48,7 +48,7 @@ const NavBar = (props) => {
                         <Navbar.Brand href="/">Staged</Navbar.Brand> 
                     </Col>     
                     
-                    <Nav className="justify-content-center">
+                    <Nav>
                         
                         {!user.id ? null :
                         loggedInNav()}

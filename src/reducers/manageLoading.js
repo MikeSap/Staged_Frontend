@@ -22,6 +22,15 @@ export default function manageLoading(state = false, action) {
 
         case("SIGUP_PAGE"):
             return false
+
+        case("FETCHING_POSTS"):
+            return true
+
+        case("ADD_FOLLOWED_EVENTS"):
+            return false
+
+        case 'SUGGESTED_BANDS':
+            return false
         
         default:
              return state;
