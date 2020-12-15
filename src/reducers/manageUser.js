@@ -21,6 +21,9 @@ export default function managUser(state = {
         case 'LOGIN_ERROR':
             return { email: "", id: "", username: "", city: "", bands: [] }
 
+        case "NEW_BAND":
+            return {...state, bands: [...state.bands, action.newBand]}
+
         default:
           return state;
       }

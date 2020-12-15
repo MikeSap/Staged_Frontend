@@ -1,4 +1,4 @@
-// import history from '../history'
+import history from '../history'
 
 export const createBand = (band) => {
     return dispatch => {
@@ -24,10 +24,26 @@ export const popBandManage = (band) => {
     }
 }
 
-// export const fetchBandEvents = (band) => {
-//     dispatch({type:"FETCHING_POSTS"})
+export const newBand = (band) => {
 
-//     return dispatch => {
-//         fetch()
-//     }
-// }
+    return dispatch => {
+       if(band){
+
+            const data = new FormData()
+            Object.keys(band).forEach((key, idx) => {
+                data.append(key, band[key])
+            })
+            fetch(`http://localhost:3000/api/v1/bands`, {
+                method: "POST",
+                heades: {
+                },
+                body: data
+            })
+            .then(resp => resp.json())
+            .then( newBand => {
+                dispatch({ type: "NEW_BAND", newBand})
+                history.push(`/manage_band/${newBand.id}`)
+            })
+        }
+    }
+}

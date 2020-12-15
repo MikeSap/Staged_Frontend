@@ -58,3 +58,36 @@ export const dateEvents = (date) => {
 
     }
 }
+
+export const popEditedEvent = (event) => {
+    return dispatch => {
+        dispatch({ type: "POP_EDITED_EVENT", event })
+    }
+}
+
+
+export const newEvent = (event) => {
+    return dispatch => {
+        dispatch ({type: "POSTING_EVENT"})
+
+        if(event){
+
+            const data = new FormData()
+            Object.keys(event).forEach((key, value) => {
+                data.append(key, event[key])
+            })
+
+            fetch(`http://localhost:3000/api/v1/events`, {
+                method: "POST",
+                heades: {
+                },
+                body: data
+            })
+            .then(resp => resp.json())
+            .then( newEvent => {
+                dispatch({ type: "NEW_EVENT", newEvent})
+            })
+        }
+
+    }
+}

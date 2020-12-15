@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import EventPost from '../components/EventPost'
-// import { followedBandsEvents } from '../actions/Posts'
+// import {  popEditedEvent } from '../actions/Posts'
 // import { connect } from 'react-redux'
 
 
@@ -13,7 +13,9 @@ import Form from 'react-bootstrap/Form'
 
 const Feed = (props) => {
 
-    const { events } = props
+    const { events
+        // , popEditedEvent 
+    } = props
 
     const [search, setSearch] = useState("")
     const [eventsToShow, setEventsToShow] = useState( [] )
@@ -33,7 +35,7 @@ const Feed = (props) => {
         return () => {            
         }
     }, [search])
-
+    
     return (
         
         <Container>
@@ -59,4 +61,7 @@ const Feed = (props) => {
 
 }
 
-export default Feed
+export default
+//  connect(null, { popEditedEvent })(
+    Feed
+    // )

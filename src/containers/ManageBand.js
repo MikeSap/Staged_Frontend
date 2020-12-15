@@ -2,17 +2,23 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import React, { useEffect } from 'react'
+// import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {  dateEvents } from '../actions/Posts'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
-import BandForm from '../components/BandForm'
+import BandPost from '../components/EventForm'
 
 const ManageBand = (props) =>  {
 
     const { managedBand } = props
+    // add band key to event
+    const managedBandEvents = managedBand.events.map( e => {
+        let event = Object.assign( {}, e)
+        event["band"] = managedBand 
+        return event        
+    } )
 
     return (
         <Container>
@@ -24,14 +30,13 @@ const ManageBand = (props) =>  {
             <Col>
                 <Row>{managedBand.name}'s Posts</Row>
                 <Row>
-                {/* <Feed events={managedBand.events}/> */}
+                    <Feed events={managedBandEvents}/>
                 </Row>
             </Col>
 
             <Col>
-                <Row>New Post</Row>
                 <Row>                    
-                    {/* put new band post form here */}
+                    <BandPost />
                 </Row>
             </Col>
         </Row>
