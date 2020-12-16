@@ -40,15 +40,13 @@ const Dashboard = (props) =>  {
     }
 
     return (
-        <Container>
-        <Row>
+        <Container className="d-flex flex-column align-items-center justify-content-center">
+        <Row className="m-3" >
             <Col> 
-                <CalendarFeed 
-                // todaysDate={new Date}
-                />
+                <CalendarFeed />
             </Col>
 
-            <Col>
+            <Col xs={5}>
                 <Feed events={followedEvents}/>
             </Col>
 

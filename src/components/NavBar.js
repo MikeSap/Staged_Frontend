@@ -48,7 +48,7 @@ const NavBar = (props) => {
          }</Col>
         <Col>
             <Nav.Link>
-                <Button className="justify-content-end" onClick={() => signOut()} primary>
+                <Button className="" onClick={() => signOut()} primary>
                 Sign Out</Button>           
             </Nav.Link>
         </Col>
@@ -56,7 +56,7 @@ const NavBar = (props) => {
     }
 
     return (
-        <Container>
+        <Container className="d-flex justify-content-center">
            
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                  <Row lg>

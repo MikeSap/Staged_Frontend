@@ -47,7 +47,7 @@ const Feed = (props) => {
         </Row>
 
         <Row>
-            <Container>
+            <Container >
 
                 { eventsToShow ? eventsToShow.map( event =>  <Row>
                     <EventPost {...event} key={event.id} />
