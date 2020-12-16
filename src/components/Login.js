@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 
 const Login = (props) => {
 
@@ -51,18 +52,19 @@ const Login = (props) => {
 
         return(
          
-            <Container fluid>                  
+            <Container fluid className="d-flex flex-column align-items-center justify-content-center">                  
                <Form onSubmit={handleSubmit}>
-               <Form.Row>
-                    <Form.Group>
+               <Form.Row className="row m-5">
+                    <Form.Group className="row align-items-center justify-content-center">
                         
                             {location.includes('signup') ?
                                 <Form.Label  as={Row}>Sign-up for Staged</Form.Label>
                                 :
                                 <Form.Label>Log-in to Staged</Form.Label>
                             }     
-                        
-                    {props.errors ? <h3>{props.errors}</h3> : null}
+                        <Form.Group className="row m-5">
+                        {props.errors ?  <Alert variant="danger">{props.errors}</Alert> : null}
+                        </Form.Group>
 
                         <Form.Control placeholder='email' type="email" name="email" onChange={handleChange} value={formData.email}/>
 
@@ -70,15 +72,18 @@ const Login = (props) => {
                         
                         { buildSignupForm() }
                 
-                        <Button type="submit">Submit</Button>
+                        <Button className="row m-3" type="submit">Submit</Button>
 
                     </Form.Group>
                 </Form.Row>
+                            <Form.Group className="row align-items-center justify-content-center">
+                    {location.includes('signup') ? null : 
+                        <Button variant="link" href='/signup'>Sign Up</Button>
+                    }
+                    </Form.Group>
                 </Form>
                 
-                {location.includes('signup') ? null : 
-                    <a href='/signup'>Sign Up</a>
-                }
+
             </Container>
         )
 }

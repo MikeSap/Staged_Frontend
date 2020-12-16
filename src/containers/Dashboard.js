@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { followedBandsEvents, suggestedBandsEvents, dateEvents } from '../actions/Posts'
+import { followedBandsEvents, suggestedBandsEvents } from '../actions/Posts'
 
 
 import CalendarFeed from '../containers/CalendarFeed'
@@ -16,7 +16,7 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    const {user, followedEvents, followedBandsEvents, dateEvents, suggestedEvents, suggestedBandsEvents, followedBands} = props
+    const {user, followedEvents, followedBandsEvents, suggestedEvents, suggestedBandsEvents, followedBands} = props
 
     useEffect(() => {
         if (user.id){
@@ -74,4 +74,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess , { followedBandsEvents, suggestedBandsEvents, dateEvents })(Dashboard)
+export default connect(readAccess , { followedBandsEvents, suggestedBandsEvents })(Dashboard)

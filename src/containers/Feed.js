@@ -35,14 +35,14 @@ const Feed = (props) => {
         return () => {            
         }
     }, [search])
-    
+
     return (
         
         <Container>
 
         <Row>
             <Form inline>
-                <Form.Control onChange={searchPosts} type="text" placeholder="Search" className="mr-sm-2" value={search} />
+                <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts" className="mr-sm-2" value={search} />
             </Form>
         </Row>
 

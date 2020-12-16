@@ -14,8 +14,6 @@ import CalendarFeed from './containers/CalendarFeed'
 import { Switch, Route, Redirect } from "react-router-dom"
 import { useHistory } from "react-router";
 
-
-
 const App = (props) => {
   
   const { autoLogin, allEvents, allBands, events, bands } = props
@@ -39,11 +37,11 @@ const App = (props) => {
       default:
         return 
     }
-  },[location, allEvents])
+  },[location, allEvents, allBands])
 
 
   return (
-    <div>
+    <div className="App">
         <Switch>
         
         <Route exact path="/" render={() => {
@@ -88,9 +86,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <CalendarFeed 
-              // todaysDate={Date.now()}
-               />
+              <CalendarFeed />
             </div>          
           )}}/>
 

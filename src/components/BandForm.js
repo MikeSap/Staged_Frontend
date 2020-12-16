@@ -23,7 +23,8 @@ const Login = (props) => {
   
   const handleSubmit = (e) => {
       e.preventDefault()
-      let band = {...formData, user_ids: [parseInt(e.target.elements[4].value)]}
+      debugger
+      let band = {...formData, user_ids: [props.user.id]}
       // differ submition from registration to edit
       props.newBand(band)
       setFormData({ name: "", bio: "", city: "", url: "" })
@@ -59,7 +60,6 @@ const Login = (props) => {
                   
                   <Form.Control placeholder='Website URL' type="url" name="url" onChange={handleChange} value={formData.url}/>
                   
-                  <Form.Control type="hidden" name="user_id" value={props.user.id}/>
                   {/* ADD USERS POPULATE FROM USER DATA ON API */}
                   {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
                       

@@ -33,6 +33,7 @@ export const newBand = (band) => {
             Object.keys(band).forEach((key, idx) => {
                 data.append(key, band[key])
             })
+            
             fetch(`http://localhost:3000/api/v1/bands`, {
                 method: "POST",
                 heades: {

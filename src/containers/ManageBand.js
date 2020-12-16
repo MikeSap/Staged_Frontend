@@ -8,7 +8,7 @@ import {  dateEvents } from '../actions/Posts'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
-import BandPost from '../components/EventForm'
+import EventForm from '../components/EventForm'
 
 const ManageBand = (props) =>  {
 
@@ -36,7 +36,7 @@ const ManageBand = (props) =>  {
 
             <Col>
                 <Row>                    
-                    <BandPost />
+                    <EventForm />
                 </Row>
             </Col>
         </Row>

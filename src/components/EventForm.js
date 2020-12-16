@@ -12,7 +12,6 @@ import Button from 'react-bootstrap/Button'
 const BandPost = (props) => {
 
   const [formData, setFormData] = useState({})
-  // const [managedBand, setManagedBand] = useState(props.managedBand)
 
   const { errors, clearBandErrors, editedEvent } = props
 
@@ -25,7 +24,7 @@ const BandPost = (props) => {
   const handleSubmit = (e) => {
       e.preventDefault();
       // differ submition from registration to edit
-    let event = {...formData, band_id: parseInt(e.target.elements[4].value)}
+    let event = {...formData, band_id: props.managedBand.id}
     props.newEvent(event)
     setFormData({event_type:"music", name:"", url:"", date:""})
     }
@@ -60,8 +59,6 @@ const BandPost = (props) => {
                 <Form.Control placeholder='Event URL' type="text" name="url" onChange={handleChange} value={formData.url}/>
                 
                 <Form.Control type="date" name="date" onChange={handleChange} value={formData.date}/>
-
-                <Form.Control type="hidden" name="band_id" value={props.managedBand.id}/>
 
                 <Button type="submit">Submit</Button>
 
