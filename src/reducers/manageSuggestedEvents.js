@@ -6,7 +6,10 @@ export default function manageSuggestedEvents(state = [], action) {
 
         case "LOGOUT":
             return []
-        
+
+        case "NEW_FOLLOW":
+            return state.filter(e => e.band.id !== action.band.id)
+    
         default:
           return state;
     }

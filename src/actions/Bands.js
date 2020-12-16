@@ -1,11 +1,5 @@
 import history from '../history'
 
-export const createBand = (band) => {
-    return dispatch => {
-
-    }
-}
-
 export const editBand = (band) => {
     return dispatch => {
 
@@ -24,6 +18,25 @@ export const popBandManage = (band) => {
     }
 }
 
+export const followBand = (user_id, band_id) => {
+    
+    return dispatch => {
+        fetch(`http://localhost:3000/api/v1/connections`, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({follower_id: user_id, followed_id: band_id})
+            })
+        .then(resp => resp.json())
+        .then( newFollow => {
+            dispatch({ type: "newFollow", band: newFollow.band})
+            history.push('/')
+        })
+    }
+}
+
 export const newBand = (band) => {
 
     return dispatch => {
@@ -36,7 +49,7 @@ export const newBand = (band) => {
             
             fetch(`http://localhost:3000/api/v1/bands`, {
                 method: "POST",
-                heades: {
+                headers: {
                 },
                 body: data
             })

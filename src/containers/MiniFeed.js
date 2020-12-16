@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import EventPost from '../components/EventPost'
+import SuggestedPost from '../components/SuggestedPost'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -19,13 +19,12 @@ const MiniFeed = (props) => {
     }, [events])
 
     return (
-        <Container>
-
+        <>
         <Row>
             <Container>
 
                 { eventsToShow ? eventsToShow.map( event => <Row>                    
-                    <EventPost {...event} 
+                    <SuggestedPost {...event} 
                     // key={event.id} 
                     />
                     </Row> )
@@ -33,7 +32,7 @@ const MiniFeed = (props) => {
 
             </Container>
         </Row>
-        </Container>
+        </>
     )
 
 }

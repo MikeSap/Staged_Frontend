@@ -2,7 +2,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import React, { useState, useEffect } from 'react'
 import { dateEvents } from '../actions/Posts'
-import EventPost from '../components/EventPost'
+import SuggestedPost from '../components/SuggestedPost'
 
 import { connect } from 'react-redux'
 
@@ -34,11 +34,12 @@ const CalendarFeed = (props) => {
         // fetch and grab events on that date
     }
 
-    return (<>
+    return (
+        <>
         <Row><Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/> </Row>
             <Container>
                   {eventsToShow ? eventsToShow.map( event => <Row>
-                      <EventPost {...event} key={event.id} /></Row>)
+                      <SuggestedPost {...event} key={event.id} /></Row>)
                     : null}
             </Container>
         </>

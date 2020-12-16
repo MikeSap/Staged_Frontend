@@ -14,7 +14,7 @@ export const autoLogin = (user) => {
             })
             .then(resp => resp.json())
             .then(user => {
-                dispatch({type:"AUTO_LOG_IN", user})            })
+                dispatch({type:"AUTO_LOG_IN", user})        })
           } else if (!window.location.href.includes('/signup')) {
             history.push('/login')
             dispatch({type:"AUTO_LOGIN_ERROR"}) 
@@ -52,6 +52,7 @@ export const login = (user) => {
 export const signup = (user) => {
     return (dispatch) => {
         dispatch({type:"LOGIN"})
+        
 
         fetch(`http://localhost:3000/api/v1/users`,{ 
             method: "POST",
@@ -63,12 +64,13 @@ export const signup = (user) => {
          .then(resp => resp.json())
          .then(user => {
              if(user.errors) {
-             dispatch({type: "LOGIN_ERROR", errors: user.errors})
+                debugger
+             dispatch({type: "LOGIN_ERROR", user})
              history.push('/signup')
              } else {
              dispatch({ type: "LOGGED_IN", user })
              localStorage.setItem("token", user.jwt)
-             history.push('notes')
+             history.push('/dashboard')
              }
          })
     }

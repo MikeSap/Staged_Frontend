@@ -40,8 +40,8 @@ const Dashboard = (props) =>  {
     }
 
     return (
-        <Container className="d-flex flex-column align-items-center justify-content-center">
-        <Row className="m-3" >
+        <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
+        <Row style={{ width: '100vw' }}>
             <Col> 
                 <CalendarFeed />
             </Col>

@@ -6,6 +6,9 @@ export default function manageFollowedEvents(state = [], action) {
 
         case "LOGOUT":
             return []
+
+        case "NEW_FOLLOW":
+            return [...state, action.band.events]
         
         default:
             return state;

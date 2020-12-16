@@ -6,6 +6,9 @@ export default function manageSuggestedBands(state = [], action) {
 
         case "LOGOUT":
             return []
+
+        case "NEW_FOLLOW":
+            return state.filter(b => b.id !== action.band.id)
         
         default:
           return state;

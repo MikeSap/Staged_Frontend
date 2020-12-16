@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
 import EventPost from '../components/EventPost'
-// import {  popEditedEvent } from '../actions/Posts'
-// import { connect } from 'react-redux'
-
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Card from 'react-bootstrap/Card'
 
 
 const Feed = (props) => {
 
-    const { events
-        // , popEditedEvent 
-    } = props
+    const { events } = props
 
     const [search, setSearch] = useState("")
     const [eventsToShow, setEventsToShow] = useState( [] )
@@ -37,9 +33,7 @@ const Feed = (props) => {
     }, [search])
 
     return (
-        
-        <Container>
-
+        <>
         <Row>
             <Form inline>
                 <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts" className="mr-sm-2" value={search} />
@@ -48,20 +42,18 @@ const Feed = (props) => {
 
         <Row>
             <Container >
+                <CardGroup >
 
                 { eventsToShow ? eventsToShow.map( event =>  <Row>
                     <EventPost {...event} key={event.id} />
                     </Row> ) 
                 : null}
-
+                </CardGroup>
             </Container>
         </Row>
-        </Container>
+        </>
     )
 
 }
 
-export default
-//  connect(null, { popEditedEvent })(
-    Feed
-    // )
+export default Feed

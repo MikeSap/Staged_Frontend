@@ -58,7 +58,7 @@ const NavBar = (props) => {
     return (
         <Container className="d-flex justify-content-center">
            
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar style={{ width: '100vw' }} collapseOnSelect expand="lg" bg="dark" variant="dark" className="justify-content-center">
                  <Row lg>
                     <Col>
                         <Navbar.Brand href="/">Staged</Navbar.Brand> 

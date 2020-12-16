@@ -19,6 +19,9 @@ export default function manageFollowed(state = [], action) {
         case 'LOGIN_ERROR':
             return []
 
+        case "NEW_FOLLOW":
+            return [...state, action.band]
+
         default:
           return state;
       }

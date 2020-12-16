@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { createBand, editBand, clearBandErrors, newBand } from '../actions/Bands'
+import { editBand, clearBandErrors, newBand } from '../actions/Bands'
 import { useHistory } from "react-router";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -81,4 +81,4 @@ const readAccess = (state) => {
   }
 }
 
-export default connect(readAccess, { createBand, editBand, clearBandErrors, newBand })(Login);
+export default connect(readAccess, { editBand, clearBandErrors, newBand })(Login);

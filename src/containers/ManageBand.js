@@ -21,13 +21,13 @@ const ManageBand = (props) =>  {
     } )
 
     return (
-        <Container>
-        <Row>
+        <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
+        <Row style={{ width: '100vw' }}>
             <Col> 
                 <CalendarFeed />
             </Col>
 
-            <Col>
+            <Col xs={4}>
                 <Row>{managedBand.name}'s Posts</Row>
                 <Row>
                     <Feed events={managedBandEvents}/>
