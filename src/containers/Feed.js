@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 
 import EventPost from '../components/EventPost'
 
@@ -6,12 +7,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import CardGroup from 'react-bootstrap/CardGroup'
-import Card from 'react-bootstrap/Card'
-
 
 const Feed = (props) => {
 
-    const { events } = props
+    const { events, followedBands } = props
 
     const [search, setSearch] = useState("")
     const [eventsToShow, setEventsToShow] = useState( [] )
@@ -25,6 +24,9 @@ const Feed = (props) => {
         setEventsToShow([...events])
         }
     }, [events])
+
+    useEffect(() => {
+    }, [followedBands])
     
     useEffect(() => {
         // when search changes use a sort function to change eventsToShow if they include band.name, name, city, 
@@ -56,4 +58,10 @@ const Feed = (props) => {
 
 }
 
-export default Feed
+const readAccess = state => {
+    return {
+        followedBands: state.followedBands
+    }
+}
+
+export default connect(readAccess)(Feed)

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 
 import SuggestedPost from '../components/SuggestedPost'
 
@@ -8,7 +9,7 @@ import Row from 'react-bootstrap/Row'
 
 const MiniFeed = (props) => {
 
-    const { events } = props
+    const { events, followedBands } = props
 
     const [eventsToShow, setEventsToShow] = useState([]) 
 
@@ -17,6 +18,9 @@ const MiniFeed = (props) => {
         return () => {            
         }
     }, [events])
+
+    useEffect(() => {
+    }, [followedBands])
 
     return (
         <>
@@ -36,5 +40,10 @@ const MiniFeed = (props) => {
     )
 
 }
+const readAccess = state => {
+    return {
+        followedBands: state.followedBands
+    }
+}
 
-export default MiniFeed
+export default connect(readAccess)(MiniFeed)

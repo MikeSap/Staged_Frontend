@@ -8,7 +8,7 @@ export default function manageFollowedEvents(state = [], action) {
             return []
 
         case "NEW_FOLLOW":
-            return [...state, action.band.events]
+            return [...state, ...action.band.events]
         
         default:
             return state;

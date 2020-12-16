@@ -25,6 +25,9 @@ const Dashboard = (props) =>  {
         }
     }, [user])
 
+    useEffect(() => {
+    }, [followedBands])
+
     const fetchFollowedEvents = () => {
         followedBands.forEach(band => {
             return followedBandsEvents(band)

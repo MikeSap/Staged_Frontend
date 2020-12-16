@@ -31,7 +31,7 @@ export const followBand = (user_id, band_id) => {
             })
         .then(resp => resp.json())
         .then( newFollow => {
-            dispatch({ type: "newFollow", band: newFollow.band})
+            dispatch({ type: "NEW_FOLLOW", band: newFollow.band})
             history.push('/')
         })
     }
