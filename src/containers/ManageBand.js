@@ -22,8 +22,8 @@ const ManageBand = (props) =>  {
 
     useEffect(() => {
         // why wont this hit when i refresh on managed band page?
+        // debugger
     }, [managedBand])
-
     return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
         <Row style={{ width: '100vw' }}>

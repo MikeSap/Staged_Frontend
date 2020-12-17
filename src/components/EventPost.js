@@ -1,5 +1,7 @@
 import {  popEditedEvent, deleteEvent } from '../actions/Events'
+import {  postComment } from '../actions/Comments'
 import { connect } from 'react-redux'
+import React, { useState } from 'react';
 
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
@@ -12,7 +14,15 @@ const EventPost = (props) => {
 
     const userBandIds = props.user.bands.map(b => b.id)
 
-    const {band_id, event_type, id, date, url, name} = props 
+    const {band_id, event_type, id, date, url, name, comments, user} = props 
+    const [comment, setComment] = useState("")
+
+    const postComment = (e) => {
+        e.preventDefault()
+        let com = {content: comment, user_id: user.id, event_id: id}
+        props.postComment(com)
+        setComment("")
+    }
     
     const manageBand = () => {
         return <>
@@ -34,11 +44,18 @@ const EventPost = (props) => {
                             { userBandIds.includes(props.band.id) ? manageBand() : null }
                         </Col>
                         <Col>
-                            {/* Show comments here */}
-                        <Form>
-                            <Form.Control></Form.Control>
-                            <Button size="sm">Post Comment</Button>
-                        </Form>
+                            {/* <Row style={{overflow:'auto', maxHeight: 150 }}>
+                                {comments.map(c => <Card style={{marginTop: "1vh", padding: "1%"}}>
+                                    <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
+                                    {c.content}
+                                    </Card>)}
+                            </Row> */}
+                            <Row>
+                                <Form onSubmit={postComment}>
+                                    <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
+                                    <Button type="submit" size="sm">Post Comment</Button>
+                                </Form>
+                            </Row>
                         </Col>
                 </Row>
                 </Container>
@@ -54,4 +71,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess, { popEditedEvent, deleteEvent })(EventPost)
+export default connect(readAccess, { popEditedEvent, deleteEvent, postComment })(EventPost)
