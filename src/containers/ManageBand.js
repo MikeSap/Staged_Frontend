@@ -2,9 +2,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-// import React, { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import {  dateEvents } from '../actions/Posts'
+import {  dateEvents } from '../actions/Events'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
@@ -19,6 +19,10 @@ const ManageBand = (props) =>  {
         event["band"] = managedBand 
         return event        
     } )
+
+    useEffect(() => {
+        // why wont this hit when i refresh on managed band page?
+    }, [managedBand])
 
     return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>

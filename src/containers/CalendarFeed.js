@@ -1,7 +1,7 @@
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import React, { useState, useEffect } from 'react'
-import { dateEvents } from '../actions/Posts'
+import { dateEvents } from '../actions/Events'
 import SuggestedPost from '../components/SuggestedPost'
 
 import { connect } from 'react-redux'

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { clearBandErrors } from '../actions/Bands'
-import { newEvent } from '../actions/Posts'
-// import { useHistory } from "react-router";
+import { newEvent, editEvent } from '../actions/Events'
+import { useHistory } from "react-router";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -15,17 +14,34 @@ const BandPost = (props) => {
 
   const { errors, clearBandErrors, editedEvent } = props
 
+  const date = editedEvent.id ? editedEvent.date.split("T")[0] : null
+
+  const history = useHistory()
+  const location = history.location.pathname
+
   useEffect(() => {
       if(errors){
       setTimeout( () => clearBandErrors(), 3000)
       }
   }, [errors, clearBandErrors])
+
+  useEffect(() => {
+    // set form data on edited event
+    if (location.includes(editedEvent.band_id)){
+      setFormData ({
+        event_type: editedEvent.event_type,
+        name: editedEvent.name,
+        url: editedEvent.url,
+        date: date,
+        id: editedEvent.id
+      })
+    }
+  }, [location, editedEvent, date])
   
   const handleSubmit = (e) => {
       e.preventDefault();
-      // differ submition from registration to edit
-    let event = {...formData, band_id: props.managedBand.id}
-    props.newEvent(event)
+      let event = {...formData, band_id: props.managedBand.id}
+      editedEvent.id ? props.editEvent(event) : props.newEvent(event)
     setFormData({event_type:"music", name:"", url:"", date:""})
     }
   
@@ -78,4 +94,4 @@ const readAccess = (state) => {
   }
 }
 
-export default connect(readAccess, { clearBandErrors, newEvent })(BandPost);
+export default connect(readAccess, { clearBandErrors, newEvent, editEvent })(BandPost);

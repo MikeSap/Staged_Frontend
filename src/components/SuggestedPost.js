@@ -5,9 +5,9 @@ import Button from 'react-bootstrap/Button'
 
 const SuggestedPost = (props) => {
 
-    let followedBandNames = props.followedBands.map(b => b.name)
-    let userBandNames = props.user.bands.map(b => b.name)
-    let nameList = followedBandNames.concat(userBandNames)
+    let followedBandIds = props.followedBands.map(b => b.id)
+    let userBandIds = props.user.bands.map(b => b.id)
+    let idList = followedBandIds.concat(userBandIds)
 
     const handleFollow = () => {
         props.followBand(props.user.id, props.band.id)
@@ -24,7 +24,7 @@ const SuggestedPost = (props) => {
                 
                 <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
                 
-                { nameList.includes(props.band.name) ? null :
+                { idList.includes(props.band.id) ? null :
                 <Button onClick={handleFollow}>Follow</Button>
                 }
 

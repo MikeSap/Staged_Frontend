@@ -1,4 +1,4 @@
-import {  popEditedEvent } from '../actions/Posts'
+import {  popEditedEvent, deleteEvent } from '../actions/Events'
 import { connect } from 'react-redux'
 
 import Card from 'react-bootstrap/Card'
@@ -9,6 +9,18 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const EventPost = (props) => {
+
+    const userBandIds = props.user.bands.map(b => b.id)
+
+    const {band_id, event_type, id, date, url, name} = props 
+    
+    const manageBand = () => {
+        return <>
+            <Button size="sm" onClick={() => props.popEditedEvent({name, band_id, event_type, id, date, url})}>Edit</Button>
+            <Button size="sm" onClick={() => props.deleteEvent(id)}>Delete</Button>
+        </>
+    }
+
     return (        
         <>
         <Card bg="light" style={{ width: '30vw' }}>
@@ -19,6 +31,7 @@ const EventPost = (props) => {
                         <Col>
                             <Card.Title>{props.name}</Card.Title> 
                             <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
+                            { userBandIds.includes(props.band.id) ? manageBand() : null }
                         </Col>
                         <Col>
                             {/* Show comments here */}
@@ -35,4 +48,10 @@ const EventPost = (props) => {
     )
 }
 
-export default connect(null, { popEditedEvent })(EventPost)
+const readAccess = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(readAccess, { popEditedEvent, deleteEvent })(EventPost)
