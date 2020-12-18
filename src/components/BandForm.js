@@ -23,7 +23,6 @@ const Login = (props) => {
   
   const handleSubmit = (e) => {
       e.preventDefault()
-      debugger
       let band = {...formData, user_ids: [props.user.id]}
       // differ submition from registration to edit
       props.newBand(band)

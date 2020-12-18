@@ -16,7 +16,8 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    let {user, followedEvents, followedBandsEvents, suggestedEvents, suggestedBandsEvents, followedBands} = props
+    let {user, followedBandsEvents, suggestedBandsEvents, suggestedBands} = props
+    let { followed } = user
 
     useEffect(() => {
         if (user.id){
@@ -25,24 +26,31 @@ const Dashboard = (props) =>  {
         }
     }, [user])
 
-    useEffect(() => {
-    }, [followedBands])
-
     const fetchFollowedEvents = () => {
-        followedBands.forEach(band => {
+        followed.forEach(band => {
             return followedBandsEvents(band)
         })
     }
 
     const fetchSuggestedEvents = () => {        
         if(user){
-        let bandIds = followedBands.map(band => band.id)
+        let bandIds = followed.map(band => band.id)
         let userBands = props.user.bands.map(band => band.id)
         suggestedBandsEvents(bandIds, userBands)
         }
     }
 
+    let followedEvents = []
+    let suggestedEvents = []
+
+    if(user.id){
+        // add band to each event
+        user.followed.forEach(b => b.events.forEach(e => followedEvents.push({...e, band: {city: b.city, id: b.id, name: b.name, url:b.url}})))
+        suggestedBands.forEach(b => b.events.forEach(e => suggestedEvents.push({...e, band: {city: b.city, id: b.id, name: b.name, url:b.url}})))
+    }
+    
     return (
+
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
         <Row style={{ width: '100vw' }}>
             <Col> 
@@ -50,7 +58,7 @@ const Dashboard = (props) =>  {
             </Col>
 
             <Col xs={5}>
-                <Feed events={followedEvents}/>
+              <Feed events={followedEvents}/>
             </Col>
 
             <Col>
@@ -67,10 +75,7 @@ const Dashboard = (props) =>  {
 const readAccess = state => {
     return {
         user: state.user,
-        followedBands: state.followedBands,
-        followedEvents: state.followedEvents,
         suggestedBands: state.suggestedBands,
-        suggestedEvents: state.suggestedEvents, 
         dateEvents: state.dateEvents
     }
 }

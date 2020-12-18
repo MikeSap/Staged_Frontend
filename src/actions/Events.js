@@ -89,7 +89,6 @@ export const editEvent = (event) => {
         dispatch ({type: "POSTING_EVENT"})
 
         if(event){
-
             const data = new FormData()
             Object.keys(event).forEach((key, value) => {
                 data.append(key, event[key])

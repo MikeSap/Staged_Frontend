@@ -5,7 +5,6 @@ import SuggestedPost from '../components/SuggestedPost'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
 
 const MiniFeed = (props) => {
 
@@ -28,9 +27,7 @@ const MiniFeed = (props) => {
             <Container>
 
                 { eventsToShow ? eventsToShow.map( event => <Row>                    
-                    <SuggestedPost {...event} 
-                    // key={event.id} 
-                    />
+                    <SuggestedPost {...event} key={event.id} />
                     </Row> )
                     : null }
 
@@ -42,7 +39,7 @@ const MiniFeed = (props) => {
 }
 const readAccess = state => {
     return {
-        followedBands: state.followedBands
+        followedBands: state.user.followed
     }
 }
 

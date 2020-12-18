@@ -47,7 +47,7 @@ const Feed = (props) => {
                 <CardGroup >
 
                 { eventsToShow ? eventsToShow.map( event =>  <Row>
-                    <EventPost {...event} key={event.id} />
+                    <EventPost {...event} band={event.band} key={event.id} />
                     </Row> ) 
                 : null}
                 </CardGroup>
@@ -60,7 +60,7 @@ const Feed = (props) => {
 
 const readAccess = state => {
     return {
-        followedBands: state.followedBands
+        followedBands: state.user.followed
     }
 }
 

@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button'
 
 const SuggestedPost = (props) => {
 
-    let followedBandIds = props.followedBands.map(b => b.id)
+    let followedBandIds = props.user.followed.map(b => b.id)
     let userBandIds = props.user.bands.map(b => b.id)
     let idList = followedBandIds.concat(userBandIds)
 
     const handleFollow = () => {
         props.followBand(props.user.id, props.band.id)
     }
-
+    
     return (        
         <>
         <Card bg="light" style={{ width: '15vw' }}>
@@ -37,7 +37,6 @@ const SuggestedPost = (props) => {
 const readAccess = state => {
     return {
         user: state.user,
-        followedBands: state.followedBands
     }
 }
 

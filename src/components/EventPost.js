@@ -1,5 +1,5 @@
 import {  popEditedEvent, deleteEvent } from '../actions/Events'
-import {  postComment } from '../actions/Comments'
+import {  postComment, selfPostComment } from '../actions/Comments'
 import { connect } from 'react-redux'
 import React, { useState } from 'react';
 
@@ -12,44 +12,52 @@ import Col from 'react-bootstrap/Col'
 
 const EventPost = (props) => {
 
-    const userBandIds = props.user.bands.map(b => b.id)
+    let userBandIds
 
-    const {band_id, event_type, id, date, url, name, comments, user} = props 
+    const { event_type, id, date, url, name, comments, user , band} = props 
     const [comment, setComment] = useState("")
 
     const postComment = (e) => {
         e.preventDefault()
         let com = {content: comment, user_id: user.id, event_id: id}
+        let userBandEvents = user.bands.map(b => b.events).flat()
+        userBandEvents = userBandEvents.map(e => e.id)
+        userBandEvents.includes(com.event_id)?
+        props.selfPostComment(com) :
         props.postComment(com)
         setComment("")
     }
     
     const manageBand = () => {
         return <>
-            <Button size="sm" onClick={() => props.popEditedEvent({name, band_id, event_type, id, date, url})}>Edit</Button>
+            <Button size="sm" onClick={() => props.popEditedEvent({name, band, event_type, id, date, url})}>Edit</Button>
             <Button size="sm" onClick={() => props.deleteEvent(id)}>Delete</Button>
         </>
+    }
+
+    if (user.id){
+        userBandIds = user.bands.map(b => b.id)
     }
 
     return (        
         <>
         <Card bg="light" style={{ width: '30vw' }}>
-            <Card.Header as="h4">{props.band.name}</Card.Header> 
+            <Card.Header as="h4">{band.name}</Card.Header> 
             <Card.Body>
                 <Container>
                     <Row>
                         <Col>
-                            <Card.Title>{props.name}</Card.Title> 
-                            <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
-                            { userBandIds.includes(props.band.id) ? manageBand() : null }
+                            <Card.Title>{name}</Card.Title> 
+                            <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
+                            { userBandIds.includes(band.id) ? manageBand() : null }
                         </Col>
                         <Col>
-                            {/* <Row style={{overflow:'auto', maxHeight: 150 }}>
+                            <Row style={{overflow:'auto', maxHeight: 150 }}>
                                 {comments.map(c => <Card style={{marginTop: "1vh", padding: "1%"}}>
                                     <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
                                     {c.content}
                                     </Card>)}
-                            </Row> */}
+                            </Row>
                             <Row>
                                 <Form onSubmit={postComment}>
                                     <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
@@ -71,4 +79,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess, { popEditedEvent, deleteEvent, postComment })(EventPost)
+export default connect(readAccess, { popEditedEvent, deleteEvent, postComment, selfPostComment })(EventPost)

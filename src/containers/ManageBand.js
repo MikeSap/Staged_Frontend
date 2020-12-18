@@ -4,7 +4,10 @@ import Col from 'react-bootstrap/Col'
 
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from "react-router";
+
 import {  dateEvents } from '../actions/Events'
+import {  rePopManagedBand } from '../actions/Bands'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
@@ -12,7 +15,18 @@ import EventForm from '../components/EventForm'
 
 const ManageBand = (props) =>  {
 
-    const { managedBand } = props
+    const history = useHistory()
+    const location = history.location.pathname    
+
+    useEffect(() => {
+        debugger
+        if(!managedBand){
+            rePopManagedBand(location.split('manage_band/')[location.split('manage_band/').length -1])
+        }
+    })
+
+    const { managedBand, rePopManagedBand } = props
+   
     // add band key to event
     const managedBandEvents = managedBand.events.map( e => {
         let event = Object.assign( {}, e)
@@ -20,10 +34,6 @@ const ManageBand = (props) =>  {
         return event        
     } )
 
-    useEffect(() => {
-        // why wont this hit when i refresh on managed band page?
-        // debugger
-    }, [managedBand])
     return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
         <Row style={{ width: '100vw' }}>
@@ -32,19 +42,19 @@ const ManageBand = (props) =>  {
             </Col>
 
             <Col xs={4}>
-                <Row>{managedBand.name}'s Posts</Row>
-                <Row>
-                    <Feed events={managedBandEvents}/>
-                </Row>
+              <Row>{managedBand.name}'s Posts</Row>
+              <Row>
+                  <Feed events={managedBandEvents}/>
+              </Row>
             </Col>
 
-            <Col>
-                <Row>                    
-                    <EventForm />
-                </Row>
-            </Col>
-        </Row>
-        </Container>
+          <Col> 
+              <Row>                   
+                  <EventForm />
+              </Row>
+          </Col>
+      </Row>
+      </Container>
     )
 }
 
@@ -55,4 +65,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess , { dateEvents })(ManageBand)
+export default connect(readAccess , { dateEvents, rePopManagedBand })(ManageBand)
