@@ -40,36 +40,36 @@ const EventPost = (props) => {
     }
 
     return (        
-        <>
-        <Card bg="light" style={{ width: '30vw' }}>
-            <Card.Header as="h4">{band.name}</Card.Header> 
-            <Card.Body>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Card.Title>{name}</Card.Title> 
-                            <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
-                            { userBandIds.includes(band.id) ? manageBand() : null }
-                        </Col>
-                        <Col>
-                            <Row style={{overflow:'auto', maxHeight: 150 }}>
-                                {comments.map(c => <Card style={{marginTop: "1vh", padding: "1%"}}>
-                                    <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
-                                    {c.content}
-                                    </Card>)}
-                            </Row>
-                            <Row>
-                                <Form onSubmit={postComment}>
-                                    <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
-                                    <Button type="submit" size="sm">Post Comment</Button>
-                                </Form>
-                            </Row>
-                        </Col>
-                </Row>
-                </Container>
-            </Card.Body>
-        </Card>
-        </>      
+      <>
+      <Card bg="light" style={{ width: '30vw' }}>
+        <Card.Header as="h4">{band.name}</Card.Header> 
+          <Card.Body>
+              <Container>
+                  <Row>
+                      <Col>
+                          <Card.Title>{name}</Card.Title> 
+                          <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
+                          { userBandIds.includes(band.id) ? manageBand() : null }
+                      </Col>
+                      <Col>
+                          <Row style={{overflow:'auto', maxHeight: 150 }}>
+                              {comments.map(c => <Card style={{marginTop: "1vh", padding: "1%"}}>
+                                  <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
+                                  {c.content}
+                                  </Card>)}
+                          </Row>
+                          <Row>
+                              <Form onSubmit={postComment}>
+                                  <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
+                                  <Button type="submit" size="sm">Post Comment</Button>
+                              </Form>
+                          </Row>
+                      </Col>
+              </Row>
+              </Container>
+          </Card.Body>
+      </Card>
+      </>      
     )
 }
 
