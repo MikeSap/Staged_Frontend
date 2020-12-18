@@ -1,24 +1,5 @@
 // import history from '../history'
 
-// export const followedBandsEvents = (band) => {
-    
-//     return (dispatch) => {
-//         dispatch({type:"FETCHING_POSTS"})
-
-//         if (band){
-//             fetch(`http://localhost:3000/api/v1/bands/${band.id}`)
-//             .then(resp => resp.json())
-//             .then(band => {
-//                 // add all followed bands events to store
-//                 let { events } = band
-//                 // get events serializer to add band and remove the next line
-//                 // events = events.map( e => Object.assign(e, {band}))
-//                 dispatch({ type: "ADD_FOLLOWED_EVENTS", events})
-//             })
-//         }
-//     }
-// }
-
 export const suggestedBandsEvents = (bandIds, userBands) => {
 
     return (dispatch) => {
@@ -59,7 +40,6 @@ export const dateEvents = (date) => {
 
     }
 }
-
 
 export const newEvent = (event) => {
     return dispatch => {
@@ -108,14 +88,11 @@ export const editEvent = (event) => {
     }
 }
 
-
 export const popEditedEvent = (event) => {
     return dispatch => {
         dispatch({ type: "POP_EDITED_EVENT", event })
     }
 }
-
-
 
 export const deleteEvent = (eventId) => {
     return dispatch => {

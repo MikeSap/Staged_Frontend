@@ -14,7 +14,14 @@ export const autoLogin = (user) => {
             })
             .then(resp => resp.json())
             .then(user => {
-                dispatch({type:"AUTO_LOG_IN", user})        })
+                dispatch({type:"AUTO_LOG_IN", user})
+                if(window.location.href.includes('/manage_band'))  {
+                  let lastUrlSlash = window.location.href.lastIndexOf("/")
+                  let bandId = parseInt(window.location.href.slice(lastUrlSlash + 1), 10)
+                  let managedBand = user.bands.find(band => band.id === bandId)
+                  dispatch({ type: "POP_BAND_MANAGE" , band: managedBand })
+                }
+              })
           } else if (!window.location.href.includes('/signup')) {
             history.push('/login')
             dispatch({type:"AUTO_LOGIN_ERROR"}) 
@@ -89,8 +96,3 @@ export const clearLoginErrors = () => {
         dispatch({ type: 'CLEAR_LOGIN_ERRORS'  })
     }
 }
-
-
-
-
-

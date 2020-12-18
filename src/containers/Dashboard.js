@@ -13,26 +13,30 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    const {user, suggestedBandsEvents, suggestedEvents,  suggestedBands} = props
+    const {user, suggestedBandsEvents, suggestedEvents
+    // , suggestedBands
+    } = props
 
-    const { followed } = user
+    const { followed, bands } = user
     const [followedEvents, setFollowedEvents] = useState([])
+
 
     useEffect(() => {
         if (user.id){
+
+          const fetchSuggestedEvents = () => {        
+            let bandIds = followed.map(band => band.id)
+            let userBands = bands.map(band => band.id)
+            suggestedBandsEvents(bandIds, userBands)
+        }
+
         fetchSuggestedEvents()
         let f = followed.map(b => b.events).flat()
         setFollowedEvents(f)
         }
-    }, [user])
+    }, [user, followed, bands, suggestedBandsEvents])
 
-    const fetchSuggestedEvents = () => {        
-        if(user){
-        let bandIds = followed.map(band => band.id)
-        let userBands = props.user.bands.map(band => band.id)
-        suggestedBandsEvents(bandIds, userBands)
-        }
-    }
+
 
     return (
 

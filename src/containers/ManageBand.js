@@ -18,11 +18,11 @@ const ManageBand = (props) =>  {
     const history = useHistory()
     const location = history.location.pathname    
 
-    useEffect(() => {
-        if(!managedBand){
-            rePopManagedBand(location.split('manage_band/')[location.split('manage_band/').length -1])
-        }
-    })
+    // useEffect(() => {
+    //     if(!managedBand){
+    //         rePopManagedBand(location.split('manage_band/')[location.split('manage_band/').length -1])
+    //     }
+    // })
 
     const { managedBand, rePopManagedBand } = props
   

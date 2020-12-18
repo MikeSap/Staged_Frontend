@@ -15,7 +15,7 @@ const BandPost = (props) => {
   const { errors, clearBandErrors, editedEvent, managedBand } = props
 
   const date = editedEvent.id ? editedEvent.date.split("T")[0] : null
-  const managedBandIds = managedBand.id? managedBand.events.map(e => e.id) : null
+  const managedBandEventIds = managedBand.id? managedBand.events.map(e => e.id) : null
 
   const history = useHistory()
   const location = history.location.pathname
@@ -28,7 +28,10 @@ const BandPost = (props) => {
 
   useEffect(() => {
     // set form data on edited event
-    if (managedBandIds.includes(editedEvent.id)){
+    if(!managedBandEventIds){
+      return
+    }
+    if (managedBandEventIds.includes(editedEvent.id)){
       setFormData ({
         event_type: editedEvent.event_type,
         name: editedEvent.name,
