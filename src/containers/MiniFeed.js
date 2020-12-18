@@ -13,8 +13,8 @@ const MiniFeed = (props) => {
     const [eventsToShow, setEventsToShow] = useState([]) 
 
     useEffect(() => {
-        setEventsToShow([...events])
-        return () => {            
+       if(events){
+        setEventsToShow([...events])       
         }
     }, [events])
 

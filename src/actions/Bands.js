@@ -48,8 +48,6 @@ export const newBand = (band) => {
             
             fetch(`http://localhost:3000/api/v1/bands`, {
                 method: "POST",
-                headers: {
-                },
                 body: data
             })
             .then(resp => resp.json())

@@ -26,9 +26,6 @@ export default function manageLoading(state = false, action) {
         case("FETCHING_POSTS"):
             return true
 
-        case("ADD_FOLLOWED_EVENTS"):
-            return false
-
         case 'SUGGESTED_BANDS':
             return false
        

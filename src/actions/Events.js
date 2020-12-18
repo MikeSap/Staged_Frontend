@@ -1,23 +1,23 @@
 // import history from '../history'
 
-export const followedBandsEvents = (band) => {
+// export const followedBandsEvents = (band) => {
     
-    return (dispatch) => {
-        dispatch({type:"FETCHING_POSTS"})
+//     return (dispatch) => {
+//         dispatch({type:"FETCHING_POSTS"})
 
-        if (band){
-            fetch(`http://localhost:3000/api/v1/bands/${band.id}`)
-            .then(resp => resp.json())
-            .then(band => {
-                // add all followed bands events to store
-                let { events } = band
-                // get events serializer to add band and remove the next line
-                // events = events.map( e => Object.assign(e, {band}))
-                dispatch({ type: "ADD_FOLLOWED_EVENTS", events})
-            })
-        }
-    }
-}
+//         if (band){
+//             fetch(`http://localhost:3000/api/v1/bands/${band.id}`)
+//             .then(resp => resp.json())
+//             .then(band => {
+//                 // add all followed bands events to store
+//                 let { events } = band
+//                 // get events serializer to add band and remove the next line
+//                 // events = events.map( e => Object.assign(e, {band}))
+//                 dispatch({ type: "ADD_FOLLOWED_EVENTS", events})
+//             })
+//         }
+//     }
+// }
 
 export const suggestedBandsEvents = (bandIds, userBands) => {
 
@@ -32,6 +32,7 @@ export const suggestedBandsEvents = (bandIds, userBands) => {
                 let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
                 let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
                 suggestedEvents = suggestedEvents.filter(e => e !== undefined)
+
                 dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
             })
         } 

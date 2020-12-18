@@ -19,21 +19,13 @@ const ManageBand = (props) =>  {
     const location = history.location.pathname    
 
     useEffect(() => {
-        debugger
         if(!managedBand){
             rePopManagedBand(location.split('manage_band/')[location.split('manage_band/').length -1])
         }
     })
 
     const { managedBand, rePopManagedBand } = props
-   
-    // add band key to event
-    const managedBandEvents = managedBand.events.map( e => {
-        let event = Object.assign( {}, e)
-        event["band"] = managedBand 
-        return event        
-    } )
-
+  
     return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
         <Row style={{ width: '100vw' }}>
@@ -44,7 +36,7 @@ const ManageBand = (props) =>  {
             <Col xs={4}>
               <Row>{managedBand.name}'s Posts</Row>
               <Row>
-                  <Feed events={managedBandEvents}/>
+                  <Feed events={managedBand.events}/>
               </Row>
             </Col>
 

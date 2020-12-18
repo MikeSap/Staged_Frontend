@@ -16,7 +16,7 @@ const EventPost = (props) => {
 
     const { event_type, id, date, url, name, comments, user , band} = props 
     const [comment, setComment] = useState("")
-
+    
     const postComment = (e) => {
         e.preventDefault()
         let com = {content: comment, user_id: user.id, event_id: id}
@@ -44,7 +44,7 @@ const EventPost = (props) => {
       <Card bg="light" style={{ width: '30vw' }}>
         <Card.Header as="h4">{band.name}</Card.Header> 
           <Card.Body>
-              <Container>
+              <Container fluid>
                   <Row>
                       <Col>
                           <Card.Title>{name}</Card.Title> 
@@ -52,12 +52,12 @@ const EventPost = (props) => {
                           { userBandIds.includes(band.id) ? manageBand() : null }
                       </Col>
                       <Col>
-                          <Row style={{overflow:'auto', maxHeight: 150 }}>
-                              {comments.map(c => <Card style={{marginTop: "1vh", padding: "1%"}}>
+                          <div style={{overflow:'auto', maxHeight: 150 }}>
+                              {comments.map(c => <Row style={{padding: "10%"}}><Card style={{marginTop: "1vh", padding: "1%"}}>
                                   <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
                                   {c.content}
-                                  </Card>)}
-                          </Row>
+                                  </Card></Row>)}
+                          </div>
                           <Row>
                               <Form onSubmit={postComment}>
                                   <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />

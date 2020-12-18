@@ -2,35 +2,29 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { followedBandsEvents, suggestedBandsEvents } from '../actions/Events'
+import { suggestedBandsEvents } from '../actions/Events'
 
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
 import MiniFeed from '../containers/MiniFeed'
 
-
-
-
 const Dashboard = (props) =>  {
 
-    let {user, followedBandsEvents, suggestedBandsEvents, suggestedBands} = props
-    let { followed } = user
+    const {user, suggestedBandsEvents, suggestedEvents,  suggestedBands} = props
+
+    const { followed } = user
+    const [followedEvents, setFollowedEvents] = useState([])
 
     useEffect(() => {
         if (user.id){
-        fetchFollowedEvents()
         fetchSuggestedEvents()
+        let f = followed.map(b => b.events).flat()
+        setFollowedEvents(f)
         }
     }, [user])
-
-    const fetchFollowedEvents = () => {
-        followed.forEach(band => {
-            return followedBandsEvents(band)
-        })
-    }
 
     const fetchSuggestedEvents = () => {        
         if(user){
@@ -40,15 +34,6 @@ const Dashboard = (props) =>  {
         }
     }
 
-    let followedEvents = []
-    let suggestedEvents = []
-
-    if(user.id){
-        // add band to each event
-        user.followed.forEach(b => b.events.forEach(e => followedEvents.push({...e, band: {city: b.city, id: b.id, name: b.name, url:b.url}})))
-        suggestedBands.forEach(b => b.events.forEach(e => suggestedEvents.push({...e, band: {city: b.city, id: b.id, name: b.name, url:b.url}})))
-    }
-    
     return (
 
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
@@ -76,8 +61,9 @@ const readAccess = state => {
     return {
         user: state.user,
         suggestedBands: state.suggestedBands,
+        suggestedEvents: state.suggestedBands.events,
         dateEvents: state.dateEvents
     }
 }
 
-export default connect(readAccess , { followedBandsEvents, suggestedBandsEvents })(Dashboard)
+export default connect(readAccess, { suggestedBandsEvents })(Dashboard)

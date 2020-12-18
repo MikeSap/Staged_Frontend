@@ -30,8 +30,6 @@ const Feed = (props) => {
     
     useEffect(() => {
         // when search changes use a sort function to change eventsToShow if they include band.name, name, city, 
-        return () => {            
-        }
     }, [search])
 
     return (
