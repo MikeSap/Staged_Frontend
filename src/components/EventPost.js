@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+// import Accordion from 'react-bootstrap/Accordion'
 
 const EventPost = (props) => {
 
@@ -47,26 +48,36 @@ const EventPost = (props) => {
               <Container fluid>
                   <Row>
                       <Col>
-                          <Card.Title>{name}</Card.Title> 
+                          <p>IMG HERE</p>
+                      </Col>
+                      <Col>
+                      <Card.Title>{name}</Card.Title> 
                           <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
                           <Card.Text>{date.split("T")[0]}</Card.Text>
                           { userBandIds.includes(band.id) ? manageBand() : null }
                       </Col>
-                      <Col>
-                          <div style={{overflow:'auto', maxHeight: 150 }}>
-                              {comments.map(c => <Row style={{padding: "10%"}}><Card style={{marginTop: "1vh", padding: "1%"}}>
-                                  <Card.Subtitle><strong>{c.user.username}</strong></Card.Subtitle>
-                                  {c.content}
-                                  </Card></Row>)}
-                          </div>
-                          <Row>
-                              <Form onSubmit={postComment}>
-                                  <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
-                                  <Button type="submit" size="sm">Post Comment</Button>
-                              </Form>
-                          </Row>
-                      </Col>
               </Row>
+              <Row>
+                
+                {/* <Accordion defaultActiveKey="0">
+                    <Accordion.Toggle as={Card.Text} eventKey="0">Comments</Accordion.Toggle> */}
+                    {/* <Accordion.Collapse eventKey="0"> */}
+                  <div style={{overflow:'auto', maxHeight: 150 }}>
+                  {comments.map(c => <Row style={{topPadding: "5%", marginLeft:"1px"}}><Card style={{marginTop: "1vh", padding: "1%"}}>
+                      <div><strong>{c.user.username}</strong></div>
+                      {c.content}
+                      </Card></Row>)}
+                  </div>
+                        <Row>
+                            <Form onSubmit={postComment}>
+                                <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
+                                <Button type="submit" size="sm">Post Comment</Button>
+                            </Form>
+                        </Row>
+                        {/* </Accordion.Collapse> */}
+                        {/* </Accordion> */}
+
+                    </Row>
               </Container>
           </Card.Body>
       </Card>

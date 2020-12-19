@@ -13,11 +13,11 @@ const MiniFeed = (props) => {
 
     const eventSort = () => {
       // picks 5 random bands from list of one random event from each unfollowed band
-      let events = [...props.events]
-      const shuffled = events.sort(() => 0.5 - Math.random())
-      let selectedEvents = shuffled.slice(0,5)
+      let events = props.events ? [...props.events] : []
+      events = events.sort(() => 0.5 - Math.random())
+      events = events.slice(0,5)
       
-      return selectedEvents
+      return events
     }
 
     useEffect(() => {
