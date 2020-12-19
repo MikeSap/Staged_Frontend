@@ -38,7 +38,7 @@ const EventPost = (props) => {
     if (user.id){
         userBandIds = user.bands.map(b => b.id)
     }
-
+    
     return (        
       <>
       <Card bg="light" style={{ width: '30vw' }}>
@@ -49,6 +49,7 @@ const EventPost = (props) => {
                       <Col>
                           <Card.Title>{name}</Card.Title> 
                           <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
+                          <Card.Text>{date.split("T")[0]}</Card.Text>
                           { userBandIds.includes(band.id) ? manageBand() : null }
                       </Col>
                       <Col>

@@ -10,33 +10,32 @@ import CardGroup from 'react-bootstrap/CardGroup'
 
 const Feed = (props) => {
 
-    const { events, followedBands } = props
+    const { followedBands } = props
 
     const [search, setSearch] = useState("")
-    const [eventsToShow, setEventsToShow] = useState( [] )
 
     const searchPosts = (e) => {
         setSearch(e.target.value)
     }
-
-    useEffect(() => {
-        if(events){
-        setEventsToShow([...events])
-        }
-    }, [events])
-
-    useEffect(() => {
-    }, [followedBands])
     
     useEffect(() => {
-        // when search changes use a sort function to change eventsToShow if they include band.name, name, city, 
-    }, [search])
+    }, [followedBands])
 
+    const eventSort = () => {
+      let events =  [...props.events]
+      events = events.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) || e.date.toUpperCase().includes(search.toUpperCase()) || e.band.name.toUpperCase().includes(search.toUpperCase()))
+      events = events.filter(e => new Date(e.date) > new Date())
+      events = events.sort( (e1, e2) => new Date(e1.date) < new Date(e2.date) ? -1 : 1)
+      return events
+    }
+    
+    
+    const eventsToShow = eventSort()
     return (
         <>
         <Row>
             <Form inline>
-                <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts" className="mr-sm-2" value={search} />
+                <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
             </Form>
         </Row>
 

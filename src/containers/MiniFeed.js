@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import SuggestedPost from '../components/SuggestedPost'
@@ -8,19 +8,22 @@ import Row from 'react-bootstrap/Row'
 
 const MiniFeed = (props) => {
 
-    const { events, followedBands } = props
+    const { followedBands } = props
 
-    const [eventsToShow, setEventsToShow] = useState([]) 
 
-    useEffect(() => {
-       if(events){
-        setEventsToShow([...events])       
-        }
-    }, [events])
+    const eventSort = () => {
+      // picks 5 random bands from list of one random event from each unfollowed band
+      let events = [...props.events]
+      const shuffled = events.sort(() => 0.5 - Math.random())
+      let selectedEvents = shuffled.slice(0,5)
+      
+      return selectedEvents
+    }
 
     useEffect(() => {
     }, [followedBands])
 
+    const eventsToShow = eventSort()
     return (
         <>
         <Row>

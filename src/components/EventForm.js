@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 
 const BandPost = (props) => {
 
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({event_type:"music", name:"", url:"", date:""})
 
   const { errors, clearBandErrors, editedEvent, managedBand } = props
 
@@ -31,7 +31,7 @@ const BandPost = (props) => {
     if(!managedBandEventIds){
       return
     }
-    if (managedBandEventIds.includes(editedEvent.id)){
+    if (managedBandEventIds.includes(editedEvent.id )){
       setFormData ({
         event_type: editedEvent.event_type,
         name: editedEvent.name,
