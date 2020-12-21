@@ -11,6 +11,8 @@ import Button from 'react-bootstrap/Button'
 const Login = (props) => {
 
   const [formData, setFormData] = useState({})
+  const [photo, setPhoto] = useState(null)
+
   const history = useHistory()
   const location = history.location.pathname
   const { errors, clearBandErrors } = props
@@ -23,7 +25,7 @@ const Login = (props) => {
   
   const handleSubmit = (e) => {
       e.preventDefault()
-      let band = {...formData, user_ids: [props.user.id]}
+      let band = {...formData, user_ids: [props.user.id], photo: photo}
       // differ submition from registration to edit
       props.newBand(band)
       setFormData({ name: "", bio: "", city: "", url: "" })
@@ -35,6 +37,10 @@ const Login = (props) => {
         [e.target.name]: e.target.value
       });
     }
+
+  const handlePhoto = e => {
+    setPhoto(e.target.files[0])
+  }
 
   return(
     
@@ -62,7 +68,8 @@ const Login = (props) => {
                   {/* ADD USERS POPULATE FROM USER DATA ON API */}
                   {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
                       
-                  {/* ADD BAND PHOTO FORM */}
+                  <Form.Control type="file" name="photo" onChange={handlePhoto} />
+                  
                   <Button type="submit">Submit</Button>
 
               </Form.Group>

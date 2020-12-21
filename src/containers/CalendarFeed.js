@@ -36,7 +36,7 @@ const CalendarFeed = (props) => {
 
     return (
         <>
-        <Row><Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/> </Row>
+        <Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
             <Container>
                   {eventsToShow ? eventsToShow.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)

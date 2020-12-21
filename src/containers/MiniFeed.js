@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import SuggestedPost from '../components/SuggestedPost'
 
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 const MiniFeed = (props) => {
@@ -26,16 +25,10 @@ const MiniFeed = (props) => {
     const eventsToShow = eventSort()
     return (
         <>
-        <Row>
-            <Container>
-
-                { eventsToShow ? eventsToShow.map( event => <Row>                    
-                    <SuggestedPost {...event} key={event.id} />
-                    </Row> )
-                    : null }
-
-            </Container>
-        </Row>
+        { eventsToShow ? eventsToShow.map( event => <Row>                    
+            <SuggestedPost {...event} key={event.id} />
+            </Row> )
+            : null }
         </>
     )
 

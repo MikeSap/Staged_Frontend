@@ -3,10 +3,8 @@ import { useHistory } from "react-router";
 import { logout } from '../actions/Auth'
 import { popBandManage } from '../actions/Bands'
 import { connect } from 'react-redux'
+import navLogo  from '../assets/navLogo.png'
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
@@ -32,48 +30,36 @@ const NavBar = (props) => {
     }
 
     const loggedInNav = () => {
-        return <>        
-        <Col><Nav.Link href="/bands">Bands</Nav.Link></Col>
-        <Col><Nav.Link href="/calendar">Calendar</Nav.Link></Col>
-        <Col><Nav.Link href="/merch">Merch</Nav.Link></Col>
-        <Col><Nav.Link href="/music">Music</Nav.Link></Col>
-        <Col><Nav.Link href="/shows">Shows</Nav.Link></Col>
+        return <Nav>        
+        <Nav.Link href="/bands">Bands</Nav.Link>
+        <Nav.Link href="/calendar">Calendar</Nav.Link>
+        <Nav.Link href="/merch">Merch</Nav.Link>
+        <Nav.Link href="/music">Music</Nav.Link>
+        <Nav.Link href="/shows">Shows</Nav.Link>
         {/* can simplify this to still say manage bands and only have the register link if there are no bands */}
-        <Col>{user.bands ? <NavDropdown title="Manage Bands" id="band-management">
+        {user.bands ? <NavDropdown title="Manage Bands" id="band-management">
         {user.bands.map( band => <NavDropdown.Item onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
         <NavDropdown.Divider />
         <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
       </NavDropdown>
          : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
-         }</Col>
-        <Col>
+         }
+        
             <Nav.Link>
-                <Button className="" onClick={() => signOut()} primary>
+                <Button onClick={() => signOut()} primary>
                 Sign Out</Button>           
             </Nav.Link>
-        </Col>
-        </>
+        
+        </Nav>
     }
 
-    return (
-        <Container className="d-flex justify-content-center">
-           
-                <Navbar style={{ width: '100vw' }} collapseOnSelect expand="lg" bg="dark" variant="dark" className="justify-content-center">
-                 <Row lg>
-                    <Col>
-                        <Navbar.Brand href="/">Staged</Navbar.Brand> 
-                    </Col>     
-                    
-                    <Nav>
-                        
-                        {!user.id ? null :
-                        loggedInNav()}
-
-                    </Nav>
-                </Row>
-                </Navbar>
-            
-        </Container>
+    return (       
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="justify-content-center">
+        <Navbar.Brand href="/"><img style={{width: 250}} src={navLogo} alt="Staged Logo" /></Navbar.Brand>  
+                              
+              {!user.id ? null :
+              loggedInNav()}
+      </Navbar>
     )
 }
 

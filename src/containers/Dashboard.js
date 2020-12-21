@@ -52,9 +52,7 @@ const Dashboard = (props) =>  {
 
             <Col>
                 <Row>Suggested Bands To Follow</Row>
-                <Row>                    
-                    <MiniFeed events={suggestedEvents}/>
-                </Row>
+                <MiniFeed events={suggestedEvents}/>
             </Col>
         </Row>
         </Container>

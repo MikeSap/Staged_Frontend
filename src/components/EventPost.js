@@ -14,10 +14,11 @@ import Col from 'react-bootstrap/Col'
 const EventPost = (props) => {
 
     let userBandIds
-
-    const { event_type, id, date, url, name, comments, user , band} = props 
+    const { event_type, id, date, url, name, comments, user , band, photo} = props 
     const [comment, setComment] = useState("")
-    
+    // need to add band photo into event serializer? and the band photo should show if event is a show
+    let photoUrl = event_type === "Show" ? `http://localhost:3000${band.photo}` : `http://localhost:3000${photo}`
+
     const postComment = (e) => {
         e.preventDefault()
         let com = {content: comment, user_id: user.id, event_id: id}
@@ -48,7 +49,7 @@ const EventPost = (props) => {
               <Container fluid>
                   <Row>
                       <Col>
-                          <p>IMG HERE</p>
+                          <Card.Img src={photoUrl} alt="Band Photo" />
                       </Col>
                       <Col>
                       <Card.Title>{name}</Card.Title> 

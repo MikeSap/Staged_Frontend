@@ -87,7 +87,7 @@ const App = (props) => {
             <div>
               <NavBar />
               <CalendarFeed />
-            </div>          
+          </div>          
           )}}/>
 
         <Route exact path="/merch" render={() => {
