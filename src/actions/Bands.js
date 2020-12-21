@@ -58,14 +58,3 @@ export const newBand = (band) => {
         }
     }
 }
-
-export const rePopManagedBand = (band_id) => {
-    
-    return dispatch => {
-        fetch(`http://localhost:3000/api/v1/bands/${band_id}`)
-        .then(resp => resp.json())
-        .then( band => {
-            dispatch({ type: "POP_BAND_MANAGE", band})
-        })
-    }
-}

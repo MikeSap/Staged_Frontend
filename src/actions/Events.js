@@ -94,6 +94,14 @@ export const popEditedEvent = (event) => {
     }
 }
 
+export const clearEdited = () => {
+    return dispatch => {
+        dispatch({ type: "CLEAR_EDITED_EVENT" })
+    }
+}
+
+
+
 export const deleteEvent = (eventId) => {
     return dispatch => {
 

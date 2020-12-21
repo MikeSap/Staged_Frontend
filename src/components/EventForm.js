@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { clearBandErrors } from '../actions/Bands'
-import { newEvent, editEvent } from '../actions/Events'
+import { newEvent, editEvent, clearEdited } from '../actions/Events'
 import { useHistory } from "react-router";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -56,6 +56,11 @@ const BandPost = (props) => {
       });
     }
 
+  const clearEditedForm = () => {
+    props.clearEdited()
+    setFormData({event_type:"music", name:"", url:"", date:""})
+  }
+
   return(
          
     <Container fluid>                  
@@ -82,6 +87,8 @@ const BandPost = (props) => {
 
                 <Button type="submit">Submit</Button>
 
+                {editedEvent.id? <Button onClick={clearEditedForm}>Clear</Button> : null}
+
             </Form.Group>
         </Form.Row>
         </Form>
@@ -98,4 +105,4 @@ const readAccess = (state) => {
   }
 }
 
-export default connect(readAccess, { clearBandErrors, newEvent, editEvent })(BandPost);
+export default connect(readAccess, { clearBandErrors, newEvent, editEvent, clearEdited })(BandPost);

@@ -9,6 +9,9 @@ export default function manageEditedEvent(state = {}, action) {
 
         case "LOGOUT":
             return {}
+
+        case "CLEAR_EDITED_EVENT":
+            return {}
         
         default:
             return state;

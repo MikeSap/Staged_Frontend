@@ -76,7 +76,6 @@ const EventPost = (props) => {
                         </Row>
                         {/* </Accordion.Collapse> */}
                         {/* </Accordion> */}
-
                     </Row>
               </Container>
           </Card.Body>

@@ -4,10 +4,9 @@ import Col from 'react-bootstrap/Col'
 
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 import {  dateEvents } from '../actions/Events'
-import {  rePopManagedBand } from '../actions/Bands'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
@@ -15,16 +14,14 @@ import EventForm from '../components/EventForm'
 
 const ManageBand = (props) =>  {
 
-    const history = useHistory()
-    const location = history.location.pathname    
+    // const history = useHistory()
+    // const location = history.location.pathname    
 
-    // useEffect(() => {
-    //     if(!managedBand){
-    //         rePopManagedBand(location.split('manage_band/')[location.split('manage_band/').length -1])
-    //     }
-    // })
+    useEffect(() => {
 
-    const { managedBand, rePopManagedBand } = props
+    },[])
+
+    const { managedBand } = props
   
     return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
@@ -57,4 +54,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess , { dateEvents, rePopManagedBand })(ManageBand)
+export default connect(readAccess , { dateEvents })(ManageBand)
