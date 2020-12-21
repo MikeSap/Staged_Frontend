@@ -25,12 +25,12 @@ const CalendarFeed = (props) => {
         if (user.id){
         dateEvents(new Date())
         }
-    }, [user])
+    }, [user, dateEvents])
 
     const [date, setDate] = useState(new Date())
 
     const fetchDateEvents = (date) => {
-        props.dateEvents(date)
+        dateEvents(date)
         // fetch and grab events on that date
     }
 

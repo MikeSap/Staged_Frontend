@@ -17,7 +17,8 @@ const BandPost = (props) => {
   const { errors, clearBandErrors, editedEvent, managedBand } = props
 
   const date = editedEvent.id ? editedEvent.date.split("T")[0] : null
-  const managedBandEventIds = managedBand.id? managedBand.events.map(e => e.id) : null
+
+  const { id, events } = managedBand
 
   const history = useHistory()
   const location = history.location.pathname
@@ -30,6 +31,8 @@ const BandPost = (props) => {
 
   useEffect(() => {
     // set form data on edited event
+    const managedBandEventIds = id ? events.map(e => e.id) : null
+
     if(!managedBandEventIds){
       return
     }
@@ -42,7 +45,7 @@ const BandPost = (props) => {
         id: editedEvent.id
       })
     }
-  }, [location, editedEvent, date])
+  }, [location, editedEvent, date, events, id])
   
   const handleSubmit = (e) => {
       e.preventDefault();
