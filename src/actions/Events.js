@@ -3,21 +3,30 @@
 export const suggestedBandsEvents = (bandIds, userBands) => {
 
     return (dispatch) => {
-        dispatch({type:"FETCHING_POSTS"})
+        dispatch({type:"FETCHING_SUGGESTED"})
         
-        if (bandIds !== []){
-            fetch(`http://localhost:3000/api/v1/bands`)
-            .then(resp => resp.json())
-            .then( allBands => {
-                // add not followed band, and one random event from each band that is not followed or a band user is in
-                let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
-                let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
-                suggestedEvents = suggestedEvents.filter(e => e !== undefined)
+        // if (bandIds !== []){
+          const token = localStorage.getItem("token")
 
-                dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
+          // make custom route to suggested bands and filter the data from there
+            // fetch(`http://localhost:3000/api/v1/bands`)
+            fetch(`http://localhost:3000/api/v1/suggested_events`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
             })
-        } 
-    
+            .then(resp => resp.json())
+            .then( suggestedEvents => {
+            // .then( allBands => {
+                // add not followed band, and one random event from each band that is not followed or a band user is in
+                // let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
+                // let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
+                //  suggestedEvents = suggestedEvents.filter(e => e !== undefined)
+
+                // dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
+                dispatch({ type: "SUGGESTED_EVENTS", suggestedEvents})
+            })
+        // }     
     }
 }
 
@@ -27,7 +36,7 @@ export const dateEvents = (date) => {
         dispatch({type:"FETCHING_POSTS"})
 
         if(date){
-        // Pull down posts index
+        // custom route to pull down the event at a date
             fetch(`http://localhost:3000/api/v1/events`)
             .then(resp => resp.json())
             .then( allEvents => {
@@ -37,7 +46,6 @@ export const dateEvents = (date) => {
                 dispatch ({ type: "DATE_EVENTS", dateEvents})
             })
         }
-
     }
 }
 
@@ -60,7 +68,6 @@ export const newEvent = (event) => {
                 dispatch({ type: "NEW_EVENT", newEvent})
             })
         }
-
     }
 }
 
@@ -83,7 +90,6 @@ export const editEvent = (event) => {
                 dispatch({ type: "EDIT_EVENT", editedEvent})
             })
         }
-
     }
 }
 

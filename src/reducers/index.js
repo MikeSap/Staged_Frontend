@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import manageUser from './manageUser'
 import manageErrors from "./manageErrors";
 import manageLoading from "./manageLoading";
-import manageSuggestedBands from "./manageSuggestedBands";
+import manageSuggestedEvents from "./manageSuggestedEvents";
 import manageDateEvents from "./manageDateEvents";
 import manageEvents from "./manageEvents";
 import manageBands from "./manageBands";
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     user: manageUser,
     errors: manageErrors,
     loading: manageLoading,
-    suggestedBands: manageSuggestedBands,
+    suggestedEvents: manageSuggestedEvents,
     dateEvents: manageDateEvents,
     events: manageEvents,
     bands: manageBands,

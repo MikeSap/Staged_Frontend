@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { suggestedBandsEvents } from '../actions/Events'
 
-
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
 import MiniFeed from '../containers/MiniFeed'
@@ -17,26 +16,24 @@ const Dashboard = (props) =>  {
     // , suggestedBands
     } = props
 
-    const { followed, bands } = user
+    const { followed, bands, id } = user
     const [followedEvents, setFollowedEvents] = useState([])
 
-
     useEffect(() => {
-        if (user.id){
+        if (id){
 
-          const fetchSuggestedEvents = () => {        
-            let bandIds = followed.map(band => band.id)
-            let userBands = bands.map(band => band.id)
-            suggestedBandsEvents(bandIds, userBands)
-        }
+        //   const fetchSuggestedEvents = () => {        
+        //     let bandIds = followed.map(band => band.id)
+        //     let userBands = bands.map(band => band.id)
+        //     suggestedBandsEvents(bandIds, userBands)
+        // }
 
-        fetchSuggestedEvents()
+        // fetchSuggestedEvents()
+        suggestedBandsEvents()
         let f = followed.map(b => b.events).flat()
         setFollowedEvents(f)
         }
-    }, [user, followed, bands, suggestedBandsEvents])
-
-
+    }, [id, followed, bands, suggestedBandsEvents])
 
     return (
 
@@ -62,8 +59,7 @@ const Dashboard = (props) =>  {
 const readAccess = state => {
     return {
         user: state.user,
-        suggestedBands: state.suggestedBands,
-        suggestedEvents: state.suggestedBands.events,
+        suggestedEvents: state.suggestedEvents,
         dateEvents: state.dateEvents
     }
 }

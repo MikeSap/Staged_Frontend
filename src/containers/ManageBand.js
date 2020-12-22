@@ -18,7 +18,6 @@ const ManageBand = (props) =>  {
     // const location = history.location.pathname    
 
     useEffect(() => {
-
     },[])
 
     const { managedBand } = props

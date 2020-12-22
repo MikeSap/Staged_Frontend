@@ -2,7 +2,7 @@ export default function manageLoading(state = false, action) {
     
     switch (action.type) {
 
-        case("LOGGED_IN"):
+        case "LOGGED_IN":
             return false
 
         case 'LOGOUT':
@@ -20,11 +20,14 @@ export default function manageLoading(state = false, action) {
         case 'AUTO_LOGIN_ERROR':
             return false
 
-        case("SIGUP_PAGE"):
+        case "SIGUP_PAGE":
             return false
 
-        case("FETCHING_POSTS"):
+        case "FETCHING_POSTS":
             return true
+ 
+        case "FETCHING_SUGGESTED":
+        return true
 
         case 'SUGGESTED_BANDS':
             return false
