@@ -27,12 +27,12 @@ export default function managUser(state = {
         case "NEW_FOLLOW":
             return { ...state, followed: [...state.followed, action.band]}
 
-        case "NEW_COMMENT":
-            let bidx = state.followed.findIndex( b => b.events.map(e => e.id).includes(action.newComment.event_id) )
-            let idx = state.followed[bidx].events.findIndex(e => e.id === action.newComment.event_id)
-            let editedEvent = {...state.followed[bidx].events[idx], comments: [...state.followed[bidx].events[idx].comments, action.newComment]}
-            let editedBand = {...state.followed[bidx], events: [...state.followed[bidx].events.slice(0, idx), editedEvent, ...state.followed[bidx].events.slice(idx+1) ] }
-            return {...state, followed: [...state.followed.slice(0, bidx), editedBand, ...state.followed.slice(bidx+1)] }
+        // case "NEW_COMMENT":
+        //     let bidx = state.followed.findIndex( b => b.events.map(e => e.id).includes(action.newComment.event_id) )
+        //     let idx = state.followed[bidx].events.findIndex(e => e.id === action.newComment.event_id)
+        //     let editedEvent = {...state.followed[bidx].events[idx], comments: [...state.followed[bidx].events[idx].comments, action.newComment]}
+        //     let editedBand = {...state.followed[bidx], events: [...state.followed[bidx].events.slice(0, idx), editedEvent, ...state.followed[bidx].events.slice(idx+1) ] }
+        //     return {...state, followed: [...state.followed.slice(0, bidx), editedBand, ...state.followed.slice(bidx+1)] }
 
         default:
           return state;

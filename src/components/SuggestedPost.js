@@ -12,7 +12,7 @@ const SuggestedPost = (props) => {
     const handleFollow = () => {
         props.followBand(props.user.id, props.band.id)
     }
-    
+
     return (        
         <>
         <Card bg="light" style={{ width: '15vw' }}>

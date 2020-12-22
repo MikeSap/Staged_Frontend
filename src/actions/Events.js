@@ -1,51 +1,62 @@
-// import history from '../history'
+export const suggestedBandsEvents = () => {
 
-export const suggestedBandsEvents = (bandIds, userBands) => {
+  return (dispatch) => {
+    dispatch({type:"FETCHING_SUGGESTED"})
+    
+      const token = localStorage.getItem("token")
 
-    return (dispatch) => {
-        dispatch({type:"FETCHING_SUGGESTED"})
-        
-        // if (bandIds !== []){
-          const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/api/v1/suggested_events`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(resp => resp.json())
+        .then( suggestedEvents => {
+    
+          dispatch({ type: "SUGGESTED_EVENTS", suggestedEvents})
+        })
+    }
+}
 
-          // make custom route to suggested bands and filter the data from there
-            // fetch(`http://localhost:3000/api/v1/bands`)
-            fetch(`http://localhost:3000/api/v1/suggested_events`, {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            })
-            .then(resp => resp.json())
-            .then( suggestedEvents => {
-            // .then( allBands => {
-                // add not followed band, and one random event from each band that is not followed or a band user is in
-                // let notFol = allBands.filter((band) => !bandIds.includes(band.id) && !userBands.includes(band.id))
-                // let suggestedEvents = notFol.map(band => band.events[Math.floor(Math.random()*band.events.length)])
-                //  suggestedEvents = suggestedEvents.filter(e => e !== undefined)
+export const followedBandsEvents = () => {
 
-                // dispatch({ type: "SUGGESTED_BANDS", suggestedBands: notFol, suggestedEvents})
-                dispatch({ type: "SUGGESTED_EVENTS", suggestedEvents})
-            })
-        // }     
+  return (dispatch) => {
+    dispatch({type:"FETCHING_FOLLOWED"})
+    
+      const token = localStorage.getItem("token")
+
+        fetch(`http://localhost:3000/api/v1/followed_events`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(resp => resp.json())
+        .then( followedEvents => {
+    
+          dispatch({ type: "FOLLOWED_EVENTS", followedEvents})
+        })
     }
 }
 
 export const dateEvents = (date) => {
     
-    return (dispatch) => {
-        dispatch({type:"FETCHING_POSTS"})
+  return (dispatch) => {
+    dispatch({type:"FETCHING_DATE_EVENTS"})
 
-        if(date){
-        // custom route to pull down the event at a date
-            fetch(`http://localhost:3000/api/v1/events`)
-            .then(resp => resp.json())
-            .then( allEvents => {
-            // filter posts that match date
-            // add to dateEvents store
-                let dateEvents = allEvents.filter( e => new Date(e.date).toDateString() === date.toDateString())
-                dispatch ({ type: "DATE_EVENTS", dateEvents})
-            })
-        }
+    const token = localStorage.getItem("token")
+      fetch(`http://localhost:3000/api/v1/date_events`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({date})
+      })
+      .then(resp => resp.json())
+      .then( dateEvents => {     
+          dispatch ({ type: "DATE_EVENTS", dateEvents})
+      })
     }
 }
 
@@ -111,8 +122,6 @@ export const clearEdited = () => {
     }
 }
 
-
-
 export const deleteEvent = (eventId) => {
     return dispatch => {
       const token = localStorage.getItem("token")
@@ -127,5 +136,27 @@ export const deleteEvent = (eventId) => {
         .then(deletedEvent => {
             dispatch({ type: "DELETE_EVENT", eventId })
         })        
+    }
+}
+
+export const fetchManagedBandEvents = (band_id) => {
+    
+  return (dispatch) => {
+    dispatch({type:"FETCHING_MANAGED_EVENTS"})
+
+    const token = localStorage.getItem("token")
+      fetch(`http://localhost:3000/api/v1/managed_events`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({band_id})
+      })
+      .then(resp => resp.json())
+      .then( managedEvents => {   
+          dispatch ({ type: "MANAGED_EVENTS", managedEvents})
+      })
     }
 }

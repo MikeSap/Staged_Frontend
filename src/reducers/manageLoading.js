@@ -25,14 +25,29 @@ export default function manageLoading(state = false, action) {
 
         case "FETCHING_POSTS":
             return true
+       
+        case "FETCHING_DATE_EVENTS":
+         return true
+        
+         case "FETCHING_MANAGED_EVENTS":
+         return true
  
         case "FETCHING_SUGGESTED":
         return true
 
-        case 'SUGGESTED_BANDS':
+        case "FETCHING_FOLLOWED":
+        return true
+
+        case 'SUGGESTED_EVENTS':
             return false
+
+        case 'FOLLOWED_EVENTS':
+          return false
        
         case 'DATE_EVENTS':
+            return false
+
+        case 'MANAGED_EVENTS':
             return false
     
         case "ADD_MUSIC":

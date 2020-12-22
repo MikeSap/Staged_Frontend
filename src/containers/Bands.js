@@ -1,57 +1,61 @@
 import React, { useState, useEffect } from 'react'
 
 import BandCard from '../components/BandCard'
+import { allBands } from '../actions/Index'
+import { connect } from 'react-redux'
 
 import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 
 
 const Bands = (props) => {
 
-    const { bands } = props
+    const { allBands, bands } = props
 
     const [search, setSearch] = useState("")
-    const [bandsToShow, setBandsToShow] = useState( [] )
 
     const searchPosts = (e) => {
         setSearch(e.target.value)
     }
 
     useEffect(() => {
-        setBandsToShow([...bands])
-        return () => {            
-        }
-    }, [bands])
+      if(!bands[0]){
+      allBands()
+      }
+    }, [allBands, bands])
     
-    useEffect(() => {
-        // when search changes use a sort function to change bandsToShow if they include band.name, name, city, 
-        return () => {            
-        }
-    }, [search])
+    const bandSort = () => {
+      let b =  bands ? [ ...bands] : []
+      b = b.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) )
+      return b
+    }
 
+    const bandsToShow = bandSort()
     return (
         
-        <Container>
-
+        <Container >
+        <Col>
         <Row>
-            <Form inline>
-                <Form.Control onChange={searchPosts} type="text" placeholder="Search" className="mr-sm-2" value={search} />
+            <Form style={{width:"60vw"}}>
+                <Form.Control onChange={searchPosts} type="text" placeholder="Filter by Name" className="mr-sm-2" value={search} />
             </Form>
         </Row>
 
         <Row>
-            <Container>
-
-                { bandsToShow ? bandsToShow.map( band =>  <Row>
-                    <BandCard {...band} key={band.id} />
-                    </Row> ) 
+                { bandsToShow ? bandsToShow.map( band => <BandCard {...band} key={band.id} />) 
                 : null}
-
-            </Container>
         </Row>
+        </Col>
         </Container>
     )
 }
 
-export default Bands
+const readAccess = state => {
+  return {
+    bands: state.bands
+  }
+}
+
+export default connect(readAccess, {allBands})(Bands)

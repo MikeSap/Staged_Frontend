@@ -2,9 +2,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { suggestedBandsEvents } from '../actions/Events'
+import { suggestedBandsEvents, followedBandsEvents } from '../actions/Events'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
@@ -12,28 +12,20 @@ import MiniFeed from '../containers/MiniFeed'
 
 const Dashboard = (props) =>  {
 
-    const {user, suggestedBandsEvents, suggestedEvents
-    // , suggestedBands
-    } = props
+    const {user, suggestedBandsEvents, suggestedEvents, followedBandsEvents, followedEvents } = props
 
-    const { followed, bands, id } = user
-    const [followedEvents, setFollowedEvents] = useState([])
+    const { id } = user
 
     useEffect(() => {
         if (id){
-
-        //   const fetchSuggestedEvents = () => {        
-        //     let bandIds = followed.map(band => band.id)
-        //     let userBands = bands.map(band => band.id)
-        //     suggestedBandsEvents(bandIds, userBands)
-        // }
-
-        // fetchSuggestedEvents()
         suggestedBandsEvents()
-        let f = followed.map(b => b.events).flat()
-        setFollowedEvents(f)
+        followedBandsEvents()
         }
-    }, [id, followed, bands, suggestedBandsEvents])
+    }, [ id, followedBandsEvents, suggestedBandsEvents])
+
+    useEffect(() => {
+      suggestedBandsEvents()
+    }, [followedEvents, suggestedBandsEvents])
 
     return (
 
@@ -60,8 +52,9 @@ const readAccess = state => {
     return {
         user: state.user,
         suggestedEvents: state.suggestedEvents,
+        followedEvents: state.followedEvents,
         dateEvents: state.dateEvents
     }
 }
 
-export default connect(readAccess, { suggestedBandsEvents })(Dashboard)
+export default connect(readAccess, { suggestedBandsEvents, followedBandsEvents })(Dashboard)

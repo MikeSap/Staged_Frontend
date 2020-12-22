@@ -4,9 +4,8 @@ import Col from 'react-bootstrap/Col'
 
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-// import { useHistory } from "react-router";
 
-import {  dateEvents } from '../actions/Events'
+import { fetchManagedBandEvents } from '../actions/Events'
 
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
@@ -14,15 +13,15 @@ import EventForm from '../components/EventForm'
 
 const ManageBand = (props) =>  {
 
-    // const history = useHistory()
-    // const location = history.location.pathname    
+  const { managedBand, managedBandEvents, fetchManagedBandEvents } = props
 
     useEffect(() => {
-    },[])
+      if(managedBand){
+        fetchManagedBandEvents(managedBand.id)
+      }
+    },[managedBand, fetchManagedBandEvents])
 
-    const { managedBand } = props
-  
-    return (
+  return (
         <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
         <Row style={{ width: '100vw' }}>
             <Col> 
@@ -32,7 +31,7 @@ const ManageBand = (props) =>  {
             <Col xs={4}>
               <Row>{managedBand.name}'s Posts</Row>
               <Row>
-                  <Feed events={managedBand.events}/>
+                  <Feed events={managedBandEvents}/>
               </Row>
             </Col>
 
@@ -48,9 +47,9 @@ const ManageBand = (props) =>  {
 
 const readAccess = state => {
     return {
-        dateEvents: state.dateEvents,
-        managedBand: state.managedBand
+        managedBand: state.managedBand,
+        managedBandEvents: state.managedBandEvents
     }
 }
 
-export default connect(readAccess , { dateEvents })(ManageBand)
+export default connect(readAccess , { fetchManagedBandEvents })(ManageBand)

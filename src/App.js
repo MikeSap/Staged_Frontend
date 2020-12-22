@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import BandForm from './components/BandForm'
 import Dashboard from './containers/Dashboard'
 import ManageBand from './containers/ManageBand'
+import BandShow from './containers/BandShow'
 import Feed from './containers/Feed'
 import Bands from './containers/Bands'
 import CalendarFeed from './containers/CalendarFeed'
@@ -32,8 +33,8 @@ const App = (props) => {
         return allEvents("music")
       case "/shows":
         return allEvents("shows")
-      case "/bands":
-        return allBands()
+      // case "/bands":
+      //   return allBands()
       default:
         return 
     }
@@ -78,7 +79,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Bands bands={bands}/>
+              <Bands />
             </div>          
           )}}/>
 
@@ -135,6 +136,14 @@ const App = (props) => {
             <div>
               <NavBar />
               <ManageBand />
+            </div>          
+          )}}/>
+
+        <Route exact path="/bands/:id" render={() => {
+          return (
+            <div>
+              <NavBar />
+              <BandShow />
             </div>          
           )}}/>
 

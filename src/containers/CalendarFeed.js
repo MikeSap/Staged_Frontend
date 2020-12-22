@@ -13,14 +13,6 @@ const CalendarFeed = (props) => {
 
     const { user, events, dateEvents } = props
 
-    const [eventsToShow, setEventsToShow] = useState([]) 
-
-    useEffect(() => {
-        setEventsToShow([...events])
-        return () => {            
-        }
-    }, [events])
-
     useEffect(() => {
         if (user.id){
         dateEvents(new Date())
@@ -31,14 +23,13 @@ const CalendarFeed = (props) => {
 
     const fetchDateEvents = (date) => {
         dateEvents(date)
-        // fetch and grab events on that date
     }
 
     return (
         <>
         <Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
             <Container>
-                  {eventsToShow ? eventsToShow.map( event => <Row>
+                  {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)
                     : null}
             </Container>

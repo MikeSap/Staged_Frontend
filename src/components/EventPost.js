@@ -14,17 +14,15 @@ import Col from 'react-bootstrap/Col'
 const EventPost = (props) => {
 
     let userBandIds
-    const { event_type, id, date, url, name, comments, user , band, photo} = props 
+    const { event_type, id, date, url, name, comments, user , band, photo, managedBandEvents} = props 
     const [comment, setComment] = useState("")
-    // need to add band photo into event serializer? and the band photo should show if event is a show
     let photoUrl = event_type === "Show" ? `http://localhost:3000${band.photo}` : `http://localhost:3000${photo}`
 
     const postComment = (e) => {
         e.preventDefault()
         let com = {content: comment, user_id: user.id, event_id: id}
-        let userBandEvents = user.bands.map(b => b.events).flat()
-        userBandEvents = userBandEvents.map(e => e.id)
-        userBandEvents.includes(com.event_id)?
+        let managedEventIds = managedBandEvents ? managedBandEvents.map(e => e.id) : []
+        managedEventIds.includes(com.event_id) ?
         props.selfPostComment(com) :
         props.postComment(com)
         setComment("")
@@ -59,10 +57,6 @@ const EventPost = (props) => {
                       </Col>
               </Row>
               <Row>
-                
-                {/* <Accordion defaultActiveKey="0">
-                    <Accordion.Toggle as={Card.Text} eventKey="0">Comments</Accordion.Toggle> */}
-                    {/* <Accordion.Collapse eventKey="0"> */}
                   <div style={{overflow:'auto', maxHeight: 150 }}>
                   {comments.map(c => <Row style={{topPadding: "5%", marginLeft:"1px"}}><Card style={{marginTop: "1vh", padding: "1%"}}>
                       <div><strong>{c.user.username}</strong></div>
@@ -75,8 +69,6 @@ const EventPost = (props) => {
                                 <Button type="submit" size="sm">Post Comment</Button>
                             </Form>
                         </Row>
-                        {/* </Accordion.Collapse> */}
-                        {/* </Accordion> */}
                     </Row>
               </Container>
           </Card.Body>
@@ -87,7 +79,8 @@ const EventPost = (props) => {
 
 const readAccess = state => {
     return {
-        user: state.user
+        user: state.user,
+        managedBandEvents: state.managedBandEvents
     }
 }
 

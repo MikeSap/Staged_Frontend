@@ -18,8 +18,25 @@ export const popBandManage = (band) => {
     }
 }
 
+export const popBandShow = (band_id) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/api/v1/band_info`, {
+      method: "POST",
+      headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: JSON.stringify({band_id: band_id})
+      })
+    .then(resp => resp.json())
+    .then( info => {
+        dispatch({ type: "POP_SHOW_BAND", info })
+        history.push(`/bands/${band_id["id"]}`)
+    })
+  }
+}
+
 export const followBand = (user_id, band_id) => {
-    
     return dispatch => {
         fetch(`http://localhost:3000/api/v1/connections`, {
             method: "POST",
@@ -31,7 +48,7 @@ export const followBand = (user_id, band_id) => {
             })
         .then(resp => resp.json())
         .then( newFollow => {
-            dispatch({ type: "NEW_FOLLOW", band: newFollow.band})
+          dispatch({ type: "NEW_FOLLOW", band: newFollow[0].band, events: newFollow})
         })
     }
 }
