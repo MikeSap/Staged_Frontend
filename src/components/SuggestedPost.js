@@ -21,6 +21,7 @@ const SuggestedPost = (props) => {
             <Card.Body>
             
                 <Card.Title>{props.name}</Card.Title> 
+                <Card.Text>{props.date.split("T")[0]}</Card.Text> 
                 
                 <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
                 

@@ -51,9 +51,10 @@ export const dateEvents = (date) => {
 
 export const newEvent = (event) => {
     return dispatch => {
+      const token = localStorage.getItem("token")
+
         dispatch ({type: "POSTING_EVENT"})
 
-        if(event){
             const data = new FormData()
             Object.keys(event).forEach((key, value) => {
                 data.append(key, event[key])
@@ -61,36 +62,41 @@ export const newEvent = (event) => {
 
             fetch(`http://localhost:3000/api/v1/events`, {
                 method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`
+                },
                 body: data
             })
             .then(resp => resp.json())
             .then( newEvent => {
                 dispatch({ type: "NEW_EVENT", newEvent})
             })
-        }
     }
 }
 
 export const editEvent = (event) => {
     return dispatch => {
-        dispatch ({type: "POSTING_EVENT"})
 
-        if(event){
-            const data = new FormData()
-            Object.keys(event).forEach((key, value) => {
-                data.append(key, event[key])
-            })
+      const token = localStorage.getItem("token")
 
-            fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
-                method: "PATCH",
-                body: data
-            })
-            .then(resp => resp.json())
-            .then( editedEvent => {
-                dispatch({ type: "EDIT_EVENT", editedEvent})
-            })
-        }
-    }
+      dispatch ({type: "POSTING_EVENT"})
+          const data = new FormData()
+          Object.keys(event).forEach((key, value) => {
+              data.append(key, event[key])
+          })
+
+          fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+              method: "PATCH",
+              headers: {
+                Authorization: `Bearer ${token}`
+                },
+              body: data
+          })
+          .then(resp => resp.json())
+          .then( editedEvent => {
+              dispatch({ type: "EDIT_EVENT", editedEvent})
+          })
+      }
 }
 
 export const popEditedEvent = (event) => {
@@ -109,8 +115,14 @@ export const clearEdited = () => {
 
 export const deleteEvent = (eventId) => {
     return dispatch => {
+      const token = localStorage.getItem("token")
 
-        fetch(`http://localhost:3000/api/v1/events/${eventId}`, { method: "DELETE" })
+      fetch(`http://localhost:3000/api/v1/events/${eventId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+        }
+      })
         .then(resp => resp.json())
         .then(deletedEvent => {
             dispatch({ type: "DELETE_EVENT", eventId })

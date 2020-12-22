@@ -22,12 +22,11 @@ const Feed = (props) => {
 
     const eventSort = () => {
       let events =  props.events ? [...props.events] : []
-      events = events.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) || e.date.toUpperCase().includes(search.toUpperCase()) || e.band.name.toUpperCase().includes(search.toUpperCase()))
+      // events = events.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) || e.date.toUpperCase().includes(search.toUpperCase()) || e.band.name.toUpperCase().includes(search.toUpperCase()))
       events = events.filter(e => new Date(e.date) >= new Date().setHours(0,0,0,0))
       events = events.sort( (e1, e2) => new Date(e1.date) < new Date(e2.date) ? -1 : 1)
       return events
     }
-    
     
     const eventsToShow = eventSort()
     return (
