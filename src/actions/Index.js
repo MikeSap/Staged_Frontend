@@ -5,7 +5,7 @@ export const allEvents = (type) => {
 
         if(type){
         // Pull down posts index
-            fetch(`https://staged-app.herokuapp.com/api/v1/events`)
+            fetch(`http://localhost:3000/api/v1/events`)
             .then(resp => resp.json())
             .then( allEvents => {
             // Filter posts that match type
@@ -38,7 +38,7 @@ export const allBands = () => {
     return dispatch => {
         dispatch({type:"FETCHING_POSTS"})
 
-        fetch(`https://staged-app.herokuapp.com/api/v1/bands`)
+        fetch(`http://localhost:3000/api/v1/bands`)
             .then(resp => resp.json())
             .then( bands => {
                 dispatch ({ type: "ADD_BANDS", bands})

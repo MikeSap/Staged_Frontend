@@ -15,7 +15,7 @@ const EventPost = (props) => {
 
     let userBandIds
     const { event_type, id, date, url, name, comments, user , band, photo, managedBandEvents} = props
-    let photoUrl = event_type === "Show" ? `https://staged-app.herokuapp.com/${band.photo}` : `https://staged-app.herokuapp.com/${photo}`
+    let photoUrl = event_type === "Show" ? `http://localhost:3000${band.photo}` : `http://localhost:3000${photo}`
  
     const [comment, setComment] = useState("")
     const [open, setOpen] = useState(false)

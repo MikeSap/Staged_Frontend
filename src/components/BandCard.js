@@ -14,7 +14,7 @@ const BandCard = (props) => {
     const location = history.location.pathname
 
     const {name, url, bio, city, photo, id } = props
-    let photoUrl = `https://staged-app.herokuapp.com${photo}`
+    let photoUrl = `http://localhost:3000${photo}`
 
     return (        
       <>
@@ -31,6 +31,7 @@ const BandCard = (props) => {
                         <Card.Text>City: {city}</Card.Text>
                         <Card.Text>Bio: {bio}</Card.Text>
                         <Card.Text><a target="_blank" rel="noreferrer" href={url}>Band Page</a></Card.Text>
+
                         { location.includes(id) ? null
                         : <Button onClick={() => props.popBandShow({id})}>Show More</Button>}
                       </Col>

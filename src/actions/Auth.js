@@ -82,7 +82,7 @@ export const signup = (user) => {
     dispatch({type:"LOGIN"})
     
 
-    fetch(`https://staged-app.herokuapp.com/api/v1/users`,{ 
+    fetch(`http://localhost:3000/api/v1/users`,{ 
         method: "POST",
         headers: {
             "Content-Type": "application/json"
