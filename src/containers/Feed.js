@@ -5,8 +5,6 @@ import EventPost from '../components/EventPost'
 
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
 import CardGroup from 'react-bootstrap/CardGroup'
 
 const Feed = (props) => {
