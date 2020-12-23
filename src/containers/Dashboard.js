@@ -41,7 +41,7 @@ const Dashboard = (props) =>  {
 
             <Col>
             <div style={{ position:'fixed' }}>
-                <Row style={{fontFamily: 'stencil', fontSize: '1.25vw', marginLeft: '5vw' }}>Suggested Events</Row>
+                <Row style={{fontFamily: 'stencil', fontSize: '1.25vw', marginLeft: '6vw' }}>Suggested Events</Row>
                 <MiniFeed events={suggestedEvents}/>
             </div>
             </Col>

@@ -6,7 +6,6 @@ import SuggestedPost from '../components/SuggestedPost'
 
 import { connect } from 'react-redux'
 
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 const CalendarFeed = (props) => {
@@ -28,7 +27,7 @@ const CalendarFeed = (props) => {
     return (
         <div style={{position:'fixed'}}>
         <Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
-        <div style={{ overflow:'auto', maxHeight: "53vh", maxWidth: "17vw", justifyContent:'center'}}>
+        <div style={{ overflow:'auto', maxHeight: "35vh", width: "18vw", justifyContent:'center'}}>
                      {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)
                     : null}

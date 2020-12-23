@@ -21,7 +21,7 @@ const MiniFeed = (props) => {
 
     const eventsToShow = eventSort()
     return (
-         <div style={{ overflow:'auto', maxHeight: "80vh", maxWidth: "17vw"}}>
+         <div style={{ overflow:'auto', maxHeight: "75vh", width: "20vw"}}>
         { eventsToShow ? eventsToShow.map( event => <Row>                    
             <SuggestedPost {...event} key={event.id} />
             </Row> )

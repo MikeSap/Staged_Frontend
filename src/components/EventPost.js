@@ -80,7 +80,7 @@ const EventPost = (props) => {
                   </div>
                     <Form onSubmit={postComment}>
                         <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
-                        <Button type="submit" size="sm">Post Comment</Button>
+                        <Button variant="outline-success" type="submit" size="sm">Post Comment</Button>
                     </Form>  
 
                   </div>

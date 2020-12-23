@@ -37,11 +37,11 @@ const ManageBand = (props) =>  {
             </Col>
 
           <Col>
-          <div style={{position:'fixed', overflow:'auto', maxHeight: "80vh", width: "20vw"}} > 
-              <Row style={{marginLeft: "2vw"}}>                   
+          <div style={{position:'fixed', overflow:'auto', maxHeight: "80vh", width: "25vw"}} > 
+              <Row style={{marginLeft: "1.25vw"}}>                   
                   <EventForm />
               </Row>
-              <Row style={{marginLeft: "2vw"}}>
+              <Row style={{marginLeft: "1.25vw"}}>
                   <BandForm />
               </Row>
           </div>

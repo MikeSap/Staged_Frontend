@@ -30,7 +30,7 @@ const Feed = (props) => {
     const eventsToShow = eventSort()
     return (
         <>
-            <Form style={{width:"28vw"}}>
+            <Form style={{width:"28vw"}} >
                 <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
             </Form>
 

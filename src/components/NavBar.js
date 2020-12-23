@@ -53,8 +53,8 @@ const NavBar = (props) => {
     }
 
     return (       
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{}} >
-        <Navbar.Brand href="/"><img style={{width: 100, marginLeft:"5vw",}} src={navLogo} alt="Staged Logo" /></Navbar.Brand>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{}} fixed="top">
+        <Navbar.Brand href="/"><img style={{height: '8vh', marginLeft:"5vw",}} src={navLogo} alt="Staged Logo" /></Navbar.Brand>
         <Navbar.Brand style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}} href="/">Staged</Navbar.Brand>                          
               {!user.id ? null :
               loggedInNav()}

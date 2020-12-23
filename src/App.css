@@ -3,3 +3,7 @@
     src: url('../src/assets/d_day_stencil-webfont.woff2') format('woff2'),
          url('../src/assets/d_day_stencil-webfont.woff') format('woff');
 }
+
+  body {
+    padding-top: 15vh;
+  }

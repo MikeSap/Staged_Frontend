@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { clearBandErrors } from '../actions/Bands'
 import { newEvent, editEvent, clearEdited } from '../actions/Events'
 import { useHistory } from "react-router";
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -79,23 +78,23 @@ const BandPost = (props) => {
 
   return(
          
-    <Container fluid >                  
+      <>     
         <Form onSubmit={handleSubmit}>
         {props.errors ? <h3>{props.errors}</h3> : null}
         <Form.Row>
-            <Form.Group>      
+          <Form.Group>      
 
-                    {editedEvent.id ?
-                        <Form.Label as={Row}>Edit Event</Form.Label>
-                        :
-                        <Form.Label as={Row}>Post Event</Form.Label>
-                    }
-      
-                <Form.Control as="select" name="event_type" onChange={handleChange} value={formData.event_type}>
-                  <option>Music</option>
-                  <option>Show</option>
-                  <option>Merch</option>
-                </Form.Control>
+            {editedEvent.id ?
+                <Form.Label as={Row}>Edit Event</Form.Label>
+                :
+                <Form.Label as={Row}>Post Event</Form.Label>
+            }
+
+              <Form.Control as="select" name="event_type" onChange={handleChange} value={formData.event_type}>
+                <option>Music</option>
+                <option>Show</option>
+                <option>Merch</option>
+              </Form.Control>
 
                 <Form.Control placeholder='Event Name' name="name" onChange={handleChange} value={formData.name} maxLength={50} />                
 
@@ -107,14 +106,14 @@ const BandPost = (props) => {
 
                 <Form.Control type="file" name="photo" onChange={handlePhoto} />
 
-                <Button type="submit">Submit</Button>
+                <Button variant="outline-success" type="submit">Submit</Button>
 
-                {editedEvent.id? <Button onClick={clearEditedForm}>Clear</Button> : null}
+                {editedEvent.id? <Button variant="outline-danger" onClick={clearEditedForm}>Clear</Button> : null}
 
             </Form.Group>
         </Form.Row>
         </Form>
-    </Container>
+     </>
   )
 }
  

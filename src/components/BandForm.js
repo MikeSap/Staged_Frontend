@@ -52,7 +52,7 @@ const Login = (props) => {
 
   return(
     
-      <Container fluid>                  
+      <div style={{float:'center'}}>                  
           <Form onSubmit={handleSubmit}>
           <Form.Row>
               <Form.Group>
@@ -78,12 +78,12 @@ const Login = (props) => {
                       
                   <Form.Control type="file" name="photo" onChange={handlePhoto} />
                   
-                  <Button type="submit">Submit</Button>
+                  <Button variant="outline-success" type="submit">Submit</Button>
 
               </Form.Group>
           </Form.Row>
           </Form>
-      </Container>
+      </div>
   )
 }
  
