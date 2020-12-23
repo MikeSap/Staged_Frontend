@@ -14,7 +14,7 @@ const BandCard = (props) => {
     const location = history.location.pathname
 
     const {name, url, bio, city, photo, id } = props
-    let photoUrl = `http://localhost:3000${photo}`
+    let photoUrl = `https://staged-app.herokuapp.com${photo}`
 
     return (        
       <>

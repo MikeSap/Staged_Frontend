@@ -4,7 +4,7 @@ export const postComment = (comment) => {
 
         if(comment){
 
-            fetch(`http://localhost:3000/api/v1/comments`, {
+            fetch(`https://staged-app.herokuapp.com/api/v1/comments`, {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json',
@@ -27,7 +27,7 @@ export const selfPostComment = (comment) => {
 
         if(comment){
 
-            fetch(`http://localhost:3000/api/v1/comments`, {
+            fetch(`https://staged-app.herokuapp.com/api/v1/comments`, {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json',

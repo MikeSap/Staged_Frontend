@@ -10,7 +10,7 @@ export const editBand = (band) => {
         data.append(key, band[key])
     })
 
-    fetch(`http://localhost:3000/api/v1/bands/${band.id}`, {
+    fetch(`https://staged-app.herokuapp.com/api/v1/bands/${band.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`
@@ -38,7 +38,7 @@ export const popBandManage = (band) => {
 
 export const popBandShow = (band_id) => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/band_info`, {
+    fetch(`https://staged-app.herokuapp.com/api/v1/band_info`, {
       method: "POST",
       headers: {
           'Content-type': 'application/json',
@@ -56,7 +56,7 @@ export const popBandShow = (band_id) => {
 
 export const followBand = (user_id, band_id) => {
     return dispatch => {
-        fetch(`http://localhost:3000/api/v1/connections`, {
+        fetch(`https://staged-app.herokuapp.com/api/v1/connections`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -81,7 +81,7 @@ export const newBand = (band) => {
                 data.append(key, band[key])
             })
             
-            fetch(`http://localhost:3000/api/v1/bands`, {
+            fetch(`https://staged-app.herokuapp.com/api/v1/bands`, {
                 method: "POST",
                 body: data
             })
