@@ -11,6 +11,9 @@ export default function manageManagedBand(state = {}, action) {
         case "NEW_BAND":
             return {...action.newBand}   
 
+        case "EDIT_BAND":
+          return {...action.editedBand}    
+
         // case "EDIT_EVENT":
         //     idx = state.events.findIndex(e => e.id === action.editedEvent.id)
         //     return { ...state, events: [...state.events.slice(0, idx), action.editedEvent, ...state.events.slice(idx+1)] }

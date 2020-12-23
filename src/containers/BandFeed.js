@@ -6,30 +6,31 @@ import Row from 'react-bootstrap/Row'
 
 const BandFeed = (props) => {
 
-    const { past } = props
+const { past } = props
 
+const eventSort = () => {
+  let events = props.events ? [...props.events] : []
 
-    const eventSort = () => {
-      let events = props.events ? [...props.events] : []
-      events = events.sort( (e1, e2) => new Date(e1.date) < new Date(e2.date) ? -1 : 1)
+  events = past ? events.sort( (e1, e2) => new Date(e1.date) > new Date(e2.date) ? -1 : 1)
+  : events.sort( (e1, e2) => new Date(e1.date) < new Date(e2.date) ? -1 : 1)
 
-      return events
-    }
-
-    const eventsToShow = eventSort()
-    return (
-        <>
-        { eventsToShow ? eventsToShow.map( event => <Row style={{width:"30vw"}}>                    
-            <MiniBandPost {...event} key={event.id} />
-            </Row> )
-            : null }
-        </>
-    )
-
+  return events
 }
+
+const eventsToShow = eventSort()
+  return (
+    <>
+    { eventsToShow ? eventsToShow.map( event => <Row style={{width:"30vw"}}>                    
+        <MiniBandPost {...event} key={event.id} />
+        </Row> )
+        : null }
+    </>
+  )
+}
+
 const readAccess = state => {
-    return {
-    }
+  return {
+  }
 }
 
 export default connect(readAccess)(BandFeed)

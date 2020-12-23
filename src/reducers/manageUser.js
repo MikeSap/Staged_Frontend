@@ -1,6 +1,7 @@
 export default function managUser(state = {
     user: {email: "", id: "", username: "", city: "", bands: [], followed: []}
 }, action) {
+    let idx
     switch (action.type) {
 
         case 'LOGIN':
@@ -23,6 +24,10 @@ export default function managUser(state = {
 
         case "NEW_BAND":
             return {...state, bands: [...state.bands, action.newBand]}
+
+        case "EDIT_BAND":
+          idx = state.bands.findIndex(b => b.id === action.editedBand.id)
+            return {...state, bands: [...state.bands.slice(0,idx), action.editedBand, ...state.bands.slice(idx+1)]}
 
         case "NEW_FOLLOW":
             return { ...state, followed: [...state.followed, action.band]}

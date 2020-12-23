@@ -1,9 +1,27 @@
 import history from '../history'
 
 export const editBand = (band) => {
-    return dispatch => {
+  return dispatch => {
+    
+    const token = localStorage.getItem("token")
 
-    }
+    const data = new FormData()
+    Object.keys(band).forEach((key, value) => {
+        data.append(key, band[key])
+    })
+
+    fetch(`http://localhost:3000/api/v1/bands/${band.id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: data
+      })
+    .then(resp => resp.json())
+    .then( editedBand => {
+    dispatch({ type: 'EDIT_BAND', editedBand })
+    })
+  }
 }
 
 export const clearBandErrors = () => {

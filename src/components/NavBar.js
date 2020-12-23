@@ -37,13 +37,14 @@ const NavBar = (props) => {
         <Nav.Link href="/music">Music</Nav.Link>
         <Nav.Link href="/shows">Shows</Nav.Link>
         {/* can simplify this to still say manage bands and only have the register link if there are no bands */}
-        {user.bands ? <NavDropdown title="Manage Bands" id="band-management">
-        {user.bands.map( band => <NavDropdown.Item onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
-        <NavDropdown.Divider />
-        <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
-      </NavDropdown>
-         : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
-         }
+        {
+          user.bands ? <NavDropdown title="Manage Bands" id="band-management">
+          {user.bands.map( band => <NavDropdown.Item onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
+          <NavDropdown.Divider />
+          <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
+          </NavDropdown>
+          : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
+        }
         
             <Nav.Link>
                 <Button onClick={() => signOut()} primary>

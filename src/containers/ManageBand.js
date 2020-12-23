@@ -10,6 +10,7 @@ import { fetchManagedBandEvents } from '../actions/Events'
 import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
 import EventForm from '../components/EventForm'
+import BandForm from '../components/BandForm'
 
 const ManageBand = (props) =>  {
 
@@ -38,6 +39,9 @@ const ManageBand = (props) =>  {
           <Col> 
               <Row>                   
                   <EventForm />
+              </Row>
+              <Row>
+                  <BandForm />
               </Row>
           </Col>
       </Row>

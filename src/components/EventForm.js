@@ -18,8 +18,6 @@ const BandPost = (props) => {
 
   const date = editedEvent.id ? editedEvent.date.split("T")[0] : null
 
-  // const { id } = managedBand
-
   const history = useHistory()
   const location = history.location.pathname
 
@@ -85,12 +83,14 @@ const BandPost = (props) => {
         <Form onSubmit={handleSubmit}>
         {props.errors ? <h3>{props.errors}</h3> : null}
         <Form.Row>
-            <Form.Group>                
+            <Form.Group>      
+
                     {editedEvent.id ?
-                        <Form.Label  as={Row}>Edit Post</Form.Label>
+                        <Form.Label  as={Row}>Edit Event</Form.Label>
                         :
-                        <Form.Label as={Row}>Post an Event</Form.Label>
-                    } 
+                        <Form.Label as={Row}>Post Event</Form.Label>
+                    }
+      
                 <Form.Control as="select" name="event_type" onChange={handleChange} value={formData.event_type}>
                   <option>Music</option>
                   <option>Show</option>
@@ -103,6 +103,8 @@ const BandPost = (props) => {
                 
                 <Form.Control type="date" name="date" onChange={handleChange} value={formData.date}/>
                 
+                {/* add event location, default to band location if music or merch type */}
+
                 <Form.Control type="file" name="photo" onChange={handlePhoto} />
 
                 <Button type="submit">Submit</Button>

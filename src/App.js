@@ -33,8 +33,6 @@ const App = (props) => {
         return allEvents("music")
       case "/shows":
         return allEvents("shows")
-      // case "/bands":
-      //   return allBands()
       default:
         return 
     }
