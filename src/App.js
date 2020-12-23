@@ -22,6 +22,7 @@ const App = (props) => {
   const location = history.location.pathname
 
   useEffect(() => {
+    // need this to hit on showBand clearing
     autoLogin()
   },[autoLogin])
   

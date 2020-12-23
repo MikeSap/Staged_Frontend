@@ -11,31 +11,31 @@ const BandShow = (props) =>  {
 
   const { band, upcomingEvents, pastEvents } = props
 
-    return (
-      <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
-      <Row style={{ width: '100vw' }}>
-        
-          <Col> 
-          <Row>{band.name}'s Past Events</Row>
-          <BandFeed events={pastEvents} past="true"/>
-          </Col>
-
-          <Col xs={5}>
-            <Row>{band.name}</Row>
-            <Row>
-                <BandCard {...band}/>
-            </Row>
-          </Col>
-
+  return (
+    <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
+    <Row style={{ width: '100vw' }}>
+      
         <Col> 
-            <Row>{band.name}'s Upcoming Events</Row>
-            <Row>                   
-              <BandFeed events={upcomingEvents}/>
-            </Row>
+        <Row>{band.name}'s Past Events</Row>
+        <BandFeed events={pastEvents} past="true"/>
         </Col>
-    </Row>
-    </Container>
-  )
+
+        <Col xs={5}>
+          <Row>{band.name}</Row>
+          <Row>
+              <BandCard {...band}/>
+          </Row>
+        </Col>
+
+      <Col> 
+          <Row>{band.name}'s Upcoming Events</Row>
+          <Row>                   
+            <BandFeed events={upcomingEvents}/>
+          </Row>
+      </Col>
+  </Row>
+  </Container>
+)
 }
 
 const readAccess = state => {
