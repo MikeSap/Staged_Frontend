@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import CardGroup from 'react-bootstrap/CardGroup'
 
-const Feed = (props) => {
+const Index = (props) => {
 
     const { followedBandEvents, managedBandEvents } = props
 
@@ -31,7 +31,9 @@ const Feed = (props) => {
 
     const eventsToShow = eventSort()
     return (
-        <>
+        <Container><Row>
+           <Col></Col>
+            <Col>
             <Form style={{width:"28vw"}} >
                 <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
             </Form>
@@ -43,7 +45,9 @@ const Feed = (props) => {
                     </Row> ) 
                 : null}
                 </CardGroup>
-        </>
+                </Col>
+                <Col></Col>
+        </Row></Container>
     )
 
 }
@@ -56,4 +60,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess)(Feed)
+export default connect(readAccess)(Index)

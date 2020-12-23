@@ -72,7 +72,7 @@ const EventPost = (props) => {
               <Collapse in={open}>
                 <div id="collapse-comments">
 
-                  <div style={{ display:'flex', flexDirection: 'column-reverse', overflow:'auto', maxHeight: 150, minWidth: "25vw" }}>
+                  <div style={{ display:'flex', flexDirection: 'column-reverse', overflow:'auto', maxHeight: 175, minWidth: "25vw" }}>
                   {comments.map(c => <Row style={{topPadding: "5%", marginLeft:"1px"}}><Card style={{marginTop: "1vh", padding: "1%"}}>
                       <div><strong>{c.user.username}</strong></div>
                       {c.content}

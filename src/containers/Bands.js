@@ -28,18 +28,19 @@ useEffect(() => {
 
 const bandSort = () => {
   let b =  bands ? [ ...bands] : []
-  b = b.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) )
+  b = b.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) || e.city.toUpperCase().includes(search.toUpperCase()) )
   return b
 }
 
 const bandsToShow = bandSort()
   return (
       
-      <Container >
-      <Col>
+      <Container ><Row>
+        <Col><Row></Row></Col>
+      <Col xs={5} className="justify-content-center">
       <Row>
           <Form style={{width:"60vw"}}>
-              <Form.Control onChange={searchPosts} type="text" placeholder="Filter by Name" className="mr-sm-2" value={search} />
+              <Form.Control onChange={searchPosts} type="text" placeholder="Filter by Name or City" className="mr-sm-2" value={search} />
           </Form>
       </Row>
 
@@ -48,7 +49,8 @@ const bandsToShow = bandSort()
               : null}
       </Row>
       </Col>
-      </Container>
+      <Col><Row></Row></Col>
+      </Row></Container>
   )
 }
 

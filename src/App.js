@@ -9,15 +9,16 @@ import BandForm from './components/BandForm'
 import Dashboard from './containers/Dashboard'
 import ManageBand from './containers/ManageBand'
 import BandShow from './containers/BandShow'
-import Feed from './containers/Feed'
+// import Feed from './containers/Feed'
+import Index from './containers/Index'
 import Bands from './containers/Bands'
-import CalendarFeed from './containers/CalendarFeed'
+// import CalendarFeed from './containers/CalendarFeed'
 import { Switch, Route, Redirect } from "react-router-dom"
 import { useHistory } from "react-router";
 
 const App = (props) => {
   
-  const { autoLogin, allEvents, allBands, events, user
+  const { autoLogin, allEvents, allBands, events
     // , bands
   } = props
   const history = useHistory()
@@ -96,7 +97,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Feed events={events.merch}/>
+              <Index events={events.merch}/>
             </div>          
           )}}/>
 
@@ -104,7 +105,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Feed events={events.music}/>
+              <Index events={events.music}/>
             </div>          
           )}}/>
 
@@ -112,7 +113,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Feed events={events.shows}/>
+              <Index events={events.shows}/>
             </div>          
           )}}/>
         
