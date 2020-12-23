@@ -26,14 +26,14 @@ const CalendarFeed = (props) => {
     }
 
     return (
-        <>
+        <div style={{position:'fixed'}}>
         <Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
-            <Container>
-                  {events ? events.map( event => <Row>
+        <div style={{ overflow:'auto', maxHeight: "53vh", maxWidth: "17vw", justifyContent:'center'}}>
+                     {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)
                     : null}
-            </Container>
-        </>
+        </div>
+        </div>
     )
 }
 

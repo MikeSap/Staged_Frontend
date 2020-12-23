@@ -5,9 +5,9 @@ const MiniBandPost = (props) => {
 
     return (        
         <>
-        <Card bg="light" style={{ width: '15vw' }}>
+        <Card bg="light" style={{ width: '15vw', padding: 5, marginLeft: 25, marginRight: 0 }}>
           
-        <Card.Header>{props.name}</Card.Header> 
+        <Card.Header as="h5" style={{fontFamily: 'stencil'}}>{props.name}</Card.Header> 
 
             <Card.Body>
             

@@ -16,19 +16,18 @@ const BandShow = (props) =>  {
     <Row style={{ width: '100vw' }}>
       
         <Col> 
-        <Row>{band.name}'s Past Events</Row>
+        <Row style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}}>Past Events</Row>
         <BandFeed events={pastEvents} past="true"/>
         </Col>
 
         <Col xs={5}>
-          <Row>{band.name}</Row>
           <Row>
               <BandCard {...band}/>
           </Row>
         </Col>
 
       <Col> 
-          <Row>{band.name}'s Upcoming Events</Row>
+          <Row style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}}>Upcoming Events</Row>
           <Row>                   
             <BandFeed events={upcomingEvents}/>
           </Row>

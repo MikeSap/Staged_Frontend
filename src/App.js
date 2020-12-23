@@ -17,7 +17,9 @@ import { useHistory } from "react-router";
 
 const App = (props) => {
   
-  const { autoLogin, allEvents, allBands, events, bands } = props
+  const { autoLogin, allEvents, allBands, events, user
+    // , bands
+  } = props
   const history = useHistory()
   const location = history.location.pathname
 
@@ -82,13 +84,13 @@ const App = (props) => {
             </div>          
           )}}/>
 
-        <Route exact path="/calendar" render={() => {
+        {/* <Route exact path="/calendar" render={() => {
           return (
             <div>
               <NavBar />
               <CalendarFeed />
           </div>          
-          )}}/>
+          )}}/> */}
 
         <Route exact path="/merch" render={() => {
           return (

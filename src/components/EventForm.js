@@ -22,9 +22,9 @@ const BandPost = (props) => {
   const location = history.location.pathname
 
   useEffect(() => {
-      if(errors){
+    if(errors){
       setTimeout( () => clearBandErrors(), 3000)
-      }
+    }
   }, [errors, clearBandErrors])
 
   useEffect(() => {
@@ -79,14 +79,14 @@ const BandPost = (props) => {
 
   return(
          
-    <Container fluid>                  
+    <Container fluid >                  
         <Form onSubmit={handleSubmit}>
         {props.errors ? <h3>{props.errors}</h3> : null}
         <Form.Row>
             <Form.Group>      
 
                     {editedEvent.id ?
-                        <Form.Label  as={Row}>Edit Event</Form.Label>
+                        <Form.Label as={Row}>Edit Event</Form.Label>
                         :
                         <Form.Label as={Row}>Post Event</Form.Label>
                     }

@@ -19,12 +19,12 @@ const eventSort = () => {
 
 const eventsToShow = eventSort()
   return (
-    <>
+    <div style={{ overflow:'auto', maxHeight: "75vh", maxWidth: "17vw"}}>
     { eventsToShow ? eventsToShow.map( event => <Row style={{width:"30vw"}}>                    
         <MiniBandPost {...event} key={event.id} />
         </Row> )
         : null }
-    </>
+    </div>
   )
 }
 

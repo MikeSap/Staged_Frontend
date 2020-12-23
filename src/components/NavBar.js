@@ -30,34 +30,32 @@ const NavBar = (props) => {
     }
 
     const loggedInNav = () => {
-        return <Nav>        
+        return <Nav className="justify-content-center" style={{ flex: 1}}>        
         <Nav.Link href="/bands">Bands</Nav.Link>
-        <Nav.Link href="/calendar">Calendar</Nav.Link>
+        {/* <Nav.Link href="/calendar">Calendar</Nav.Link> */}
         <Nav.Link href="/merch">Merch</Nav.Link>
         <Nav.Link href="/music">Music</Nav.Link>
         <Nav.Link href="/shows">Shows</Nav.Link>
         {/* can simplify this to still say manage bands and only have the register link if there are no bands */}
         {
           user.bands ? <NavDropdown title="Manage Bands" id="band-management">
-          {user.bands.map( band => <NavDropdown.Item onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
+          {user.bands.map( band => <NavDropdown.Item  onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
           </NavDropdown>
           : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
         }
         
-            <Nav.Link>
-                <Button onClick={() => signOut()} primary>
-                Sign Out</Button>           
-            </Nav.Link>
+          <Button variant="outline-danger" style={{ marginLeft:"22vw", marginRight: '5vw'}} size='sm' onClick={() => signOut()} primary>
+          Sign Out</Button>           
         
         </Nav>
     }
 
     return (       
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="justify-content-center">
-        <Navbar.Brand href="/"><img style={{width: 250}} src={navLogo} alt="Staged Logo" /></Navbar.Brand>  
-                              
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{}} >
+        <Navbar.Brand href="/"><img style={{width: 100, marginLeft:"5vw",}} src={navLogo} alt="Staged Logo" /></Navbar.Brand>
+        <Navbar.Brand style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}} href="/">Staged</Navbar.Brand>                          
               {!user.id ? null :
               loggedInNav()}
       </Navbar>

@@ -71,13 +71,13 @@ const Login = (props) => {
                         
                         { buildSignupForm() }
                 
-                        <Button className="row m-3" type="submit">Submit</Button>
+                        <Button variant="outline-success" className="row m-3" type="submit">Log In</Button>
 
                     </Form.Group>
                 </Form.Row>
                             <Form.Group className="row align-items-center justify-content-center">
                     {location.includes('signup') ? null : 
-                        <Button variant="link" href='/signup'>Sign Up</Button>
+                        <Button variant="outline-secondary" href='/signup'>Sign Up</Button>
                     }
                     </Form.Group>
                 </Form>

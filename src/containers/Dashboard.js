@@ -40,8 +40,10 @@ const Dashboard = (props) =>  {
             </Col>
 
             <Col>
-                <Row>Suggested Bands To Follow</Row>
+            <div style={{ position:'fixed' }}>
+                <Row style={{fontFamily: 'stencil', fontSize: '1.25vw', marginLeft: '5vw' }}>Suggested Events</Row>
                 <MiniFeed events={suggestedEvents}/>
+            </div>
             </Col>
         </Row>
         </Container>

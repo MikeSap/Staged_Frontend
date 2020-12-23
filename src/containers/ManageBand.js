@@ -30,19 +30,21 @@ const ManageBand = (props) =>  {
             </Col>
 
             <Col xs={4}>
-              <Row>{managedBand.name}'s Posts</Row>
+              <Row style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}}>{managedBand.name}'s Posts</Row>
               <Row>
                   <Feed events={managedBandEvents}/>
               </Row>
             </Col>
 
-          <Col> 
-              <Row>                   
+          <Col>
+          <div style={{position:'fixed', overflow:'auto', maxHeight: "80vh", width: "20vw"}} > 
+              <Row style={{marginLeft: "2vw"}}>                   
                   <EventForm />
               </Row>
-              <Row>
+              <Row style={{marginLeft: "2vw"}}>
                   <BandForm />
               </Row>
+          </div>
           </Col>
       </Row>
       </Container>
