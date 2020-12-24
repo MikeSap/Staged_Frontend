@@ -1,3 +1,5 @@
+import API from '../API'
+
 export const allEvents = (type) => {
     
     return (dispatch) => {
@@ -5,7 +7,7 @@ export const allEvents = (type) => {
 
         if(type){
         // Pull down posts index
-            fetch(`http://localhost:3000/api/v1/events`)
+            fetch(`${API}/api/v1/events`)
             .then(resp => resp.json())
             .then( allEvents => {
             // Filter posts that match type
@@ -38,7 +40,7 @@ export const allBands = () => {
     return dispatch => {
         dispatch({type:"FETCHING_POSTS"})
 
-        fetch(`http://localhost:3000/api/v1/bands`)
+        fetch(`${API}/api/v1/bands`)
             .then(resp => resp.json())
             .then( bands => {
                 dispatch ({ type: "ADD_BANDS", bands})

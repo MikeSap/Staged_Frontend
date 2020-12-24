@@ -1,4 +1,5 @@
 import history from '../history'
+import API from '../API'
 
 export const autoLogin = (user) => {
   return dispatch => {
@@ -7,7 +8,7 @@ export const autoLogin = (user) => {
     const token = localStorage.getItem("token")
     
     if(token){
-      fetch('http://localhost:3000/api/v1/auto_login', {
+      fetch(`${API}/api/v1/auto_login`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -27,7 +28,7 @@ export const autoLogin = (user) => {
           lastUrlSlash = window.location.href.lastIndexOf("/")
           bandId = parseInt(window.location.href.slice(lastUrlSlash + 1), 10)          
 
-          fetch(`http://localhost:3000/api/v1/band_info`, {
+          fetch(`${API}/api/v1/band_info`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -56,7 +57,7 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch({type:"LOGIN"})
 
-    fetch(`http://localhost:3000/api/v1/login`,{ 
+    fetch(`${API}/api/v1/login`,{ 
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -82,7 +83,7 @@ export const signup = (user) => {
     dispatch({type:"LOGIN"})
     
 
-    fetch(`http://localhost:3000/api/v1/users`,{ 
+    fetch(`${API}/api/v1/users`,{ 
         method: "POST",
         headers: {
             "Content-Type": "application/json"

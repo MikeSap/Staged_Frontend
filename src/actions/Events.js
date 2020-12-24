@@ -1,3 +1,5 @@
+import API from '../API'
+
 export const suggestedBandsEvents = () => {
 
   return (dispatch) => {
@@ -5,7 +7,7 @@ export const suggestedBandsEvents = () => {
     
       const token = localStorage.getItem("token")
 
-        fetch(`http://localhost:3000/api/v1/suggested_events`, {
+        fetch(`${API}/api/v1/suggested_events`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -25,7 +27,7 @@ export const followedBandsEvents = () => {
     
       const token = localStorage.getItem("token")
 
-        fetch(`http://localhost:3000/api/v1/followed_events`, {
+        fetch(`${API}/api/v1/followed_events`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -44,7 +46,7 @@ export const dateEvents = (date) => {
     dispatch({type:"FETCHING_DATE_EVENTS"})
 
     const token = localStorage.getItem("token")
-      fetch(`http://localhost:3000/api/v1/date_events`, {
+      fetch(`${API}/api/v1/date_events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +73,7 @@ export const newEvent = (event) => {
                 data.append(key, event[key])
             })
 
-            fetch(`http://localhost:3000/api/v1/events`, {
+            fetch(`${API}/api/v1/events`, {
                 method: "POST",
                 headers: {
                   Authorization: `Bearer ${token}`
@@ -96,7 +98,7 @@ export const editEvent = (event) => {
               data.append(key, event[key])
           })
 
-          fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+          fetch(`${API}/api/v1/events/${event.id}`, {
               method: "PATCH",
               headers: {
                 Authorization: `Bearer ${token}`
@@ -126,7 +128,7 @@ export const deleteEvent = (eventId) => {
     return dispatch => {
       const token = localStorage.getItem("token")
 
-      fetch(`http://localhost:3000/api/v1/events/${eventId}`, {
+      fetch(`${API}/api/v1/events/${eventId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -145,7 +147,7 @@ export const fetchManagedBandEvents = (band_id) => {
     dispatch({type:"FETCHING_MANAGED_EVENTS"})
 
     const token = localStorage.getItem("token")
-      fetch(`http://localhost:3000/api/v1/managed_events`, {
+      fetch(`${API}/api/v1/managed_events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
