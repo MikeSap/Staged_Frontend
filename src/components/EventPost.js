@@ -52,8 +52,7 @@ const EventPost = (props) => {
 
     const commentSort = () => {
       let c =  comments ? [...comments] : []
-      // need to add created at to comments
-      // c = c.sort( (c1, c2) => new Date(c1.created_at) < new Date(c2.created_at) ? -1 : 1)
+      c = c.sort( (c1, c2) => new Date(c1.created_at) > new Date(c2.created_at) ? -1 : 1)
       return c
     }
     

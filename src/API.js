@@ -1,5 +1,5 @@
-const API = `http://staged-backend.herokuapp.com`
-// const API = `http://localhost:3000`
+// const API = `http://staged-backend.herokuapp.com`
+const API = `http://localhost:3000`
 
 
 export default API;
