@@ -1,4 +1,4 @@
-const API = `http://staged-backend.herokuapp.com`
+const API = `https://staged-backend.herokuapp.com`
 // const API = `http://localhost:3000`
 
 
