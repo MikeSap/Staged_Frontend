@@ -8,23 +8,23 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-
+import Button from 'react-bootstrap/Button'
 
 const Bands = (props) => {
 
 const { allBands, bands } = props
 
 const [search, setSearch] = useState("")
+const [page, setPage] = useState(1)
+
 
 const searchPosts = (e) => {
     setSearch(e.target.value)
 }
 
 useEffect(() => {
-  if(!bands[0]){
-  allBands()
-  }
-}, [allBands, bands])
+  allBands(page)
+}, [allBands, page])
 
 const bandSort = () => {
   let b =  bands ? [ ...bands] : []
@@ -48,6 +48,7 @@ const bandsToShow = bandSort()
               { bandsToShow ? bandsToShow.map( band => <BandCard {...band} key={band.id} />) 
               : null}
       </Row>
+        <Button onClick={() => setPage(page + 1)}>Load More...</Button>
       </Col>
       <Col><Row></Row></Col>
       </Row></Container>

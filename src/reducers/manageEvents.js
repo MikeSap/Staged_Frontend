@@ -6,13 +6,13 @@ export default function manageEvents(state = {music: [], merch: [], shows: []}, 
   switch (action.type) {
 
     case "ADD_MUSIC":
-        return {...state, music: action.events}
+        return {...state, music: [...state.music, ...action.events]}
     
     case "ADD_MERCH":
-        return {...state, merch: action.events}
-    
+        return {...state, merch: [...state.merch, ...action.events]}
+   
     case "ADD_SHOWS":
-        return {...state, shows: action.events}
+        return {...state, shows: [...state.shows, ...action.events]}
 
     case "INDEX_COMMENT":
       switch (event_type) {

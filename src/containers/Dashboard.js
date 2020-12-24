@@ -1,8 +1,9 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { suggestedBandsEvents, followedBandsEvents } from '../actions/Events'
 
@@ -16,12 +17,15 @@ const Dashboard = (props) =>  {
 
     const { id } = user
 
+    const [page, setPage] = useState(1)
+
+
     useEffect(() => {
         if (id){
         suggestedBandsEvents()
-        followedBandsEvents()
+        followedBandsEvents(page)
         }
-    }, [ id, followedBandsEvents, suggestedBandsEvents])
+    }, [ id, followedBandsEvents, suggestedBandsEvents, page])
 
     useEffect(() => {
       suggestedBandsEvents()
@@ -37,6 +41,7 @@ const Dashboard = (props) =>  {
 
             <Col xs={5}>
               <Feed events={followedEvents}/>
+              <Button onClick={() => setPage(page + 1)}>Load More...</Button>
             </Col>
 
             <Col>

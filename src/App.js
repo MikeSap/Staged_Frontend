@@ -1,6 +1,6 @@
 import './App.css';
 import { autoLogin } from './actions/Auth'
-import { allEvents, allBands } from './actions/Index'
+// import { allEvents, allBands } from './actions/Index'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Login from './components/Login'
@@ -29,18 +29,18 @@ const App = (props) => {
     autoLogin()
   },[autoLogin])
   
-  useEffect(() => {
-    switch (location){
-      case "/merch":
-        return allEvents("merch")
-      case "/music":
-        return allEvents("music")
-      case "/shows":
-        return allEvents("shows")
-      default:
-        return 
-    }
-  },[location, allEvents, allBands])
+  // useEffect(() => {
+  //   switch (location){
+  //     case "/merch":
+  //       return allEvents("merch")
+  //     case "/music":
+  //       return allEvents("music")
+  //     case "/shows":
+  //       return allEvents("shows")
+  //     default:
+  //       return 
+  //   }
+  // },[location, allEvents])
 
 
   return (
@@ -164,4 +164,4 @@ const readAccess = (state) => {
   }
 }
 
-export default connect(readAccess, ({ autoLogin, allEvents, allBands }))(App); 
+export default connect(readAccess, ({ autoLogin }))(App); 

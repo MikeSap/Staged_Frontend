@@ -20,21 +20,21 @@ export const suggestedBandsEvents = () => {
     }
 }
 
-export const followedBandsEvents = () => {
+export const followedBandsEvents = (page) => {
 
   return (dispatch) => {
     dispatch({type:"FETCHING_FOLLOWED"})
     
       const token = localStorage.getItem("token")
 
-        fetch(`${API}/api/v1/followed_events`, {
+        fetch(`${API}/api/v1/followed_events/${page}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
         .then(resp => resp.json())
         .then( followedEvents => {
-    
+          
           dispatch({ type: "FOLLOWED_EVENTS", followedEvents})
         })
     }
@@ -141,18 +141,19 @@ export const deleteEvent = (eventId) => {
     }
 }
 
-export const fetchManagedBandEvents = (band_id) => {
+export const fetchManagedBandEvents = (band_id, page) => {
     
   return (dispatch) => {
     dispatch({type:"FETCHING_MANAGED_EVENTS"})
 
     const token = localStorage.getItem("token")
-      fetch(`${API}/api/v1/managed_events`, {
+
+      fetch(`${API}/api/v1/managed_events/${page}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          Authorization: `Bearer ${token}`
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({band_id})
       })

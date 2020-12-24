@@ -8,7 +8,7 @@ export default function manageFollowedEvents(state = [], action) {
           return [ ...state, ...action.events ]
 
       case "FOLLOWED_EVENTS":
-        return [...action.followedEvents]
+        return [...state, ...action.followedEvents]
 
         case "NEW_COMMENT":
           let idx = state.findIndex( e => e.id === action.newComment.event_id)

@@ -16,8 +16,8 @@ import Collapse from 'react-bootstrap/Collapse'
 
 const EventPost = (props) => {
 
-    let userBandIds
-    let followedBandIds
+    let userBandIds = []
+    let followedBandIds = []
     const history = useHistory()
     const location = history.location.pathname
 

@@ -18,7 +18,7 @@ export default function manageManagedBandEvents(state = [], action) {
         return [...state.slice(0, idx), editedEvent, ...state.slice(idx+1)]
 
       case "MANAGED_EVENTS":
-        return [...action.managedEvents]  
+        return [...state, ...action.managedEvents]  
       
       case "LOGOUT":
         return []

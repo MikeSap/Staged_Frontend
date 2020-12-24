@@ -25,8 +25,8 @@ const CalendarFeed = (props) => {
     }
 
     return (
-        <div style={{position:'fixed'}}>
-        <Calendar onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
+        <div style={{position:'fixed'}} >
+        <Calendar className="staged-calendar" onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
         <div style={{ overflow:'auto', maxHeight: "35vh", width: "18vw", justifyContent:'center'}}>
                      {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)

@@ -32,7 +32,6 @@ const NavBar = (props) => {
     const loggedInNav = () => {
         return <Nav className="justify-content-center" style={{ flex: 1}}>        
         <Nav.Link href="/bands">Bands</Nav.Link>
-        {/* <Nav.Link href="/calendar">Calendar</Nav.Link> */}
         <Nav.Link href="/merch">Merch</Nav.Link>
         <Nav.Link href="/music">Music</Nav.Link>
         <Nav.Link href="/shows">Shows</Nav.Link>
