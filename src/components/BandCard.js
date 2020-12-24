@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col'
 import { connect } from 'react-redux'
 import { popBandShow } from '../actions/Bands'
 import { useHistory } from "react-router";
+import API from '../API'
+
 
 const BandCard = (props) => {
 
@@ -14,7 +16,7 @@ const BandCard = (props) => {
     const location = history.location.pathname
 
     const {name, url, bio, city, photo, id } = props
-    let photoUrl = `http://localhost:3000${photo}`
+    let photoUrl = `${API}${photo}`
 
     return (        
       <>

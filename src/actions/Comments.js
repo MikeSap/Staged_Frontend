@@ -16,7 +16,9 @@ export const postComment = (comment) => {
             })
             .then(resp => resp.json())
             .then( newComment => {
-                dispatch({ type: "NEW_COMMENT", newComment})
+              window.location.href.includes('dashboard') ?
+                dispatch({ type: "NEW_COMMENT", newComment}) :
+                dispatch({ type: "INDEX_COMMENT", newComment })
             })
         }
 
@@ -28,7 +30,6 @@ export const selfPostComment = (comment) => {
         dispatch ({type: "POSTING_COMMENT"})
 
         if(comment){
-
             fetch(`${API}/api/v1/comments`, {
                 method: "POST",
                 headers: {

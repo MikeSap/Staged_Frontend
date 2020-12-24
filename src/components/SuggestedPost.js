@@ -12,7 +12,7 @@ const SuggestedPost = (props) => {
     let idList = followedBandIds.concat(userBandIds)
 
     const handleFollow = () => {
-        props.followBand(props.user.id, props.band.id)
+        props.followBand(user.id, props.band.id)
     }
 
     return (        
@@ -28,7 +28,7 @@ const SuggestedPost = (props) => {
                 <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
                 
                 { idList.includes(props.band.id) ? null :
-                <Button variant="outline-secondary" onClick={handleFollow}>Follow</Button>
+                <Button size='sm' variant="outline-secondary" onClick={handleFollow}>Follow</Button>
                 }
 
             </Card.Body>
