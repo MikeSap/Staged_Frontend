@@ -1,6 +1,5 @@
 import './App.css';
 import { autoLogin } from './actions/Auth'
-// import { allEvents, allBands } from './actions/Index'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Login from './components/Login'
@@ -9,16 +8,14 @@ import BandForm from './components/BandForm'
 import Dashboard from './containers/Dashboard'
 import ManageBand from './containers/ManageBand'
 import BandShow from './containers/BandShow'
-// import Feed from './containers/Feed'
 import Index from './containers/Index'
 import Bands from './containers/Bands'
-// import CalendarFeed from './containers/CalendarFeed'
 import { Switch, Route, Redirect } from "react-router-dom"
 import { useHistory } from "react-router";
 
 const App = (props) => {
   
-  const { autoLogin, allEvents, allBands, events
+  const { autoLogin, events
     // , bands
   } = props
   const history = useHistory()
@@ -28,20 +25,6 @@ const App = (props) => {
     // need this to hit on showBand clearing
     autoLogin()
   },[autoLogin])
-  
-  // useEffect(() => {
-  //   switch (location){
-  //     case "/merch":
-  //       return allEvents("merch")
-  //     case "/music":
-  //       return allEvents("music")
-  //     case "/shows":
-  //       return allEvents("shows")
-  //     default:
-  //       return 
-  //   }
-  // },[location, allEvents])
-
 
   return (
     <div className="App">
@@ -84,14 +67,6 @@ const App = (props) => {
               <Bands />
             </div>          
           )}}/>
-
-        {/* <Route exact path="/calendar" render={() => {
-          return (
-            <div>
-              <NavBar />
-              <CalendarFeed />
-          </div>          
-          )}}/> */}
 
         <Route exact path="/merch" render={() => {
           return (

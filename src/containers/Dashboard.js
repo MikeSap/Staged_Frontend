@@ -15,21 +15,19 @@ const Dashboard = (props) =>  {
 
     const {user, suggestedBandsEvents, suggestedEvents, followedBandsEvents, followedEvents } = props
 
-    const { id } = user
+    const { id, followed } = user
 
     const [page, setPage] = useState(1)
 
 
     useEffect(() => {
         if (id){
+          // when this is triggered by a followed change it never hits the dispatch,
+          //  the fetch is successful and has the proper info, but never changes the store.
         suggestedBandsEvents()
         followedBandsEvents(page)
         }
-    }, [ id, followedBandsEvents, suggestedBandsEvents, page])
-
-    useEffect(() => {
-      suggestedBandsEvents()
-    }, [followedEvents, suggestedBandsEvents])
+    }, [ id, followedBandsEvents, suggestedBandsEvents, page, followed ])
 
     return (
 
@@ -60,7 +58,7 @@ const readAccess = state => {
         user: state.user,
         suggestedEvents: state.suggestedEvents,
         followedEvents: state.followedEvents,
-        dateEvents: state.dateEvents
+        dateEvents: state.dateEvents,
     }
 }
 

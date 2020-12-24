@@ -4,10 +4,11 @@ export default function manageFollowedEvents(state = [], action) {
       case "LOGOUT":
           return []
 
-      case "NEW_FOLLOW":
-          return [ ...state, ...action.events ]
+      // case "NEW_FOLLOW":
+      //     return [ ...state, ...action.events ]
 
       case "FOLLOWED_EVENTS":
+        debugger
         return [...state, ...action.followedEvents]
 
         case "NEW_COMMENT":

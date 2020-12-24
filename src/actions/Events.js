@@ -26,7 +26,6 @@ export const followedBandsEvents = (page) => {
     dispatch({type:"FETCHING_FOLLOWED"})
     
       const token = localStorage.getItem("token")
-
         fetch(`${API}/api/v1/followed_events/${page}`, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -34,7 +33,6 @@ export const followedBandsEvents = (page) => {
         })
         .then(resp => resp.json())
         .then( followedEvents => {
-          
           dispatch({ type: "FOLLOWED_EVENTS", followedEvents})
         })
     }

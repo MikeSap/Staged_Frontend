@@ -18,7 +18,7 @@ const SuggestedPost = (props) => {
     return (        
         <>
         <Card bg="light" style={{ width: '15vw', padding: 5, marginLeft: '3vw', marginRight: 0 }}>
-            <Card.Header as="h4" style={{fontFamily: 'stencil'}}>{props.band.name}</Card.Header> 
+            <Card.Header as="h4" style={{fontFamily: 'stencil'}}>{props.band.name} <h5 className="text-muted" style={{float:"right"}}>{props.event_type}</h5></Card.Header> 
             
             <Card.Body>
             
