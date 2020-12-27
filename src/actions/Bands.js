@@ -88,9 +88,13 @@ export const newBand = (band) => {
             })
             .then(resp => resp.json())
             .then( newBand => {
+                  if(newBand.errors) {
+                    dispatch ({ type: "NEW_BAND_ERROR", newBand})
+                    history.push('/band_registration')
+                  } else {
                 dispatch({ type: "NEW_BAND", newBand})
                 history.push(`/manage_band/${newBand.id}`)
-            })
+            }})
         }
     }
 }

@@ -93,7 +93,6 @@ export const signup = (user) => {
       .then(resp => resp.json())
       .then(user => {
           if(user.errors) {
-            debugger
           dispatch({type: "LOGIN_ERROR", user})
           history.push('/signup')
           } else {

@@ -8,7 +8,7 @@ export default function manageFollowedEvents(state = [], action) {
       //     return [ ...state, ...action.events ]
 
       case "FOLLOWED_EVENTS":
-        debugger
+        // debugger
         return [...state, ...action.followedEvents]
 
         case "NEW_COMMENT":
