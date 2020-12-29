@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import SuggestedPost from '../components/SuggestedPost'
 
 import Row from 'react-bootstrap/Row'
+import Skeleton from 'react-loading-skeleton'
 
 const MiniFeed = (props) => {
 
-    const { followedBands } = props
+    const { followedBands, loading } = props
 
 
     const eventSort = () => {
@@ -21,7 +22,7 @@ const MiniFeed = (props) => {
 
     const eventsToShow = eventSort()
     return (
-         <div style={{ overflow:'auto', maxHeight: "75vh", width: "20vw"}}>
+       loading ? <Skeleton/> : <div style={{ overflow:'auto', maxHeight: "75vh", width: "20vw"}}>
         { eventsToShow ? eventsToShow.map( event => <Row>                    
             <SuggestedPost {...event} key={event.id} />
             </Row> )
@@ -32,7 +33,8 @@ const MiniFeed = (props) => {
 }
 const readAccess = state => {
     return {
-        followedBands: state.user.followed
+        followedBands: state.user.followed,
+        loading: state.loading.miniFeed
     }
 }
 

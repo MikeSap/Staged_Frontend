@@ -1,16 +1,17 @@
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
 import React, { useState, useEffect } from 'react'
-import { dateEvents } from '../actions/Events'
-import SuggestedPost from '../components/SuggestedPost'
-
 import { connect } from 'react-redux'
 
+import { dateEvents } from '../actions/Events'
+import SuggestedPost from '../components/SuggestedPost'
+import Calendar from 'react-calendar'
+
+import Skeleton from 'react-loading-skeleton';
 import Row from 'react-bootstrap/Row'
+import 'react-calendar/dist/Calendar.css'
 
 const CalendarFeed = (props) => {
 
-    const { user, events, dateEvents } = props
+    const { user, events, dateEvents, loading } = props
 
     useEffect(() => {
         if (user.id){
@@ -27,11 +28,11 @@ const CalendarFeed = (props) => {
     return (
         <div style={{position:'fixed'}} >
         <Calendar className="staged-calendar" onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
-        <div style={{ overflow:'auto', maxHeight: "35vh", width: "18vw", justifyContent:'center'}}>
+        { loading ? <Skeleton /> : <div style={{ overflow:'auto', maxHeight: "35vh", width: "18vw", justifyContent:'center'}}>
                      {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)
-                    : null}
-        </div>
+                    : <p>No events to Show</p> }
+        </div> }
         </div>
     )
 }
@@ -39,7 +40,8 @@ const CalendarFeed = (props) => {
 const readAccess = state => {
     return {
         events: state.dateEvents,
-        user: state.user
+        user: state.user,
+        loading: state.loading.calendar
     }
 }
 

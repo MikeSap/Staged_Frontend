@@ -30,6 +30,7 @@ const eventsToShow = eventSort()
 
 const readAccess = state => {
   return {
+    loading: state.loading.MiniFeed
   }
 }
 

@@ -6,10 +6,11 @@ import EventPost from '../components/EventPost'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import CardGroup from 'react-bootstrap/CardGroup'
+import Skeleton from 'react-loading-skeleton';
 
 const Feed = (props) => {
 
-    const { followedBandEvents, managedBandEvents } = props
+    const { followedBandEvents, managedBandEvents, loading } = props
 
     const [search, setSearch] = useState("")
 
@@ -34,12 +35,12 @@ const Feed = (props) => {
             </Form>
 
 
-                <CardGroup >
+                { loading ? <Skeleton /> : <CardGroup >
                 { eventsToShow ? eventsToShow.map( event =>  <Row>
                     <EventPost {...event} band={event.band} key={event.id} />
                     </Row> ) 
                 : null}
-                </CardGroup>
+                </CardGroup> }
         </>
     )
 
@@ -50,6 +51,7 @@ const readAccess = state => {
         followedBand: state.user.followed,
         followedBandEvents: state.followedEvents,
         managedBandEvents: state.managedBandEvents,
+        loading: state.loading.feed
     }
 }
 
