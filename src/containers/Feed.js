@@ -19,6 +19,7 @@ const Feed = (props) => {
     
     useEffect(() => {
     }, [followedBandEvents, managedBandEvents])
+
     const eventSort = () => {
       let events =  props.events ? [...props.events] : []
       events = events.filter(e => e.name.toUpperCase().includes(search.toUpperCase()) || e.date.toUpperCase().includes(search.toUpperCase()) || e.band.name.toUpperCase().includes(search.toUpperCase()))
@@ -48,7 +49,7 @@ const readAccess = state => {
     return {
         followedBand: state.user.followed,
         followedBandEvents: state.followedEvents,
-        managedBandEvents: state.managedBandEvents
+        managedBandEvents: state.managedBandEvents,
     }
 }
 

@@ -17,6 +17,9 @@ export default function manageManagedBandEvents(state = [], action) {
         let editedEvent = {...state[idx], comments: [...state[idx].comments, action.newComment]}
         return [...state.slice(0, idx), editedEvent, ...state.slice(idx+1)]
 
+      case "POP_BAND_MANAGE":
+        return []
+
       case "MANAGED_EVENTS":
         return [...state, ...action.managedEvents]  
       
