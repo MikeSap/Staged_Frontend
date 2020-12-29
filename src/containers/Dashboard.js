@@ -31,7 +31,7 @@ const Dashboard = (props) =>  {
 
     return (
 
-        <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
+        <Container className="dashboard">
         <Row style={{ width: '100vw' }}>
             <Col> 
                 <CalendarFeed />

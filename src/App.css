@@ -3,13 +3,50 @@
     src: url('../src/assets/d_day_stencil-webfont.woff2') format('woff2'),
          url('../src/assets/d_day_stencil-webfont.woff') format('woff');
 }
-
+/* 
   body {
     padding-top: 15vh;
-  }
-
+  } */
 
 .react-calendar.staged-calendar {
   border: 2px solid black;
   background-color: grey;
+}
+
+.container {
+  /* get rid of this with a padding on the nav bar? */
+  padding-top: 2.5vh;
+}
+
+.home.container {
+  display: block;
+  text-align: center;
+}
+
+.navbar-brand > img {
+  width: 4.5vw;
+  margin-left: 5vw;
+}
+
+.navbar-brand {
+  font-family: "stencil";
+  font-size: 1.5vw;
+}
+
+.navbar-nav {
+    /* how do i get rid of the margins? */
+  margin-left: 23.5vw;
+  float: center;
+}
+
+.navbar-nav > .btn {
+    /* how do i get rid of the margins? */
+  margin-left: 23.5vw;
+  float: right;
+}
+
+.dashboard.container {
+  /* have to take out all the inline styling on all components within the dashboard */
+  margin-left:5vw; 
+  margin-right:5vw;
 }

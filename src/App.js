@@ -4,13 +4,13 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect } from "react-router-dom"
 
-import Login from './components/Login'
 import NavBar from './components/NavBar'
 import BandForm from './components/BandForm'
 import Dashboard from './containers/Dashboard'
 import ManageBand from './containers/ManageBand'
 import BandShow from './containers/BandShow'
 import Index from './containers/Index'
+import Home from './containers/Home'
 import Bands from './containers/Bands'
 
 const App = (props) => {
@@ -36,7 +36,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Login />
+              <Home />
             </div>          
           )}}/>
         
@@ -44,7 +44,7 @@ const App = (props) => {
           return (
             <div>
               <NavBar />
-              <Login />
+              <Home />
             </div>          
           )}}/>
 
