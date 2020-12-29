@@ -2,6 +2,8 @@ import './App.css';
 import { autoLogin } from './actions/Auth'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Switch, Route, Redirect } from "react-router-dom"
+
 import Login from './components/Login'
 import NavBar from './components/NavBar'
 import BandForm from './components/BandForm'
@@ -10,16 +12,10 @@ import ManageBand from './containers/ManageBand'
 import BandShow from './containers/BandShow'
 import Index from './containers/Index'
 import Bands from './containers/Bands'
-import { Switch, Route, Redirect } from "react-router-dom"
-import { useHistory } from "react-router";
 
 const App = (props) => {
   
-  const { autoLogin, events
-    // , bands
-  } = props
-  const history = useHistory()
-  const location = history.location.pathname
+  const { autoLogin, events } = props
 
   useEffect(() => {
     // need this to hit on showBand clearing
