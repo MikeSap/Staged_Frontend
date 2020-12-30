@@ -20,6 +20,9 @@ export default function manageManagedBandEvents(state = [], action) {
       case "POP_BAND_MANAGE":
         return []
 
+      case "EDIT_BAND":
+        return []
+
       case "MANAGED_EVENTS":
         return [...state, ...action.managedEvents]  
       

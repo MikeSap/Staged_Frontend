@@ -33,14 +33,14 @@ const Dashboard = (props) =>  {
   return (
 
     <Container className="dashboard" >
-    <Row m={0}>
-      <Col> 
+    <Row>
+      <Col md={{ order: 'first' }}> 
         <div className="sidebar">
           <CalendarFeed />
         </div>
       </Col>
 
-      <Col className="dashboard-center">
+      <Col md={{ order: 'first' }} className="dashboard-center">
         <Feed events={followedEvents}/>
         { feedLoading ? <Button variant="outline-success" className="row m-3" type="submit"> 
         <Spinner
@@ -53,7 +53,7 @@ const Dashboard = (props) =>  {
         
       </Col>
 
-      <Col>
+      <Col md={{ order: 'second' }}>
         <div className="sidebar">
           <Row className='row-header'>Suggested Events</Row>
           <MiniFeed events={suggestedEvents}/>

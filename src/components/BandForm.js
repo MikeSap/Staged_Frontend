@@ -49,47 +49,44 @@ const Login = (props) => {
     setPhoto(e.target.files[0])
   }
 
-  return(
-    
-    <div>                  
+  return(    
+    <>                  
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
             
-          {location.includes(managedBand.id) ?
-            <Form.Label >Edit Band</Form.Label>
-            :
-            <Form.Label>Register Your Band</Form.Label>
-          }   
+        {location.includes(managedBand.id) ?
+          <Form.Label >Edit Band</Form.Label>
+          :
+          <Form.Label>Register Your Band</Form.Label>
+        }   
+          
+        {props.errors ? <h3>{props.errors}</h3> : null}
+
+        <Form.Control placeholder='Band Name' type="text" name="name" onChange={handleChange} value={formData.name}/>
+
+        <Form.Control as="textarea" rows={6} placeholder='Band Bio' name="bio" onChange={handleChange} value={formData.bio} maxLength={250} />                
+
+        <Form.Control placeholder='City' type="text" name="city" onChange={handleChange} value={formData.city}/>
+        
+        <Form.Control placeholder='Website URL' type="url" name="url" onChange={handleChange} value={formData.url}/>
+        
+        {/* ADD USERS POPULATE FROM USER DATA ON API bootstrap react lookahead*/}
+        {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
             
-          {props.errors ? <h3>{props.errors}</h3> : null}
+        <Form.Control type="file" name="photo" onChange={handlePhoto} />
+        
+        <Button variant="outline-success" type="submit">Submit</Button>
 
-          <Form.Control placeholder='Band Name' type="text" name="name" onChange={handleChange} value={formData.name}/>
-
-          <Form.Control as="textarea" rows={6} placeholder='Band Bio' name="bio" onChange={handleChange} value={formData.bio} maxLength={250} />                
-
-          <Form.Control placeholder='City' type="text" name="city" onChange={handleChange} value={formData.city}/>
-          
-          <Form.Control placeholder='Website URL' type="url" name="url" onChange={handleChange} value={formData.url}/>
-          
-          {/* ADD USERS POPULATE FROM USER DATA ON API bootstrap react lookahead*/}
-          {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
-              
-          <Form.Control type="file" name="photo" onChange={handlePhoto} />
-          
-          <Button variant="outline-success" type="submit">Submit</Button>
-
-        </Form.Group>
       </Form>
-    </div>
+    </>
   )
 }
  
 const readAccess = (state) => {
   return {
-      loading: state.loading,
-      errors: state.errors.newBand,
-      user: state.user,
-      managedBand: state.managedBand
+    loading: state.loading,
+    errors: state.errors.newBand,
+    user: state.user,
+    managedBand: state.managedBand
   }
 }
 

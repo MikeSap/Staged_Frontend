@@ -35,23 +35,21 @@ const bandSort = () => {
 const bandsToShow = bandSort()
   return (
       
-      <Container ><Row>
-        <Col><Row></Row></Col>
-      <Col xs={5} className="justify-content-center">
-      <Row>
-          <Form style={{width:"60vw"}}>
+      <Container>
+      <Col>
+          <Form>
               <Form.Control onChange={searchPosts} type="text" placeholder="Filter by Name or City" className="mr-sm-2" value={search} />
           </Form>
-      </Row>
 
-      <Row>
-              { bandsToShow ? bandsToShow.map( band => <BandCard {...band} key={band.id} />) 
+              { bandsToShow ? bandsToShow.map( band => <Row>                
+              <BandCard {...band} key={band.id} />
+              </Row>) 
               : null}
-      </Row>
+
         <Button onClick={() => setPage(page + 1)}>Load More...</Button>
+
       </Col>
-      <Col><Row></Row></Col>
-      </Row></Container>
+      </Container>
   )
 }
 

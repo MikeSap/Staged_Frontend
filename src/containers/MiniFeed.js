@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import SuggestedPost from '../components/SuggestedPost'
 
-import Row from 'react-bootstrap/Row'
 import Skeleton from 'react-loading-skeleton'
 
 const MiniFeed = (props) => {
@@ -23,10 +22,10 @@ const MiniFeed = (props) => {
   const eventsToShow = eventSort()
   return (
     loading ? <Skeleton/> : <div className="mini-feed-side-scroll" >
-    { eventsToShow ? eventsToShow.map( event => <Row>                    
-      <SuggestedPost {...event} key={event.id} />
-      </Row> )
-      : null }
+    { eventsToShow ? eventsToShow.map( event => {
+     return <SuggestedPost {...event} key={event.id} />
+    })
+    : null }
     </div>
   )
 }

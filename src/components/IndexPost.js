@@ -13,7 +13,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Collapse from 'react-bootstrap/Collapse'
 
-const EventPost = (props) => {
+const IndexPost = (props) => {
 
     let userBandIds = []
     let followedBandIds = []
@@ -118,4 +118,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess, { popEditedEvent, deleteEvent, postComment, selfPostComment, followBand })(EventPost)
+export default connect(readAccess, { popEditedEvent, deleteEvent, postComment, selfPostComment, followBand })(IndexPost)

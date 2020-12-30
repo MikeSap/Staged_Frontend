@@ -46,7 +46,7 @@
 }
 
 .dashboard-center {  
-  min-width: 35vw;
+  min-width: 40vw;
   max-width: 40vw;
   margin-right: 3vw;
   margin-left: 3vw;
@@ -68,21 +68,20 @@
   position: fixed;
   max-height: 80vh;
   min-width: 25vw;
-  min-width: 25vw;
-  margin-left: 1.5vw;
+  /* margin-left: 1.5vw; */
   margin-right: 1.5vw;
 }
 
 .sidebar-card.card {
-  width: 21.5vw;
+  width: 24vw;
   height: fit-content;
 }
 
-.sidebar-card-header {
+.card-header {
   font-family: 'stencil';
 }
 
-h5.sidebar-card-type {
+h5.card-type {
   font-family: 'stencil';
   color: grey;
   float: right;
@@ -92,8 +91,8 @@ h5.sidebar-card-type {
 /* Calendar */
 
 .staged-calendar.react-calendar {
-  width: 22vw;
-  max-width: 22vw;
+  width: 25vw;
+  max-width: 25vw;
   background: whitesmoke;
   border: .15vw solid ;
   color: grey;
@@ -109,7 +108,7 @@ h5.sidebar-card-type {
   overflow: scroll;
   height: 40vh;
   max-height: 40vh;
-  width: 22vw;
+  width: 25vw;
   justify-content: center;
   text-align: center;
 }
@@ -121,7 +120,7 @@ h5.sidebar-card-type {
   overflow: scroll;
   height: 70vh;
   max-height: 70vh;
-  width: 23vw;
+  width: 25vw;
   justify-content: center;
   text-align: center;
 }
@@ -129,12 +128,27 @@ h5.sidebar-card-type {
 
 /* Feed */
 
-/* .feed-search {
-  width: 35vw;
+.event-post.card {
+  margin-top: 2vh;
 }
 
-.event-post.card {
-  background-color: rosybrown;
-  width: 35vw;
-} */
+.card-img {
+  max-height: 23vh;
+}
 
+.comment-section {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: scroll;
+  height: 16vh;
+  width: 33vw;
+  margin-top: 1vh;
+}
+
+.comment-card.card {
+  margin-top: .5vh;
+}
+
+h3.row {
+  font-family: 'stencil';
+}

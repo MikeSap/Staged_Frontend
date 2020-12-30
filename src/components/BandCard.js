@@ -20,29 +20,28 @@ const BandCard = (props) => {
 
     return (        
       <>
-      <Card bg="light" style={{ width: '30vw' }}>
-        <Card.Header as="h3"style={{fontFamily: 'stencil'}}>{name}</Card.Header> 
+      <Card className="event-post">
+        <Card.Header as="h3">{name}</Card.Header> 
           <Card.Body>
-              <Container fluid>
-                  <Row>
-                      <Col>
-                          <Card.Img src={photoUrl} alt="Band Photo" />
-                      </Col>
-                      <Col>
-                        <Card.Title>{name}</Card.Title> 
-                        <Card.Text>City: {city}</Card.Text>
-                        <Card.Text>Bio: {bio}</Card.Text>
-                        <Card.Text><a target="_blank" rel="noreferrer" href={url}>Band Page</a></Card.Text>
+            <Container>
+              <Row>
+                <Col>
+                    <Card.Img src={photoUrl} alt="Band Photo" />
+                </Col>
+                <Col>
+                  <Card.Title>{name}</Card.Title> 
+                  <Card.Text>City: {city}</Card.Text>
+                  <Card.Text>Bio: {bio}</Card.Text>
+                  <Card.Text><a target="_blank" rel="noreferrer" href={url}>Band Page</a></Card.Text>
 
-                        { location.includes(id) ? null
-                        : <Button onClick={() => props.popBandShow({id})}>Show More</Button>}
-                      </Col>
+                  { location.includes(id) ? null
+                  : <Button onClick={() => props.popBandShow({id})}>Show More</Button>}
+                </Col>
               </Row>
-              </Container>
+            </Container>
           </Card.Body>
       </Card>
-      </>  
-      
+      </>       
     )
 }
 

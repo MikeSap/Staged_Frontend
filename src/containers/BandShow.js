@@ -12,26 +12,27 @@ const BandShow = (props) =>  {
   const { band, upcomingEvents, pastEvents } = props
 
   return (
-    <Container style={{ marginLeft:"5vw", marginRight:"5vw"}}>
-    <Row style={{ width: '100vw' }}>
-      
-        <Col> 
-        <Row style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}}>Past Events</Row>
-        <BandFeed events={pastEvents} past="true"/>
-        </Col>
-
-        <Col xs={5}>
-          <Row>
-              <BandCard {...band}/>
-          </Row>
-        </Col>
-
-      <Col> 
-          <Row style={{fontFamily: 'stencil', fontSize:"1.5vw", marginRight: '16vw'}}>Upcoming Events</Row>
-          <Row>                   
-            <BandFeed events={upcomingEvents}/>
-          </Row>
+    <Container className="dashboard">
+    <Row>      
+      <Col className="sidebar"> 
+      <Row as="h3">Past Events</Row>
+      <Row className="mini-band-feed-side-scroll">
+      <BandFeed events={pastEvents} past="true"/>
+      </Row>
       </Col>
+
+      <Col>
+        <Row>
+            <BandCard {...band}/>
+        </Row>
+      </Col>
+
+    <Col className="sidebar"> 
+        <Row as="h3">Upcoming Events</Row>
+        <Row className="mini-band-feed-side-scroll">                   
+          <BandFeed events={upcomingEvents}/>
+        </Row>
+    </Col>
   </Row>
   </Container>
 )

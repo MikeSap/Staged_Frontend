@@ -76,54 +76,49 @@ const BandPost = (props) => {
     setFormData({event_type:"music", name:"", url:"", date:""})
   }
 
-  return(
-         
-      <>     
-        <Form onSubmit={handleSubmit}>
+  return(         
+    <>     
+      <Form onSubmit={handleSubmit}>
         {props.errors ? <h3>{props.errors}</h3> : null}
-        <Form.Row>
-          <Form.Group>      
 
-            {editedEvent.id ?
-                <Form.Label as={Row}>Edit Event</Form.Label>
-                :
-                <Form.Label as={Row}>Post Event</Form.Label>
-            }
+        {editedEvent.id ?
+            <Form.Label as={Row}>Edit Event</Form.Label>
+            :
+            <Form.Label as={Row}>Post Event</Form.Label>
+        }
 
-              <Form.Control as="select" name="event_type" onChange={handleChange} value={formData.event_type}>
-                <option>Music</option>
-                <option>Show</option>
-                <option>Merch</option>
-              </Form.Control>
+        <Form.Control as="select" name="event_type" onChange={handleChange} value={formData.event_type}>
+          <option>Music</option>
+          <option>Show</option>
+          <option>Merch</option>
+        </Form.Control>
 
-                <Form.Control placeholder='Event Name' name="name" onChange={handleChange} value={formData.name} maxLength={50} />                
+          <Form.Control placeholder='Event Name' name="name" onChange={handleChange} value={formData.name} maxLength={50} />                
 
-                <Form.Control placeholder='Event URL' type="text" name="url" onChange={handleChange} value={formData.url}/>
-                
-                <Form.Control type="date" name="date" onChange={handleChange} value={formData.date}/>
-                
-                {/* add event location, default to band location if music or merch type */}
+          <Form.Control placeholder='Event URL' type="text" name="url" onChange={handleChange} value={formData.url}/>
+          
+          <Form.Control type="date" name="date" onChange={handleChange} value={formData.date}/>
+          
+          {/* add event location, default to band location if music or merch type */}
 
-                <Form.Control type="file" name="photo" onChange={handlePhoto} />
+          <Form.Control type="file" name="photo" onChange={handlePhoto} />
 
-                <Button variant="outline-success" type="submit">Submit</Button>
+          <Button variant="outline-success" type="submit">Submit</Button>
 
-                {editedEvent.id? <Button variant="outline-danger" onClick={clearEditedForm}>Clear</Button> : null}
+          {editedEvent.id? <Button variant="outline-danger" onClick={clearEditedForm}>Clear</Button> : null}
 
-            </Form.Group>
-        </Form.Row>
-        </Form>
-     </>
+      </Form>
+    </>
   )
 }
  
 const readAccess = (state) => {
   return {
-      loading: state.loading,
-      errors: state.errors.user,
-      editedEvent: state.editedEvent,
-      managedBand: state.managedBand,
-      managedBandEvents: state.managedBandEvents
+    loading: state.loading,
+    errors: state.errors.user,
+    editedEvent: state.editedEvent,
+    managedBand: state.managedBand,
+    managedBandEvents: state.managedBandEvents
   }
 }
 
