@@ -6,7 +6,7 @@ import SuggestedPost from '../components/SuggestedPost'
 import Calendar from 'react-calendar'
 
 import Skeleton from 'react-loading-skeleton';
-import 'react-calendar/dist/Calendar.css'
+import '../Staged_Calendar.css'
 
 const CalendarFeed = (props) => {
 
