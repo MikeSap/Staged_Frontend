@@ -2,8 +2,6 @@ import { connect } from 'react-redux'
 
 import MiniBandPost from '../components/MiniBandPost'
 
-import Row from 'react-bootstrap/Row'
-
 const BandFeed = (props) => {
 
 const { past } = props
