@@ -13,7 +13,7 @@
 /* NavBar */
 
 .navbar {
-  height: 15vh;
+  height: 10vh;
   margin-bottom: 2.5vh;
 }
 
@@ -66,7 +66,7 @@
 
 .sidebar {
   position: fixed;
-  max-height: 80vh;
+  max-height: 85vh;
   min-width: 25vw;
   /* margin-left: 1.5vw; */
   margin-right: 1.5vw;
@@ -106,8 +106,8 @@ h5.card-type {
 
 .calendar-side-scroll {
   overflow: scroll;
-  height: 40vh;
-  max-height: 40vh;
+  height: 45vh;
+  max-height: 45vh;
   width: 25vw;
   justify-content: center;
   text-align: center;
@@ -118,8 +118,8 @@ h5.card-type {
 
 .mini-feed-side-scroll {
   overflow: scroll;
-  height: 70vh;
-  max-height: 70vh;
+  height: 75vh;
+  max-height: 75vh;
   width: 25vw;
   justify-content: center;
   text-align: center;
