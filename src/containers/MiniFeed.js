@@ -8,34 +8,34 @@ import Skeleton from 'react-loading-skeleton'
 
 const MiniFeed = (props) => {
 
-    const { followedBands, loading } = props
+  const { followedBands, loading } = props
 
 
-    const eventSort = () => {
-      let events = props.events ? [...props.events] : []
-      
-      return events
-    }
+  const eventSort = () => {
+    let events = props.events ? [...props.events] : []
+    
+    return events
+  }
 
-    useEffect(() => {
-    }, [followedBands])
+  useEffect(() => {
+  }, [followedBands])
 
-    const eventsToShow = eventSort()
-    return (
-       loading ? <Skeleton/> : <div style={{ overflow:'auto', maxHeight: "75vh", width: "20vw"}}>
-        { eventsToShow ? eventsToShow.map( event => <Row>                    
-            <SuggestedPost {...event} key={event.id} />
-            </Row> )
-            : null }
-        </div>
-    )
-
+  const eventsToShow = eventSort()
+  return (
+    loading ? <Skeleton/> : <div className="mini-feed-side-scroll" >
+    { eventsToShow ? eventsToShow.map( event => <Row>                    
+      <SuggestedPost {...event} key={event.id} />
+      </Row> )
+      : null }
+    </div>
+  )
 }
+
 const readAccess = state => {
-    return {
-        followedBands: state.user.followed,
-        loading: state.loading.miniFeed
-    }
+  return {
+    followedBands: state.user.followed,
+    loading: state.loading.miniFeed
+  }
 }
 
 export default connect(readAccess)(MiniFeed)

@@ -6,11 +6,10 @@ import EventPost from '../components/EventPost'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import CardGroup from 'react-bootstrap/CardGroup'
-import Skeleton from 'react-loading-skeleton';
 
 const Feed = (props) => {
 
-    const { followedBandEvents, managedBandEvents, loading } = props
+    const { followedBandEvents, managedBandEvents } = props
 
     const [search, setSearch] = useState("")
 
@@ -29,19 +28,19 @@ const Feed = (props) => {
 
     const eventsToShow = eventSort()
     return (
-        <>
-            <Form style={{width:"28vw"}} >
+        <div className="feed">
+            <Form className="feed-search" >
                 <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
             </Form>
 
 
-                { loading ? <Skeleton /> : <CardGroup >
+                <CardGroup >
                 { eventsToShow ? eventsToShow.map( event =>  <Row>
                     <EventPost {...event} band={event.band} key={event.id} />
                     </Row> ) 
                 : null}
-                </CardGroup> }
-        </>
+                </CardGroup> 
+        </div>
     )
 
 }
@@ -51,7 +50,6 @@ const readAccess = state => {
         followedBand: state.user.followed,
         followedBandEvents: state.followedEvents,
         managedBandEvents: state.managedBandEvents,
-        loading: state.loading.feed
     }
 }
 

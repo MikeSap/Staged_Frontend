@@ -5,41 +5,42 @@ import Button from 'react-bootstrap/Button'
 
 const SuggestedPost = (props) => {
 
-    const { user } = props
+  const { user } = props
 
-    let followedBandIds = user.followed ? user.followed.map(b => b.id) : []
-    let userBandIds = user.bands ? user.bands.map(b => b.id) : []
-    let idList = followedBandIds.concat(userBandIds)
+  let followedBandIds = user.followed ? user.followed.map(b => b.id) : []
+  let userBandIds = user.bands ? user.bands.map(b => b.id) : []
+  let idList = followedBandIds.concat(userBandIds)
 
-    const handleFollow = () => {
-        props.followBand(user.id, props.band.id)
-    }
+  const handleFollow = () => {
+      props.followBand(user.id, props.band.id)
+  }
 
-    return (        
-        <>
-        <Card bg="light" style={{ width: '15vw', padding: 5, marginLeft: '3vw', marginRight: 0 }}>
-            <Card.Header as="h4" style={{fontFamily: 'stencil'}}>{props.band.name} <h5 className="text-muted" style={{float:"right"}}>{props.event_type}</h5></Card.Header> 
-            
-            <Card.Body>
-            
-                <Card.Title>{props.name}</Card.Title> 
-                <Card.Text>{props.date.split("T")[0]}</Card.Text> 
-                
-                <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
-                
-                { idList.includes(props.band.id) ? null :
-                <Button size='sm' variant="outline-secondary" onClick={handleFollow}>Follow</Button>
-                }
+  return (        
+    <>
+    <Card bg="light" className="sidebar-card" >
+      <Card.Header as="h4" className="sidebar-card-header">{props.band.name} 
+      <h5 className="sidebar-card-type">{props.event_type}</h5></Card.Header> 
+      
+      <Card.Body>
+      
+        <Card.Title>{props.name}</Card.Title> 
+        <Card.Text>{props.date.split("T")[0]}</Card.Text> 
+        
+        <Card.Text><a target="_blank" rel="noreferrer" href={props.url}>{props.url.split("/")[3]}</a></Card.Text>
+        
+        { idList.includes(props.band.id) ? null :
+        <Button size='sm' variant="outline-secondary" onClick={handleFollow}>Follow</Button>
+        }
 
-            </Card.Body>
-        </Card>
-        </>      
-    )
+      </Card.Body>
+    </Card>
+    </>      
+  )
 }
 
 const readAccess = state => {
     return {
-        user: state.user,
+      user: state.user,
     }
 }
 

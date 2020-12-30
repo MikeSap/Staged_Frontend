@@ -26,9 +26,9 @@ const CalendarFeed = (props) => {
     }
 
     return (
-        <div style={{position:'fixed'}} >
+        <div className="sidebar" >
         <Calendar className="staged-calendar" onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
-        { loading ? <Skeleton /> : <div style={{ overflow:'auto', maxHeight: "35vh", width: "18vw", justifyContent:'center'}}>
+        { loading ? <Skeleton /> : <div className="calendar-side-scroll">
                      {events ? events.map( event => <Row>
                     <SuggestedPost {...event} key={event.id} /></Row>)
                     : <p>No events to Show</p> }

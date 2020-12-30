@@ -59,7 +59,9 @@ const EventPost = (props) => {
     let sortedComments = commentSort()
     return (        
       <>
-      <Card bg="light" style={{ width: '30vw', marginTop: '2vh' }}>
+      <Card bg="light" className="event-post"
+      // style={{ width: '30vw', marginTop: '2vh' }}
+      >
         <Card.Header as="h3" style={{fontFamily: 'stencil'}}>{band.name} <h5 className="text-muted" style={{float:"right"}}>{event_type}</h5></Card.Header> 
           <Card.Body>
               <Container fluid>
