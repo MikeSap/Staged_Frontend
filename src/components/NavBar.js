@@ -9,6 +9,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Image from 'react-bootstrap/Image'
+import UserIcon from '../assets/usericonwhite.png'
 
 
 const NavBar = (props) => {
@@ -43,8 +45,10 @@ const NavBar = (props) => {
             <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
             </NavDropdown>
             : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
-          }          
-          <Button className="mr-auto"variant="outline-danger" size='sm' onClick={() => signOut()} primary>Sign Out</Button>           
+          } 
+
+          {/* <Image className="mr-auto" src= {UserIcon} roundedCircle/>          */}
+          <Button className="mr-auto" variant="outline-danger" size='sm' onClick={() => signOut()} primary>Sign Out</Button>           
         </Nav>
     }
 

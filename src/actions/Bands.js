@@ -5,7 +5,6 @@ export const editBand = (band) => {
   return dispatch => {
     
     const token = localStorage.getItem("token")
-
     const data = new FormData()
     Object.keys(band).forEach((key, value) => {
         data.append(key, band[key])

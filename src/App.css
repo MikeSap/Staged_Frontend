@@ -45,17 +45,10 @@
   min-width: 100vw;
 }
 
-.dashboard-center {  
-  min-width: 40vw;
-  max-width: 40vw;
-  margin-right: 3vw;
-  margin-left: 3vw;
-}
-
 .row-header {
   justify-content: center;
   font-family: 'stencil';
-  font-size: 2vw;
+  font-size: 3vh;
 }
 
 .row {
@@ -65,16 +58,9 @@
 /* Sidebar */
 
 .sidebar {
-  position: fixed;
-  max-height: 85vh;
-  min-width: 25vw;
-  /* margin-left: 1.5vw; */
-  margin-right: 1.5vw;
-}
-
-.sidebar-card.card {
-  width: 24vw;
-  height: fit-content;
+  position: sticky ;
+  /* position: fixed;
+  max-width: 22vw; */
 }
 
 .card-header {
@@ -92,8 +78,7 @@ h5.card-type {
 .mini-feed-side-scroll {
   overflow: scroll;
   height: 75vh;
-  max-height: 75vh;
-  width: 25vw;
+  /* width: 25vw; */
   justify-content: center;
   text-align: center;
 }
@@ -124,4 +109,26 @@ h5.card-type {
 
 h3.row {
   font-family: 'stencil';
+}
+
+/* Calendar */
+
+.react-calendar__day--selected span {
+    border-radius: 50%;
+    background: rgb(87, 87, 87) !important;
+    color: #fff !important;
+}
+.react-calendar__day--today span {
+  background: rgba(71, 71, 71, 0.459) !important;
+}
+
+.calendar-side-scroll {
+  overflow: scroll;
+  max-height: 45vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.react-calendar__header {
+  padding: 1vh !important;
 }

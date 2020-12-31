@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 
 import { dateEvents } from '../actions/Events'
 import SuggestedPost from '../components/SuggestedPost'
-import Calendar from 'react-calendar'
+import Calendar from 'react-calendar-mobile';
 
 import Skeleton from 'react-loading-skeleton';
-import '../Staged_Calendar.css'
 
 const CalendarFeed = (props) => {
 
@@ -25,15 +24,16 @@ const CalendarFeed = (props) => {
   }
 
   return (
-    <div className="sidebar" >
-      <Calendar className="staged-calendar" onChange={setDate} value={date} onClickDay={fetchDateEvents}/>
-      { loading ? <Skeleton /> : <div className="calendar-side-scroll">
+    <>
+      <Calendar 
+       onChange={setDate} value={date} onSelectDate={fetchDateEvents}/>
+      { loading ? <Skeleton /> : <div className="calendar-side-scroll" >
         {events ? events.map( event => {
         return <SuggestedPost {...event} key={event.id} /> 
         })
         : <p>No events to Show</p> }
       </div> }
-    </div>
+    </>
   )
 }
 

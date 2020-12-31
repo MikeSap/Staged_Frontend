@@ -17,8 +17,10 @@ const SuggestedPost = (props) => {
 
   return (        
     <>
-    <Card bg="light" className="sidebar-card" >
-      <Card.Header as="h4" className="sidebar-card-header">{props.band.name} 
+    <Card bg="light" 
+    >
+      <Card.Header as="h4" 
+      >{props.band.name} 
       <h5 className="card-type">{props.event_type}</h5></Card.Header> 
       
       <Card.Body>

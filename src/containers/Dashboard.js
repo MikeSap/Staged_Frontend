@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 
+
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { suggestedBandsEvents, followedBandsEvents } from '../actions/Events'
@@ -23,8 +24,6 @@ const Dashboard = (props) =>  {
 
   useEffect(() => {
     if (id){
-      // when this is triggered by a followed change it never hits the dispatch,
-      //  the fetch is successful and has the proper info, but never changes the store.
     suggestedBandsEvents()
     followedBandsEvents(page)
     }
@@ -32,15 +31,16 @@ const Dashboard = (props) =>  {
 
   return (
 
-    <Container className="dashboard" >
-    <Row>
-      <Col md={{ order: 'first' }}> 
-        <div className="sidebar">
+    <Container className="dashboard" fluid>
+    <Row lg={12}>
+      <Col lg={{span: 3, order: 1}} md={{ span: 6, order: 1}} sm={{ span: 12, order: 1}} xs={{ span: 12, order: 1}}> 
+        <div className="sticky-top" style={{top: '10vh'}}>
+
           <CalendarFeed />
-        </div>
+        </div> 
       </Col>
 
-      <Col md={{ order: 'first' }} className="dashboard-center">
+      <Col  lg={{span: 5, order: 4}} md={{ span: 12, order: 12}} sm={{ span: 12, order: 12}} xs={{ span: 12, order: 12}} >
         <Feed events={followedEvents}/>
         { feedLoading ? <Button variant="outline-success" className="row m-3" type="submit"> 
         <Spinner
@@ -53,8 +53,8 @@ const Dashboard = (props) =>  {
         
       </Col>
 
-      <Col md={{ order: 'second' }}>
-        <div className="sidebar">
+      <Col lg={{span: 3, order: 12}} md={{ span: 6, order: 4}} sm={{ span: 12, order: 2}} xs={{ span: 12, order: 2}} >
+        <div className="sticky-top" style={{top: '10vh'}}>
           <Row className='row-header'>Suggested Events</Row>
           <MiniFeed events={suggestedEvents}/>
       </div>

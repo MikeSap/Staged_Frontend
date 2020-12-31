@@ -21,7 +21,7 @@ const MiniFeed = (props) => {
 
   const eventsToShow = eventSort()
   return (
-    loading ? <Skeleton/> : <div className="mini-feed-side-scroll" >
+    loading ? <Skeleton/> : <div className="mini-feed-side-scroll">
     { eventsToShow ? eventsToShow.map( event => {
      return <SuggestedPost {...event} key={event.id} />
     })

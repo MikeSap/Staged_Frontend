@@ -12,10 +12,12 @@ import CalendarFeed from '../containers/CalendarFeed'
 import Feed from '../containers/Feed'
 import EventForm from '../components/EventForm'
 import BandForm from '../components/BandForm'
+import Spinner from 'react-bootstrap/Spinner'
+
 
 const ManageBand = (props) =>  {
 
-  const { managedBand, managedBandEvents, fetchManagedBandEvents } = props
+  const { managedBand, managedBandEvents, fetchManagedBandEvents, feedLoading } = props
 
   const [page, setPage] = useState(1)
 
@@ -28,24 +30,29 @@ const ManageBand = (props) =>  {
 
   return (
     <Container className="dashboard">
-    <Row>
-      <Col>
-        <div className="sidebar">
+    <Row lg={12}>
+      <Col lg={{span: 3, order: 1}} md={{ span: 6, order: 1}} sm={{ span: 12, order: 1}} xs={{ span: 12, order: 1}}>
+        <div className="sticky-top" style={{top: '12vh'}}>
           <CalendarFeed />
         </div>
       </Col>
 
-      <Col className="dashboard-center">
+      <Col  lg={{span: 5, order: 4}} md={{ span: 12, order: 12}} sm={{ span: 12, order: 12}} xs={{ span: 12, order: 12}}>
         <Row as="h2" className="card-header">
         {managedBand.name}'s Upcoming Events</Row>
-        <Row>
           <Feed events={managedBandEvents}/>
-          <Button onClick={() => setPage(page + 1)}>Load More...</Button>
-        </Row>
+          { feedLoading ? <Button variant="outline-success" className="row m-3" type="submit"> 
+          <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"/>Loading Page {page}</Button> :
+          <Button variant="outline-success" onClick={() => setPage(page + 1)}>Load More...</Button> 
+          }        
       </Col>
 
-    <Col>
-      <div className="sidebar mini-feed-side-scroll" >                
+    <Col lg={{span: 3, order: 12}} md={{ span: 6, order: 4}} sm={{ span: 12, order: 2}} xs={{ span: 12, order: 2}}>
+      <div className="sticky-top mini-feed-side-scroll" style={{top: '15vh'}} >                
           <EventForm />
           <BandForm />
       </div>
@@ -58,7 +65,8 @@ const ManageBand = (props) =>  {
 const readAccess = state => {
   return {
     managedBand: state.managedBand,
-    managedBandEvents: state.managedBandEvents
+    managedBandEvents: state.managedBandEvents,
+    feedLoading: state.loading.feed
   }
 }
 
