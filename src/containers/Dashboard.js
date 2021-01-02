@@ -34,7 +34,7 @@ const Dashboard = (props) =>  {
     <Container className="dashboard" fluid>
     <Row lg={12}>
       <Col lg={{span: 3, order: 1}} md={{ span: 6, order: 1}} sm={{ span: 12, order: 1}} xs={{ span: 12, order: 1}}> 
-        <div className="sticky-top" style={{top: '10vh'}}>
+        <div className="sticky-top sidebar">
 
           <CalendarFeed />
         </div> 
@@ -54,7 +54,7 @@ const Dashboard = (props) =>  {
       </Col>
 
       <Col lg={{span: 3, order: 12}} md={{ span: 6, order: 4}} sm={{ span: 12, order: 2}} xs={{ span: 12, order: 2}} >
-        <div className="sticky-top" style={{top: '10vh'}}>
+        <div className="sticky-top sidebar">
           <Row className='row-header'>Suggested Events</Row>
           <MiniFeed events={suggestedEvents}/>
       </div>

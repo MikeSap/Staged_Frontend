@@ -10,14 +10,14 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
-import CardGroup from 'react-bootstrap/CardGroup'
+import Spinner from 'react-bootstrap/Spinner'
 
 const Index = (props) => {
 
   const history = useHistory()
   const location = history.location.pathname
 
-  const { followedBandEvents, managedBandEvents, allMusic, allMerch, allShows } = props
+  const { followedBandEvents, managedBandEvents, allMusic, allMerch, allShows, loading } = props
 
   const [search, setSearch] = useState("")
   const [page, setPage] = useState(1)
@@ -56,12 +56,10 @@ const Index = (props) => {
           <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
       </Form>
 
-      <CardGroup >
-      { eventsToShow ? eventsToShow.map( event => <Row>
+      { loading ? <Spinner animation="grow" /> :  eventsToShow ? eventsToShow.map( event => <Row>
         <IndexPost {...event} band={event.band} key={event.id} />
       </Row>) 
-      : null}
-      </CardGroup>
+      : null }
 
       <Button onClick={() => setPage(page + 1)}>Load More...</Button>
 
@@ -75,7 +73,8 @@ const readAccess = state => {
   return {
     followedBand: state.user.followed,
     followedBandEvents: state.followedEvents,
-    managedBandEvents: state.managedBandEvents
+    managedBandEvents: state.managedBandEvents,
+    loading: state.loading.feed
   }
 }
 

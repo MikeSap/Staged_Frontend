@@ -18,13 +18,13 @@
 }
 
 .navbar-brand > img {
-  width: 4.5vw;
+  width: 8vh;
   margin-left: 5vw;
 }
 
 .navbar-brand {
   font-family: "stencil";
-  font-size: 1.5vw;
+  font-size: 1.5vh;
 }
 
 .navbar-nav {
@@ -55,12 +55,11 @@
   justify-content: center;
 }
 
+
 /* Sidebar */
 
-.sidebar {
-  position: sticky ;
-  /* position: fixed;
-  max-width: 22vw; */
+.sticky-top.sidebar {
+  top: 15vh;
 }
 
 .card-header {
@@ -98,8 +97,8 @@ h5.card-type {
   display: flex;
   flex-direction: column-reverse;
   overflow: scroll;
-  height: 16vh;
-  width: 33vw;
+  height: 20vh;
+  width:fit-content;
   margin-top: 1vh;
 }
 

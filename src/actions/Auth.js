@@ -23,25 +23,7 @@ export const autoLogin = (user) => {
           bandId = parseInt(window.location.href.slice(lastUrlSlash + 1), 10)        
           let managedBand = user.bands.find(band => band.id === bandId)
           dispatch({ type: "POP_BAND_MANAGE" , band: managedBand })
-           // autologin is not hitting when band is cleared
-        } else if (window.location.href.includes('/bands/')) {
-          lastUrlSlash = window.location.href.lastIndexOf("/")
-          bandId = parseInt(window.location.href.slice(lastUrlSlash + 1), 10)          
-
-          fetch(`${API}/api/v1/band_info`, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({band_id: bandId})
-            })
-          .then(resp => resp.json())
-          .then( info => {
-              dispatch({ type: "POP_SHOW_BAND", info })
-              history.push(`/bands/${bandId}`)
-          })
-        }        
+        } 
       })
       
     } else if (!window.location.href.includes('/signup')) {

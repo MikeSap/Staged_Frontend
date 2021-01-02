@@ -32,7 +32,7 @@ const ManageBand = (props) =>  {
     <Container className="dashboard">
     <Row lg={12}>
       <Col lg={{span: 3, order: 1}} md={{ span: 6, order: 1}} sm={{ span: 12, order: 1}} xs={{ span: 12, order: 1}}>
-        <div className="sticky-top" style={{top: '12vh'}}>
+        <div className="sticky-top sidebar" >
           <CalendarFeed />
         </div>
       </Col>
@@ -52,7 +52,7 @@ const ManageBand = (props) =>  {
       </Col>
 
     <Col lg={{span: 3, order: 12}} md={{ span: 6, order: 4}} sm={{ span: 12, order: 2}} xs={{ span: 12, order: 2}}>
-      <div className="sticky-top mini-feed-side-scroll" style={{top: '15vh'}} >                
+      <div className="sticky-top mini-feed-side-scroll sidebar" >                
           <EventForm />
           <BandForm />
       </div>

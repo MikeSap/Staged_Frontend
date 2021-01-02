@@ -50,17 +50,17 @@ export default function manageLoading(state = { user: false, feed: false, calend
         case 'MANAGED_EVENTS':
             return { ...state, feed: false}
     
-        // case "ADD_MUSIC":
-        //     return false
-        
-        // case "ADD_MERCH":
-        //     return false
-        
-        // case "ADD_SHOWS":
-        //     return false
+        case "ADD_MUSIC":
+          return { ...state, feed: false} 
+                 
+        case "ADD_MERCH":
+          return { ...state, feed: false}  
 
-        // case "ADD_BANDS":
-        //     return false
+        case "ADD_SHOWS":
+            return { ...state, feed: false} 
+
+        case "ADD_BANDS":
+            return { ...state, feed: false}
 
         case "FETCH_SHOW_BAND":
           return { ...state, miniFeed: true}
