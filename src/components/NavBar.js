@@ -11,6 +11,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Image from 'react-bootstrap/Image'
 import UserIcon from '../assets/usericonwhite.png'
+import SearchBar from './SearchBar';
 
 
 const NavBar = (props) => {
@@ -46,6 +47,8 @@ const NavBar = (props) => {
             </NavDropdown>
             : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
           } 
+
+          <SearchBar type="bands"/>
 
           {/* <Image className="mr-auto" src= {UserIcon} roundedCircle/>          */}
           <Button className="mr-auto" variant="outline-danger" size='sm' onClick={() => signOut()} primary>Sign Out</Button>           

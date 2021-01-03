@@ -29,13 +29,13 @@
 
 .navbar-nav {
     /* how do i get rid of the margins? */
-  margin-left: 23.5vw;
+  margin-left: 18vw;
   float: center;
 }
 
 .navbar-nav > .btn {
     /* how do i get rid of the margins? */
-  margin-left: 23.5vw;
+  margin-left: 10vw;
   float: right;
 }
 
