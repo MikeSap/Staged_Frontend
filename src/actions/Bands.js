@@ -9,7 +9,6 @@ export const editBand = (band) => {
     Object.keys(band).forEach((key, value) => {
         data.append(key, band[key])
     })
-
     fetch(`${API}/api/v1/bands/${band.id}`, {
       method: "PATCH",
       headers: {

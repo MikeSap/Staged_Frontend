@@ -60,6 +60,7 @@
 
 .sticky-top.sidebar {
   top: 15vh;
+  z-index: 100;
 }
 
 .card-header {
@@ -90,14 +91,15 @@ h5.card-type {
 }
 
 .card-img {
-  max-height: 23vh;
+  max-height: 20vh;
+  max-width: 25vw;
 }
 
 .comment-section {
   display: flex;
   flex-direction: column-reverse;
   overflow: scroll;
-  height: 20vh;
+  height: fit-content;
   width:fit-content;
   margin-top: 1vh;
 }

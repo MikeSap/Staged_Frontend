@@ -33,7 +33,6 @@ const Login = (props) => {
   
   const handleSubmit = (e) => {
       e.preventDefault()
-      debugger
       let band = {...formData, user_ids: [...bandMemberIds, props.user.id], photo: photo}     
       // differ submition from registration to edit     
       location.includes(managedBand.id) ? 
@@ -75,7 +74,7 @@ const Login = (props) => {
         
         {/* ADD USERS POPULATE FROM USER DATA ON API bootstrap react lookahead*/}
         {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
-        <UserSearch setIds={setBandMemberIds}/>
+        <UserSearch setIds={setBandMemberIds} />
             
         <Form.Control type="file" name="photo" onChange={handlePhoto} />
         
