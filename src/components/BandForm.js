@@ -6,6 +6,8 @@ import { useHistory } from "react-router";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+import UserSearch from '../components/UserSearch'
+
 const Login = (props) => {
 
   const history = useHistory()
@@ -13,6 +15,7 @@ const Login = (props) => {
 
   const [formData, setFormData] = useState({ name: "", bio: "", city: "", url: "" })
   const [photo, setPhoto] = useState(null)
+  const [bandMemberIds, setBandMemberIds] = useState([])
 
   const { errors, clearBandErrors, managedBand } = props
 
@@ -30,7 +33,8 @@ const Login = (props) => {
   
   const handleSubmit = (e) => {
       e.preventDefault()
-      let band = {...formData, user_ids: [props.user.id], photo: photo}     
+      debugger
+      let band = {...formData, user_ids: [...bandMemberIds, props.user.id], photo: photo}     
       // differ submition from registration to edit     
       location.includes(managedBand.id) ? 
       props.editBand(band) :
@@ -71,6 +75,7 @@ const Login = (props) => {
         
         {/* ADD USERS POPULATE FROM USER DATA ON API bootstrap react lookahead*/}
         {/* <Form.Control placeholder='Band Memebers' type="text" name="members" onChange={handleChange} value={formData.members}/> */}
+        <UserSearch setIds={setBandMemberIds}/>
             
         <Form.Control type="file" name="photo" onChange={handlePhoto} />
         
