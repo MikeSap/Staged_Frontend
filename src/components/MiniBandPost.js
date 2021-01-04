@@ -5,7 +5,7 @@ const MiniBandPost = (props) => {
 
   return (        
     <>
-    <Card bg="light">
+    <Card className="band-show-events" id="band-event" bg="light">
       
     <Card.Header as="h5">{props.name}</Card.Header> 
 

@@ -80,7 +80,7 @@ h5.card-type {
 }
 
 .card-text#card-date {
-  font-size: 1em;
+  font-size: 1.25em;
 }
 
 
@@ -172,5 +172,12 @@ a:active {
 /* Load Button */
 
 .load-button {
+  font-family: "stencil";
+}
+
+
+/* Band Show Page */
+
+h3.row {
   font-family: "stencil";
 }

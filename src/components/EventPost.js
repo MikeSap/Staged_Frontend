@@ -18,9 +18,9 @@ const EventPost = (props) => {
     let userBandIds = []
     let followedBandIds = []
     const history = useHistory()
-    const location = history.location.pathname
+    const browserUrl = history.location.pathname
 
-    const { event_type, id, date, url, name, comments, user , band, photo, managedBandEvents} = props
+    const { event_type, id, date, url, name, location, comments, user , band, photo, managedBandEvents} = props
 
     let photoUrl = event_type === "Show" ? `${API}${band.photo}` : `${API}${photo}`
  
@@ -39,7 +39,7 @@ const EventPost = (props) => {
     
     const manageBand = () => {
         return <>
-          <Button  variant="outline-success" size="sm" onClick={() => props.popEditedEvent({name, band, event_type, id, date, url})}>Edit</Button>
+          <Button  variant="outline-success" size="sm" onClick={() => props.popEditedEvent({name, band, event_type, id, date, url, location})}>Edit</Button>
           <Button variant="outline-danger" size="sm" onClick={() => props.deleteEvent(id)}>Delete</Button>
         </>
     }
@@ -68,11 +68,18 @@ const EventPost = (props) => {
             </Col>
             <Col>
             <Card.Title>{name}</Card.Title> 
-              <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
+              <Card.Text>{event_type === "Show" ? location : null }</Card.Text>
               <Card.Text id="card-date">{date.split("T")[0]}</Card.Text>
-              
-              { userBandIds.includes(band.id) && location.includes('manage_band') ? manageBand() : null }
-              { userBandIds.includes(band.id) || followedBandIds.includes(band.id) ? <Button
+            </Col>
+
+            <Col>
+             <Row>{ userBandIds.includes(band.id) && browserUrl.includes('manage_band') ? manageBand() : null }</Row>
+             <Row>{ !browserUrl.includes('manage_band') ? 
+             <Button size="sm" variant="outline-dark"><a target="_blank" rel="noreferrer" href={band.url}>{band.name}'s Page</a></Button> : null }</Row>
+             <Row>{ !browserUrl.includes('manage_band') ? 
+             <Button size="sm" variant="outline-dark"><a target="_blank" rel="noreferrer" href={url}>Event Link</a></Button> : null }</Row>
+            
+              <Row>{ userBandIds.includes(band.id) || followedBandIds.includes(band.id) ? <Button
               onClick={() => setOpen(!open)}
               aria-controls="collapse-comments"
               aria-expanded={open}
@@ -81,7 +88,7 @@ const EventPost = (props) => {
               >
               Comments
               </Button> : <Button size="sm" variant="outline-secondary" onClick={() => props.followBand(user.id, band.id)}>Follow</Button> }
-
+              </Row>
             </Col>
         </Row>
 
@@ -99,7 +106,7 @@ const EventPost = (props) => {
             </div>
               <Form onSubmit={postComment}>
                   <Form.Control as="textarea" className="comment-text-area" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
-                  <Button variant="outline-success" type="submit" size="sm">Post Comment</Button>
+                  <Button variant="outline-dark" type="submit" size="sm">Post Comment</Button>
               </Form>  
 
             </div>

@@ -39,7 +39,8 @@ const BandPost = (props) => {
         name: editedEvent.name,
         url: editedEvent.url,
         date: date,
-        id: editedEvent.id
+        id: editedEvent.id,
+        location: editedEvent.location
       })
     }
   }, [location, editedEvent, date, managedBandEvents])
@@ -94,6 +95,8 @@ const BandPost = (props) => {
         </Form.Control>
 
           <Form.Control placeholder='Event Name' name="name" onChange={handleChange} value={formData.name} maxLength={50} />                
+
+          { formData.event_type === "Show" ? <Form.Control placeholder='Location' name="location" onChange={handleChange} value={formData.location} maxLength={50} /> : null }         
 
           <Form.Control placeholder='Event URL' type="text" name="url" onChange={handleChange} value={formData.url}/>
           
