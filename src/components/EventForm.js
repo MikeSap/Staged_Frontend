@@ -103,9 +103,9 @@ const BandPost = (props) => {
 
           <Form.Control type="file" name="photo" onChange={handlePhoto} />
 
-          <Button variant="outline-success" type="submit">Submit</Button>
+          <Button className="load-button" variant="outline-dark" type="submit">Submit</Button>
 
-          {editedEvent.id? <Button variant="outline-danger" onClick={clearEditedForm}>Clear</Button> : null}
+          {editedEvent.id? <Button variant="outline-secondary" onClick={clearEditedForm}>Clear</Button> : null}
 
       </Form>
     </>

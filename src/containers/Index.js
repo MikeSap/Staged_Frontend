@@ -61,7 +61,7 @@ const Index = (props) => {
       </Row>) 
       : null }
 
-      <Button onClick={() => setPage(page + 1)}>Load More...</Button>
+      <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button>
 
       </Col>
 

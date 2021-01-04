@@ -45,6 +45,7 @@ const SearchBar = (props) => {
   const filterBy = () => true;
 
   return (
+    <>
     <AsyncTypeahead
       filterBy={filterBy}
       id="async-typeahead-multiple"
@@ -73,6 +74,7 @@ const SearchBar = (props) => {
         </>
       )}
     />
+    </>
   );
 };
 

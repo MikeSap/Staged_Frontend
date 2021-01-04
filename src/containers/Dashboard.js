@@ -42,13 +42,13 @@ const Dashboard = (props) =>  {
 
       <Col  lg={{span: 5, order: 4}} md={{ span: 12, order: 12}} sm={{ span: 12, order: 12}} xs={{ span: 12, order: 12}} >
         <Feed events={followedEvents}/>
-        { feedLoading ? <Button variant="outline-success" className="row m-3" type="submit"> 
+        { feedLoading ? <Button className="load-button" variant="outline-dark" type="submit"> 
         <Spinner
         as="span"
         animation="grow"
         size="sm"
         role="status"/>Loading Page {page}</Button> :
-        <Button variant="outline-success" onClick={() => setPage(page + 1)}>Load More...</Button> 
+        <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button> 
         }
         
       </Col>

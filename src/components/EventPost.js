@@ -58,7 +58,7 @@ const EventPost = (props) => {
     let sortedComments = commentSort()
   return ( 
     <>
-    <Card bg="light" className="event-post" >
+    <Card as="container" bg="light" className="event-post" >
       <Card.Header as="h3">{band.name} 
       <h5 className="card-type">{event_type}</h5></Card.Header> 
         <Card.Body>
@@ -69,7 +69,7 @@ const EventPost = (props) => {
             <Col>
             <Card.Title>{name}</Card.Title> 
               <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
-              <Card.Text>{date.split("T")[0]}</Card.Text>
+              <Card.Text id="card-date">{date.split("T")[0]}</Card.Text>
               
               { userBandIds.includes(band.id) && location.includes('manage_band') ? manageBand() : null }
               { userBandIds.includes(band.id) || followedBandIds.includes(band.id) ? <Button
@@ -98,7 +98,7 @@ const EventPost = (props) => {
 
             </div>
               <Form onSubmit={postComment}>
-                  <Form.Control as="textarea" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
+                  <Form.Control as="textarea" className="comment-text-area" rows={2} placeholder='Comment' name="comment" onChange={(e) => setComment(e.target.value)} value={comment} maxLength={125} />
                   <Button variant="outline-success" type="submit" size="sm">Post Comment</Button>
               </Form>  
 

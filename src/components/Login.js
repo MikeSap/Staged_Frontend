@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
-import { PersonSquare } from 'react-bootstrap-icons';
+// import { PersonSquare } from 'react-bootstrap-icons';
 
 
 const Login = (props) => {
@@ -69,16 +69,16 @@ const Login = (props) => {
         
         { buildSignupForm() } 
 
-        { loading ? <Button variant="outline-success" className="row m-3" type="submit"> 
+        { loading ? <Button variant="outline-dark" className="row m-3" type="submit"> 
         <Spinner
         as="span"
         animation="grow"
         size="sm"
         role="status"/>Logging In...</Button> :
-        <Button variant="outline-success" className="row m-3" type="submit">Log In</Button> }
+        <Button variant="outline-dark" className="row m-3" type="submit">See the show</Button> }
 
         {location.includes('signup') ? null :
-        <Button variant="outline-secondary" href='/signup'>Sign Up</Button>}
+        <Button variant="outline-secondary" href='/signup'>Get your pass</Button>}
       </Form>
       </>
   )

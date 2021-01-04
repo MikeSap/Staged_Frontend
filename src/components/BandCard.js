@@ -35,7 +35,7 @@ const BandCard = (props) => {
                   <Card.Text><a target="_blank" rel="noreferrer" href={url}>Band Page</a></Card.Text>
 
                   { location.includes(id) ? null
-                  : <Button onClick={() => props.popBandShow({id})}>Show More</Button>}
+                  : <Button variant="outline-dark" onClick={() => props.popBandShow({id})}>Show More</Button>}
                 </Col>
               </Row>
             </Container>

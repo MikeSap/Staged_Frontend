@@ -79,7 +79,7 @@ const Login = (props) => {
             
         <Form.Control type="file" name="photo" onChange={handlePhoto} />
         
-        <Button variant="outline-success" type="submit">Submit</Button>
+        <Button className="load-button" variant="outline-dark" type="submit">Submit</Button>
 
       </Form>
       </Form.Group>

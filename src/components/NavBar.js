@@ -9,8 +9,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Image from 'react-bootstrap/Image'
-import UserIcon from '../assets/usericonwhite.png'
+// import Image from 'react-bootstrap/Image'
+// import UserIcon from '../assets/usericonwhite.png'
 import SearchBar from './SearchBar';
 
 
@@ -33,37 +33,39 @@ const NavBar = (props) => {
     }
 
     const loggedInNav = () => {
-        return <Nav className="mr-auto">        
+        return <>
+          <Nav className="ml-auto">        
           <Nav.Link href="/bands">Bands</Nav.Link>
           <Nav.Link href="/merch">Merch</Nav.Link>
           <Nav.Link href="/music">Music</Nav.Link>
           <Nav.Link href="/shows">Shows</Nav.Link>
-          {/* can simplify this to still say manage bands and only have the register link if there are no bands */}
-          {
-            user.bands ? <NavDropdown title="Manage Bands" id="band-management">
-            {user.bands.map( band => <NavDropdown.Item  onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>)}
-            <NavDropdown.Divider />
-            <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
-            </NavDropdown>
-            : <Nav.Link href="/band_registration">Register a Band</Nav.Link>
-          } 
+          <NavDropdown title="Manage Bands" id="band-management">
+            {
+            user.bands ? user.bands.map( band => <NavDropdown.Item  onClick={() => manageBand(band)}>{band.name}</NavDropdown.Item>) : null            
+            }
+          <NavDropdown.Divider /> 
+          <NavDropdown.Item onClick={() => history.push(`/band_registration`)}>Register a Band</NavDropdown.Item>
+          </NavDropdown>         
 
-          <SearchBar type="bands"/>
-
-          {/* <Image className="mr-auto" src= {UserIcon} roundedCircle/>          */}
-          <Button className="mr-auto" variant="outline-danger" size='sm' onClick={() => signOut()} primary>Sign Out</Button>           
+          {/* <Image className="mr-auto" src= {UserIcon} roundedCircle/>          */}           
         </Nav>
+          <div className="nav-search"> 
+          <SearchBar type="Bands"/>
+          </div>
+          <Button className="ml-auto" size="sm" variant="dark" onClick={() => signOut()} primary>Sign Out</Button>
+        </>
     }
 
     return (       
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-        <Navbar.Brand href="/"><img src={navLogo} alt="Staged Logo" /></Navbar.Brand>
-        <Navbar.Brand href="/">Staged</Navbar.Brand>                         
+      <Navbar collapseOnSelect expand="lg" sticky="top">
+        <Navbar.Brand href="/"><img src={navLogo} alt="Staged Logo" className="ml-auto" /></Navbar.Brand>
+        <Navbar.Brand href="/" className="ml-auto">Staged</Navbar.Brand>                         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
          <Navbar.Collapse id="basic-navbar-nav"> 
           
             {!user.id ? null :
             loggedInNav()}
+
           </Navbar.Collapse>
       </Navbar>
     )
