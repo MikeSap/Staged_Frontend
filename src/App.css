@@ -33,7 +33,7 @@
 }
 
 .navbar-brand > img {
-  width: 4em;
+  height: 10vh;
 }
 
 /* dashboard */
@@ -56,7 +56,7 @@
 /* Sidebar */
 
 .sticky-top.sidebar {
-  top: 15vh;
+  top: 17vh;
   z-index: 100;
 }
 

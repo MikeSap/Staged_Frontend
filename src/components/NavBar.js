@@ -50,7 +50,7 @@ const NavBar = (props) => {
           {/* <Image className="mr-auto" src= {UserIcon} roundedCircle/>          */}           
         </Nav>
           <div className="nav-search"> 
-          <SearchBar type="Bands"/>
+          <SearchBar type="bands"/>
           </div>
           <Button className="ml-auto" size="sm" variant="dark" onClick={() => signOut()} primary>Sign Out</Button>
         </>
