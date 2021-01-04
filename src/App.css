@@ -10,6 +10,17 @@
   text-align: center;
 }
 
+#login-form {
+  border-style: outset;
+  border-color: rgba(51, 51, 51, 0.425);
+  border-radius: .75em;
+}
+
+#login-form > .form-label {
+  font-family: "stencil";
+  font-size: 3em;
+}
+
 /* NavBar */
 
 .navbar {
@@ -24,7 +35,7 @@
 
 .navbar-brand {
   font-family: "stencil";
-  font-size: 1.5vh;
+  font-size: 5em;
 }
 
 .navbar-nav {
@@ -91,15 +102,14 @@ h5.card-type {
 }
 
 .card-img {
-  max-height: 20vh;
-  max-width: 25vw;
+  max-height: 18vh;
 }
 
 .comment-section {
   display: flex;
   flex-direction: column-reverse;
   overflow: scroll;
-  height: fit-content;
+  height: 20vh;
   width:fit-content;
   margin-top: 1vh;
 }

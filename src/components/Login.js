@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { login, signup, clearLoginErrors } from '../actions/Auth'
 import { useHistory } from "react-router";
 
-// import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
+import { PersonSquare } from 'react-bootstrap-icons';
+
 
 const Login = (props) => {
 
@@ -52,7 +53,8 @@ const Login = (props) => {
 
   return(  
     // <Container fluid className="d-flex align-items-center justify-content-center">         
-      <Form onSubmit={handleSubmit}>
+    <>
+      <Form  id="login-form" onSubmit={handleSubmit}>
               
         {location.includes('signup') ?
             <Form.Label className="sign-up">Sign-up for Staged</Form.Label>
@@ -61,7 +63,7 @@ const Login = (props) => {
         }     
         {props.errors ?  <Alert variant="danger">{props.errors}</Alert> : null}
 
-        <Form.Control placeholder='email' type="email" name="email" onChange={handleChange} value={formData.email}/>
+        <Form.Control placeholder='email'type="email" name="email" onChange={handleChange} value={formData.email}/>
 
         <Form.Control placeholder='password' type="password" name="password" onChange={handleChange} value={formData.password} />                
         
@@ -78,7 +80,7 @@ const Login = (props) => {
         {location.includes('signup') ? null :
         <Button variant="outline-secondary" href='/signup'>Sign Up</Button>}
       </Form>
-//    {/* </Container> */}
+      </>
   )
 }
  

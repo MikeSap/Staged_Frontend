@@ -53,7 +53,8 @@ const Login = (props) => {
   }
 
   return(    
-    <>                  
+    <> 
+    <Form.Group className="login-form">                 
       <Form onSubmit={handleSubmit}>
             
         {location.includes(managedBand.id) ?
@@ -81,6 +82,7 @@ const Login = (props) => {
         <Button variant="outline-success" type="submit">Submit</Button>
 
       </Form>
+      </Form.Group>
     </>
   )
 }
