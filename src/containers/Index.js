@@ -56,12 +56,12 @@ const Index = (props) => {
           <Form.Control onChange={searchPosts} type="text" placeholder="Filter Posts by Date, Band, Or Title" className="mr-sm-2" value={search} />
       </Form>
 
-      { loading ? <Spinner animation="grow" /> :  eventsToShow ? eventsToShow.map( event => <Row>
+      {eventsToShow ? eventsToShow.map( event => <Row>
         <IndexPost {...event} band={event.band} key={event.id} />
-      </Row>) 
-      : null }
+      </Row>) : null }
 
-      <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button>
+      { loading ? <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}><Spinner animation="grow" size="sm" />Loading Page {page}...</Button> :  
+      <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button> }
 
       </Col>
 

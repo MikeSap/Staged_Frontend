@@ -16,6 +16,7 @@ export const autoLogin = (user) => {
       .then(resp => resp.json())
       .then(user => {
         dispatch({type:"AUTO_LOG_IN", user})
+        document.title = `Welcome to Staged, ${user.username}`
         let lastUrlSlash
         let bandId
         if(window.location.href.includes('/manage_band'))  {  
@@ -53,7 +54,8 @@ export const login = (user) => {
         history.push('/login')
         } else {
         dispatch({ type: "LOGGED_IN", user })
-        localStorage.setItem("token", user.jwt)           
+        localStorage.setItem("token", user.jwt)
+        document.title = `Welcome to Staged, ${user.user.username}`           
         history.push('/dashboard')
         }
     })
@@ -80,6 +82,7 @@ export const signup = (user) => {
           } else {
           dispatch({ type: "LOGGED_IN", user })
           localStorage.setItem("token", user.jwt)
+          document.title = `Welcome to Staged, ${user.user.username}`
           history.push('/dashboard')
           }
       })
@@ -90,6 +93,7 @@ export const logout = () => {
     window.localStorage.removeItem("token")
     return dispatch => {
         dispatch({ type: 'LOGOUT'  })
+        document.title = `Staged`
     history.push('/login')
     }
 }

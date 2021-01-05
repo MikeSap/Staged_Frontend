@@ -45,12 +45,13 @@ const bandsToShow = bandSort()
               <Form.Control onChange={searchPosts} type="text" placeholder="Filter by Name or City" className="mr-sm-2" value={search} />
           </Form> */}
 
-              { loading ? <Spinner  animation="grow"/> : bandsToShow ? bandsToShow.map( band => <Row>                
+              { bandsToShow ? bandsToShow.map( band => <Row>                
               <BandCard {...band} key={band.id} />
               </Row>) 
               : null}
 
-        <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button>
+          { loading ? <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}><Spinner animation="grow" size="sm" />Loading Page {page}...</Button> :  
+          <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button> }
 
       </Col>
       </Container>

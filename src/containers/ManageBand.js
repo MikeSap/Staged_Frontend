@@ -41,13 +41,13 @@ const ManageBand = (props) =>  {
         <Row as="h2" className="card-header">
         {managedBand.name}'s Upcoming Events</Row>
           <Feed events={managedBandEvents}/>
-          { feedLoading ? <Button variant="outline-success" className="row m-3" type="submit"> 
+          { feedLoading ? <Button className="load-button" variant="outline-dark" type="submit"> 
           <Spinner
           as="span"
           animation="grow"
           size="sm"
           role="status"/>Loading Page {page}</Button> :
-          <Button variant="outline-success" onClick={() => setPage(page + 1)}>Load More...</Button> 
+          <Button className="load-button" variant="outline-dark" onClick={() => setPage(page + 1)}>Load More...</Button> 
           }        
       </Col>
 

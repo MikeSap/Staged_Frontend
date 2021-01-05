@@ -107,13 +107,6 @@ a:active {
 
 /* Suggested Feed */
 
-.mini-feed-side-scroll {
-  overflow: scroll;
-  height: 75vh;
-  /* width: 25vw; */
-  justify-content: center;
-  text-align: center;
-}
 
 
 /* Feed */
@@ -180,4 +173,16 @@ a:active {
 
 h3.row {
   font-family: "stencil";
+}
+
+#band-event {
+  min-width: 20vw;
+  width: auto;
+}
+
+.mini-feed-side-scroll {
+  overflow: scroll;
+  max-height: 75vh;
+  justify-content: center;
+  text-align: center;
 }

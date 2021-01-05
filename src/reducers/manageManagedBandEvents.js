@@ -3,7 +3,7 @@ export default function manageManagedBandEvents(state = [], action) {
   switch (action.type) {
 
       case "NEW_EVENT":
-          return [...state, action.newEvent]
+          return [action.newEvent, ...state ]
 
       case "EDIT_EVENT":
           idx = state.findIndex(e => e.id === action.editedEvent.id)

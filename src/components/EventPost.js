@@ -1,6 +1,6 @@
 import {  popEditedEvent, deleteEvent } from '../actions/Events'
 import {  postComment, selfPostComment } from '../actions/Comments'
-import { followBand } from '../actions/Bands'
+import { followBand, popBandShow } from '../actions/Bands'
 import { connect } from 'react-redux'
 import React, { useState } from 'react';
 import API from '../API'
@@ -75,7 +75,7 @@ const EventPost = (props) => {
             <Col>
              <Row>{ userBandIds.includes(band.id) && browserUrl.includes('manage_band') ? manageBand() : null }</Row>
              <Row>{ !browserUrl.includes('manage_band') ? 
-             <Button size="sm" variant="outline-dark"><a target="_blank" rel="noreferrer" href={band.url}>{band.name}'s Page</a></Button> : null }</Row>
+             <Button onClick={() => props.popBandShow({id: band.id})} size="sm" variant="outline-dark">{band.name}'s Page</Button> : null }</Row>
              <Row>{ !browserUrl.includes('manage_band') ? 
              <Button size="sm" variant="outline-dark"><a target="_blank" rel="noreferrer" href={url}>Event Link</a></Button> : null }</Row>
             
@@ -125,4 +125,4 @@ const readAccess = state => {
     }
 }
 
-export default connect(readAccess, { popEditedEvent, deleteEvent, postComment, selfPostComment, followBand })(EventPost)
+export default connect(readAccess, { popEditedEvent, deleteEvent, postComment, selfPostComment, followBand, popBandShow })(EventPost)

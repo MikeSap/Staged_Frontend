@@ -36,7 +36,6 @@ export const popBandManage = (band) => {
 }
 
 export const popBandShow = (band_id) => {
-
   return dispatch => {
       dispatch({ type: "FETCH_SHOW_BAND" })
       
