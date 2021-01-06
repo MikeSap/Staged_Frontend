@@ -1,16 +1,15 @@
-import API from '../API'
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import API from "../API";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
 const SearchBar = (props) => {
-
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
-  const { setIds, bandMembers } = props
+  const { setIds, bandMembers } = props;
 
   const handleSearch = (query) => {
     setIsLoading(true);
@@ -18,14 +17,14 @@ const SearchBar = (props) => {
     fetch(`${API}/api/v1/users_search`, {
       method: "POST",
       headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json'
+        "Content-type": "application/json",
+        Accept: "application/json",
       },
-      body: JSON.stringify({query: query})
-      })
+      body: JSON.stringify({ query: query }),
+    })
       .then((resp) => resp.json())
-      .then( users => {
-        const options = users.map( u => ({
+      .then((users) => {
+        const options = users.map((u) => ({
           id: u.id,
           name: u.username,
         }));
@@ -36,19 +35,19 @@ const SearchBar = (props) => {
   };
 
   useEffect(() => {
-    setIds(selected.map(u => u.id))
-  }, [selected, setIds])
+    setIds(selected.map((u) => u.id));
+  }, [selected, setIds]);
 
   useEffect(() => {
-    if (bandMembers){
-      let currentMemb = bandMembers.map( u => ({
-        id: u.id, 
-        name: u.username
-      }))
-      setSelected([])
-      setSelected([...currentMemb])
+    if (bandMembers) {
+      let currentMemb = bandMembers.map((u) => ({
+        id: u.id,
+        name: u.username,
+      }));
+      setSelected([]);
+      setSelected([...currentMemb]);
     }
-  }, [bandMembers])
+  }, [bandMembers]);
 
   const filterBy = () => true;
 
@@ -74,10 +73,10 @@ const SearchBar = (props) => {
   );
 };
 
-const readAccess =  state => {
+const readAccess = (state) => {
   return {
-    bandMembers: state.managedBand.users
-  }
-}
+    bandMembers: state.managedBand.users,
+  };
+};
 
-export default connect(readAccess)(SearchBar)
+export default connect(readAccess)(SearchBar);

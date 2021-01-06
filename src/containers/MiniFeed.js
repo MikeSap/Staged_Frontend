@@ -1,40 +1,46 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
-import SuggestedPost from '../components/SuggestedPost'
+import SuggestedPost from "../components/SuggestedPost";
 
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from "react-loading-skeleton";
 
 const MiniFeed = (props) => {
-
-  const { followedBands, loading } = props
-
+  const { followedBands, loading } = props;
 
   const eventSort = () => {
-    let events = props.events ? [...props.events] : []
-    
-    return events
-  }
+    let events = props.events ? [...props.events] : [];
 
-  useEffect(() => {
-  }, [followedBands])
+    return events;
+  };
 
-  const eventsToShow = eventSort()
-  return (
-    loading ? <Skeleton/> : <div className="mini-feed-side-scroll">
-    { eventsToShow ? eventsToShow.map( event => {
-     return <SuggestedPost {...event} key={event.id} setPage={props.setPage}/>
-    })
-    : null }
+  useEffect(() => {}, [followedBands]);
+
+  const eventsToShow = eventSort();
+  return loading ? (
+    <Skeleton />
+  ) : (
+    <div className="mini-feed-side-scroll">
+      {eventsToShow
+        ? eventsToShow.map((event) => {
+            return (
+              <SuggestedPost
+                {...event}
+                key={event.id}
+                setPage={props.setPage}
+              />
+            );
+          })
+        : null}
     </div>
-  )
-}
+  );
+};
 
-const readAccess = state => {
+const readAccess = (state) => {
   return {
     followedBands: state.user.followed,
-    loading: state.loading.miniFeed
-  }
-}
+    loading: state.loading.miniFeed,
+  };
+};
 
-export default connect(readAccess)(MiniFeed)
+export default connect(readAccess)(MiniFeed);
