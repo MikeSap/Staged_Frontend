@@ -35,7 +35,13 @@ const CalendarFeed = (props) => {
         <div className="calendar-side-scroll">
           {events ? (
             events.map((event) => {
-              return <SuggestedPost {...event} key={event.id} />;
+              return (
+                <SuggestedPost
+                  {...event}
+                  key={event.id}
+                  setPage={props.setPage}
+                />
+              );
             })
           ) : (
             <p>No events to Show</p>

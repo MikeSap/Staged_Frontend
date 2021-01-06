@@ -1,13 +1,12 @@
 export default function manageDateEvents(state = [], action) {
-    switch (action.type) {
+  switch (action.type) {
+    case "DATE_EVENTS":
+      return [...action.dateEvents];
 
-        case "DATE_EVENTS":
-            return [...action.dateEvents]
+    case "LOGOUT":
+      return [];
 
-        case "LOGOUT":
-            return []
-
-        default:
-          return state;
-    }
+    default:
+      return state;
+  }
 }

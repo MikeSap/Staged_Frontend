@@ -3,15 +3,19 @@ import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+import { useHistory } from "react-router";
+
 const SuggestedPost = (props) => {
   const { user } = props;
+  const history = useHistory();
+  const location = history.location.pathname;
 
   let followedBandIds = user.followed ? user.followed.map((b) => b.id) : [];
   let userBandIds = user.bands ? user.bands.map((b) => b.id) : [];
   let idList = followedBandIds.concat(userBandIds);
 
   const handleFollow = () => {
-    props.setPage(1);
+    location.includes("/manage_band") ? console.log("123") : props.setPage(1);
     props.followBand(user.id, props.band.id);
   };
 

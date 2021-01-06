@@ -43,7 +43,7 @@ const Dashboard = (props) => {
           xs={{ span: 12, order: 1 }}
         >
           <div className="sticky-top sidebar">
-            <CalendarFeed />
+            <CalendarFeed setPage={setPage} />
           </div>
         </Col>
 
