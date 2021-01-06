@@ -28,7 +28,7 @@ const BandCard = (props) => {
               </Col>
               <Col>
                 <Card.Title>{name}</Card.Title>
-                <Card.Text>City: {city}</Card.Text>
+                <Card.Text>Location: {city}</Card.Text>
                 <Card.Text>Bio: {bio}</Card.Text>
                 <Card.Text>
                   <a target="_blank" rel="noreferrer" href={url}>

@@ -29,6 +29,9 @@ const SuggestedPost = (props) => {
 
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
+          {props.event_type === "Show" ? (
+            <Card.Text>Where / {props.location} </Card.Text>
+          ) : null}
           <Card.Text>{props.date.split("T")[0]}</Card.Text>
 
           <Card.Text>

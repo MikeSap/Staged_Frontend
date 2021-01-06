@@ -110,7 +110,7 @@ const EventPost = (props) => {
             </Col>
             <Col>
               <Card.Title>{name}</Card.Title>
-              <Card.Text>{event_type === "Show" ? location : null}</Card.Text>
+              {event_type === "Show" ? <Card.Text>Where / {location} </Card.Text> : null}
               <Card.Text id="card-date">{date.split("T")[0]}</Card.Text>
             </Col>
 
