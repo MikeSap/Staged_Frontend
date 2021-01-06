@@ -56,7 +56,7 @@ const Dashboard = (props) =>  {
       <Col lg={{span: 3, order: 12}} md={{ span: 6, order: 4}} sm={{ span: 12, order: 2}} xs={{ span: 12, order: 2}} >
         <div className="sticky-top sidebar">
           <Row className='row-header'>Suggested Events</Row>
-          <MiniFeed events={suggestedEvents}/>
+          <MiniFeed events={suggestedEvents} setPage={setPage}/>
       </div>
       </Col>
     </Row>

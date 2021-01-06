@@ -18,9 +18,9 @@ const IndexPost = (props) => {
     let userBandIds = []
     let followedBandIds = []
     const history = useHistory()
-    const location = history.location.pathname
+    const browserUrl = history.location.pathname
 
-    const { event_type, id, date, url, name, comments, user , band, photo, managedBandEvents} = props
+    const { event_type, location, id, date, url, name, comments, user , band, photo, managedBandEvents} = props
 
     let photoUrl = event_type === "Show" ? `${API}${band.photo}` : `${API}${photo}`
  
@@ -58,7 +58,7 @@ const IndexPost = (props) => {
     let sortedComments = commentSort()
     return (        
       <>
-      <Card bg="light" className="event-post" >
+      <Card bg="light" className="event-post index-post" >
         <Card.Header as="h3">{band.name} 
         <h5 className="card-type">{event_type}</h5></Card.Header> 
           <Card.Body>
@@ -68,10 +68,11 @@ const IndexPost = (props) => {
                   </Col>
                   <Col>
                   <Card.Title>{name}</Card.Title> 
+                  <Card.Text>{event_type === "Show" ? location : null }</Card.Text>
                     <Card.Text><a target="_blank" rel="noreferrer" href={url}>{url.split("/")[3]}</a></Card.Text>
                     <Card.Text>{date.split("T")[0]}</Card.Text>
                     
-                    { userBandIds.includes(band.id) && location.includes('manage_band') ? manageBand() : null }
+                    { userBandIds.includes(band.id) && browserUrl.includes('manage_band') ? manageBand() : null }
                     { userBandIds.includes(band.id) || followedBandIds.includes(band.id) ? <Button
                     onClick={() => setOpen(!open)}
                     aria-controls="collapse-comments"

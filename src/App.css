@@ -186,3 +186,9 @@ h3.row {
   justify-content: center;
   text-align: center;
 }
+
+/* Index Pages */
+
+.event-post.index-post.card {
+  width: 80vw; 
+}

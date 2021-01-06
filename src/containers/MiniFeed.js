@@ -23,7 +23,7 @@ const MiniFeed = (props) => {
   return (
     loading ? <Skeleton/> : <div className="mini-feed-side-scroll">
     { eventsToShow ? eventsToShow.map( event => {
-     return <SuggestedPost {...event} key={event.id} />
+     return <SuggestedPost {...event} key={event.id} setPage={props.setPage}/>
     })
     : null }
     </div>

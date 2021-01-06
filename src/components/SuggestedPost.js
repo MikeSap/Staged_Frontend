@@ -12,6 +12,7 @@ const SuggestedPost = (props) => {
   let idList = followedBandIds.concat(userBandIds)
 
   const handleFollow = () => {
+      props.setPage(1)
       props.followBand(user.id, props.band.id)
   }
 
